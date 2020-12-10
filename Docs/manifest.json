@@ -1,0 +1,12 @@
+{
+	"title": "SybithosInfernyx",
+	"author": "Infernyx",
+	"description": "Custom decks from the two people in the title, Infernyx and Sybithos",
+	"namespace": "SybithosInfernyx",
+	"dll": "SybithosInfernyx.dll",
+	"decks": {
+		"heroes": [
+			"Arctyx"
+		]
+	}
+}
