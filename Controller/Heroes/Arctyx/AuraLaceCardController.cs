@@ -39,14 +39,26 @@ namespace SybithosInfernyx.Arctyx
             {
                 this.GameController.ExhaustCoroutine(coroutine);
             }
+            List<Card> list = new List<Card>();
+            list.AddRange(base.TurnTaker.Trash.Cards);
+            base.AddInhibitorException((GameAction ga) => ga is ShuffleCardsAction);
+            coroutine = base.GameController.ShuffleCardsIntoLocation(this.DecisionMaker, list, base.TurnTaker.Deck, true, base.GetCardSource(null));
+            if (UseUnityCoroutines)
+            {
+                yield return this.GameController.StartCoroutine(coroutine);
+            }
+            else
+            {
+                this.GameController.ExhaustCoroutine(coroutine);
+            }
             yield break;
         }
 
         private IEnumerator AddStatusEffectResponse(DealDamageAction dd)
         {
             IncreaseDamageStatusEffect increaseDamageStatusEffect = new IncreaseDamageStatusEffect(1);
-            increaseDamageStatusEffect.SourceCriteria.IsSpecificCard = base.CharacterCard;
-            increaseDamageStatusEffect.TargetCriteria.IsSpecificCard = dd.Target;
+            increaseDamageStatusEffect.SourceCriteria.IsSpecificCard = this.CharacterCard;
+            increaseDamageStatusEffect.TargetCriteria.IsSpecificCard = dd.DamageSource.Card;
             increaseDamageStatusEffect.NumberOfUses = 1;
             IEnumerator coroutine = AddStatusEffect(increaseDamageStatusEffect);
             if(UseUnityCoroutines)

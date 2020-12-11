@@ -13,80 +13,15 @@ namespace SybithosInfernyx.Arctyx
         {
         }
 
-        public override IEnumerator Play()
+        public override void AddTriggers()
         {
-            WhenCardIsDestroyedStatusEffect whenCardIsDestroyedStatusEffect = new WhenCardIsDestroyedStatusEffect(base.CardWithoutReplacements, "DealFireDamageResponse", string.Concat(new string[]
-            {
-                "Whenever a Flame Aura is destroyed, ",
-                base.Card.Title,
-                " deals a target 1 Fire damage."
-            }), new TriggerType[]
-            {
-                TriggerType.DealDamage
-            }, base.HeroTurnTaker, base.Card, null);
-            whenCardIsDestroyedStatusEffect.CardDestroyedCriteria.HasAnyOfTheseKeywords.Any((string s) => Card.HasGameText && Card.DoKeywordsContain("flame", false, false));
-            whenCardIsDestroyedStatusEffect.CanEffectStack = true;
-            whenCardIsDestroyedStatusEffect.UntilStartOfNextTurn(base.GameController.FindNextTurnTaker());
-            whenCardIsDestroyedStatusEffect.DoesDealDamage = true;
-            IEnumerator coroutine = base.AddStatusEffect(whenCardIsDestroyedStatusEffect, true);
-            if (base.UseUnityCoroutines)
-            {
-                yield return base.GameController.StartCoroutine(coroutine);
-            }
-            else
-            {
-                base.GameController.ExhaustCoroutine(coroutine);
-            }
-            WhenCardIsDestroyedStatusEffect whenCardIsDestroyedStatusEffect2 = new WhenCardIsDestroyedStatusEffect(base.CardWithoutReplacements, "DealColdDamageResponse", string.Concat(new string[]
-            {
-                "Whenever a Frost Aura is destroyed, ",
-                base.Card.Title,
-                " deals a target 1 Cold damage."
-            }), new TriggerType[]
-            {
-                TriggerType.DealDamage
-            }, base.HeroTurnTaker, base.Card, null);
-            whenCardIsDestroyedStatusEffect2.CardDestroyedCriteria.HasAnyOfTheseKeywords.Any((string s) => Card.HasGameText && Card.DoKeywordsContain("frost", false, false));
-            whenCardIsDestroyedStatusEffect2.CanEffectStack = true;
-            whenCardIsDestroyedStatusEffect2.UntilStartOfNextTurn(base.GameController.FindNextTurnTaker());
-            whenCardIsDestroyedStatusEffect2.DoesDealDamage = true;
-            IEnumerator coroutine2 = base.AddStatusEffect(whenCardIsDestroyedStatusEffect2, true);
-            if (base.UseUnityCoroutines)
-            {
-                yield return base.GameController.StartCoroutine(coroutine2);
-            }
-            else
-            {
-                base.GameController.ExhaustCoroutine(coroutine2);
-            }
-            IEnumerable<Card> source = from c in base.HeroTurnTaker.Hand.Cards
-                                       where c.DoKeywordsContain("aura", false, false)
-                                       select c;
-            IEnumerator coroutine3 = base.SelectAndPlayCardsFromHand(this.DecisionMaker, source.Count<Card>(), false, new int?(0), new LinqCardCriteria((Card c) => c.DoKeywordsContain("aura", false, false), "aura", true, false, null, null, false), false, null, null);
-            if (base.UseUnityCoroutines)
-            {
-                yield return base.GameController.StartCoroutine(coroutine3);
-            }
-            else
-            {
-                base.GameController.ExhaustCoroutine(coroutine3);
-            }
-            yield break;
+            base.AddTrigger<DestroyCardAction>((DestroyCardAction d) => d.CardToDestroy.Card.DoKeywordsContain("flame", false, false), new Func<DestroyCardAction, IEnumerator>(this.DealFireDamageResponse), TriggerType.DealDamage, TriggerTiming.After, ActionDescription.Unspecified, false, true, null, false, null, null, false, false);
+            base.AddTrigger<DestroyCardAction>((DestroyCardAction d) => d.CardToDestroy.Card.DoKeywordsContain("frost", false, false), new Func<DestroyCardAction, IEnumerator>(this.DealColdDamageResponse), TriggerType.DealDamage, TriggerTiming.After, ActionDescription.Unspecified, false, true, null, false, null, null, false, false);
         }
 
-        public IEnumerator DealFireDamageResponse(HeroTurnTaker hero, StatusEffect effect)
+        private IEnumerator DealFireDamageResponse(DestroyCardAction d)
         {
-            Card card = base.Card;
-            if (hero != null && hero.IsHero)
-            {
-                card = hero.CharacterCard;
-            }
-            HeroTurnTakerController heroTurnTakerController = base.FindHeroTurnTakerController(hero);
-            if (heroTurnTakerController == null)
-            {
-                heroTurnTakerController = this.DecisionMaker;
-            }
-            IEnumerator coroutine = base.GameController.SelectTargetsAndDealDamage(heroTurnTakerController, new DamageSource(base.GameController, card), 1, DamageType.Fire, 1, false, 1, false, false, false, null, null, null, null, null, false, null, null, false, null, base.GetCardSource(effect));
+            IEnumerator coroutine = base.GameController.SelectTargetsAndDealDamage(this.DecisionMaker, new DamageSource(base.GameController, base.CharacterCard), 1, DamageType.Fire, new int?(2), true, new int?(0), false, false, false, null, null, null, null, null, false, null, null, false, null, base.GetCardSource(null));
             if (base.UseUnityCoroutines)
             {
                 yield return base.GameController.StartCoroutine(coroutine);
@@ -98,19 +33,9 @@ namespace SybithosInfernyx.Arctyx
             yield break;
         }
 
-        public IEnumerator DealColdDamageResponse(HeroTurnTaker hero, StatusEffect effect)
+        private IEnumerator DealColdDamageResponse(DestroyCardAction d)
         {
-            Card card = base.Card;
-            if (hero != null && hero.IsHero)
-            {
-                card = hero.CharacterCard;
-            }
-            HeroTurnTakerController heroTurnTakerController = base.FindHeroTurnTakerController(hero);
-            if (heroTurnTakerController == null)
-            {
-                heroTurnTakerController = this.DecisionMaker;
-            }
-            IEnumerator coroutine = base.GameController.SelectTargetsAndDealDamage(heroTurnTakerController, new DamageSource(base.GameController, card), 1, DamageType.Cold, 1, false, 1, false, false, false, null, null, null, null, null, false, null, null, false, null, base.GetCardSource(effect));
+            IEnumerator coroutine = base.GameController.SelectTargetsAndDealDamage(this.DecisionMaker, new DamageSource(base.GameController, base.CharacterCard), 2, DamageType.Cold, new int?(1), true, new int?(0), false, false, false, null, null, null, null, null, false, null, null, false, null, base.GetCardSource(null));
             if (base.UseUnityCoroutines)
             {
                 yield return base.GameController.StartCoroutine(coroutine);
@@ -121,5 +46,6 @@ namespace SybithosInfernyx.Arctyx
             }
             yield break;
         }
+
     }
 }

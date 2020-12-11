@@ -22,36 +22,7 @@ namespace SybithosInfernyx.Arctyx
                 case 0:
                     {
                         List<SelectCardDecision> storedResults = new List<SelectCardDecision>();
-                        IEnumerator coroutine2 = base.GameController.SelectCardAndStoreResults(this.DecisionMaker, SelectionType.ReduceDamageTaken, new LinqCardCriteria((Card c) => !c.IsIncapacitatedOrOutOfGame && c.IsHeroCharacterCard, "hero character", true, false, null, null, false), storedResults, false, false, null, true, base.GetCardSource(null));
-                        if (base.UseUnityCoroutines)
-                        {
-                            yield return base.GameController.StartCoroutine(coroutine2);
-                        }
-                        else
-                        {
-                            base.GameController.ExhaustCoroutine(coroutine2);
-                        }
-                        SelectCardDecision selectCardDecision = storedResults.FirstOrDefault<SelectCardDecision>();
-                        Card selectedCard = base.GetSelectedCard(storedResults);
-                        IncreaseDamageStatusEffect increaseDamageStatusEffect = new IncreaseDamageStatusEffect(1);
-                        increaseDamageStatusEffect.SourceCriteria.IsSpecificCard = selectedCard;
-                        increaseDamageStatusEffect.UntilStartOfNextTurn(base.TurnTaker);
-                        increaseDamageStatusEffect.UntilCardLeavesPlay(selectedCard);
-                        coroutine2 = base.AddStatusEffect(increaseDamageStatusEffect, true);
-                        if (base.UseUnityCoroutines)
-                        {
-                            yield return base.GameController.StartCoroutine(coroutine2);
-                        }
-                        else
-                        {
-                            base.GameController.ExhaustCoroutine(coroutine2);
-                        }
-                        break;
-                    }
-                case 1:
-                    {
-                        List<SelectCardDecision> storedResults = new List<SelectCardDecision>();
-                        IEnumerator coroutine2 = base.GameController.SelectCardAndStoreResults(this.DecisionMaker, SelectionType.ReduceDamageTaken, new LinqCardCriteria((Card c) => !c.IsIncapacitatedOrOutOfGame && c.IsHeroCharacterCard, "hero character", true, false, null, null, false), storedResults, false, false, null, true, base.GetCardSource(null));
+                        IEnumerator coroutine2 = base.GameController.SelectCardAndStoreResults(this.DecisionMaker, SelectionType.SelectTargetNoDamage, new LinqCardCriteria((Card c) => c.IsTarget, "target", true, false, null, null, false), storedResults, false, false, null, true, base.GetCardSource(null));
                         if (base.UseUnityCoroutines)
                         {
                             yield return base.GameController.StartCoroutine(coroutine2);
@@ -67,6 +38,35 @@ namespace SybithosInfernyx.Arctyx
                         reduceDamageStatusEffect.UntilStartOfNextTurn(base.TurnTaker);
                         reduceDamageStatusEffect.UntilCardLeavesPlay(selectedCard);
                         coroutine2 = base.AddStatusEffect(reduceDamageStatusEffect, true);
+                        if (base.UseUnityCoroutines)
+                        {
+                            yield return base.GameController.StartCoroutine(coroutine2);
+                        }
+                        else
+                        {
+                            base.GameController.ExhaustCoroutine(coroutine2);
+                        }
+                        break;
+                    }
+                case 1:
+                    {
+                        List<SelectCardDecision> storedResults = new List<SelectCardDecision>();
+                        IEnumerator coroutine2 = base.GameController.SelectCardAndStoreResults(this.DecisionMaker, SelectionType.SelectTargetNoDamage, new LinqCardCriteria((Card c) => c.IsTarget, "target", true, false, null, null, false), storedResults, false, false, null, true, base.GetCardSource(null));
+                        if (base.UseUnityCoroutines)
+                        {
+                            yield return base.GameController.StartCoroutine(coroutine2);
+                        }
+                        else
+                        {
+                            base.GameController.ExhaustCoroutine(coroutine2);
+                        }
+                        SelectCardDecision selectCardDecision = storedResults.FirstOrDefault<SelectCardDecision>();
+                        Card selectedCard = base.GetSelectedCard(storedResults);
+                        IncreaseDamageStatusEffect increaseDamageStatusEffect = new IncreaseDamageStatusEffect(1);
+                        increaseDamageStatusEffect.SourceCriteria.IsSpecificCard = selectedCard;
+                        increaseDamageStatusEffect.UntilStartOfNextTurn(base.TurnTaker);
+                        increaseDamageStatusEffect.UntilCardLeavesPlay(selectedCard);
+                        coroutine2 = base.AddStatusEffect(increaseDamageStatusEffect, true);
                         if (base.UseUnityCoroutines)
                         {
                             yield return base.GameController.StartCoroutine(coroutine2);

@@ -13,30 +13,26 @@ namespace SybithosInfernyx.Arctyx
 
         public override void AddTriggers()
         {
-            base.AddTrigger<DealDamageAction>((DealDamageAction dd) => dd.DidDealDamage && dd.DamageSource.IsSameCard(base.CharacterCard) && dd.DamageType == DamageType.Melee, (DealDamageAction dd) => base.DealDamage(base.Card, dd.Target, 1, DamageType.Cold, false, false, false, null, null, null, false, null), TriggerType.DealDamage, TriggerTiming.After, ActionDescription.Unspecified, false, true, null, false, null, null, false, false);
-            base.AddTrigger<DealDamageAction>((DealDamageAction dd) => dd.DidDealDamage && dd.DamageSource.IsSameCard(base.CharacterCard) && dd.DamageType == DamageType.Cold, new Func<DealDamageAction, IEnumerator>(this.AddReduceDamageResponse), TriggerType.AddStatusEffectToDamage, TriggerTiming.Before, ActionDescription.Unspecified, false, true, null, false, null, null, false, false);
-        }
+            base.AddTrigger<DealDamageAction>((DealDamageAction dd) => !base.IsPropertyTrue("FirstTimeDamage", null) && dd.DidDealDamage && dd.DamageSource.IsSameCard(base.CharacterCard) && dd.DamageType == DamageType.Melee, new Func<DealDamageAction, IEnumerator>(this.DealColdDamageResponse), TriggerType.DealDamage, TriggerTiming.After, ActionDescription.Unspecified, false, true, null, false, null, null, false, false);
+            base.AddTrigger<DealDamageAction>((DealDamageAction dd2) => dd2.DidDealDamage && dd2.DamageSource.IsSameCard(base.CharacterCard) && dd2.DamageType == DamageType.Cold, (DealDamageAction dd) => this.ReduceDamageDealtByThatTargetUntilTheStartOfYourNextTurnResponse(dd, 1), TriggerType.DealDamage, TriggerTiming.After, ActionDescription.Unspecified, false, true, null, false, null, null, false, false);
+			base.AddAfterLeavesPlayAction((GameAction ga) => base.ResetFlagAfterLeavesPlay("FirstTimeDamage"), TriggerType.Hidden);
+		}
 
-		private IEnumerator AddReduceDamageResponse(DealDamageAction dd)
+		private IEnumerator DealColdDamageResponse(DealDamageAction dd)
 		{
-            IEnumerator p(DealDamageAction dd2)
-            {
-                if (!dd2.DidDealDamage)
-                {
-                    return base.DoNothing();
-                }
-                IEnumerator enumerator = base.ReduceDamageDealtByThatTargetUntilTheStartOfYourNextTurnResponse(dd2, 1);
-                if (base.UseUnityCoroutines)
-                {
-                    return enumerator;
-                }
-                base.GameController.ExhaustCoroutine(enumerator);
-                return base.DoNothing();
-            }
-            Func<DealDamageAction, IEnumerator> statusEffectResponse = p;
-			dd.AddStatusEffectResponse(statusEffectResponse);
-			yield return null;
+			base.SetCardPropertyToTrueIfRealAction("FirstTimeDamage", null);
+			IEnumerator coroutine = base.DealDamage(base.CharacterCard, dd.Target, 1, DamageType.Cold, false, true, false, null, null, null, false, null);
+			if (base.UseUnityCoroutines)
+			{
+				yield return base.GameController.StartCoroutine(coroutine);
+			}
+			else
+			{
+				base.GameController.ExhaustCoroutine(coroutine);
+			}
 			yield break;
 		}
+
+		public const string FirstTimeDamage = "FirstTimeDamage";
 	}
 }

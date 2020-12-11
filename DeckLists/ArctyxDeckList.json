@@ -33,7 +33,7 @@
 				"ReduceDamageDealt"
       ],
       "openingLines": {
-        "default": "[placeholder line]"
+        "default": "It's time to roll some heads, heroes."
       },
       "complexity": 2
     },
@@ -86,8 +86,8 @@
 		  ],
 		"body": [
 		"When this card enters play, destroy any other Frost cards in play.",
-		"When Arctyx deals a target Melee damage, he may deal that target 1 Cold damage.",
-		"When Arctyx deals a target Cold damage, reduce damage dealt by that target by 1 until the start of your next turn."
+		"The first time each turn that {Arctyx} deals a target Melee damage, she may deal that target 1 Cold damage.",
+		"When {Arctyx} deals a target Cold damage, reduce damage dealt by that target by 1 until the start of your next turn."
 		],
 		"flavorText": "[placeholder]",
 		"icons": [
@@ -106,8 +106,8 @@
 		   ],
 		"body": [
 		"When this card enters play, destroy any other Flame cards in play.",
-		"Arctyx is immune to Fire damage.",
-		"The first time Arctyx is dealt damage by a non-hero target each turn, Arctyx deals that target 2 Fire damage."
+		"{Arctyx} is immune to Fire damage.",
+		"The first time {Arctyx} is dealt damage by a non-hero target each turn, {Arctyx} deals that target 2 Fire damage."
 		],
 		"flavorText": "[placeholder]",
 		"icons": [
@@ -126,8 +126,8 @@
 		   ],
 		"body": [
 		"When this card enters play, destroy any other Flame cards in play.",
-		"When Arctyx deals a target Melee damage, he may deal that target 1 Fire damage.",
-		"When Arctyx deals a target Fire damage, increase damage dealt to that target by 1 until the start of your next turn."
+		"The first time each turn that {Arctyx} deals a target Melee damage, she may deal that target 1 Fire damage.",
+		"When {Arctyx} deals a target Fire damage, increase damage dealt to that target by 1 until the start of your next turn."
 		],
 		"flavorText": "[placeholder]",
 		"icons": [
@@ -143,7 +143,7 @@
 		"ongoing",
 		"limited"
 		],
-		"body": "Reduce damage dealt to Arctyx by 1.",
+		"body": "Reduce damage dealt to {Arctyx} by 1.",
 		"flavorText": "[placeholder]",
 		"icons": "ReduceDamageTaken"
 		},
@@ -187,7 +187,7 @@
 		"count": 3,
 		"title": "Battle Roar",
 		"keywords": "one-shot",
-		"body": "Until the start of your next turn, redirect damage dealt by villain targets to Arctyx.",
+		"body": "Until the start of your next turn, redirect damage dealt by villain targets to {Arctyx}.",
 		"flavorText": "[placeholder]",
 		"icons": "RedirectDamage"
 	},
@@ -211,17 +211,15 @@
 		"identifier": "ShiftingAuras",
 		"count": 3,
 		"title": "Shifting Auras",
-		"keywords": "one-shot",
+		"keywords": "ongoing",
 		"body": [
-		"Each time a Flame card is destroyed this turn, {Arctyx} deals a target 1 Fire damage.",
-		"Each time a Frost card is destroyed this turn, {Arctyx} deals a target 1 Cold damage.",
-		"You may put any number of Aura cards from your hand into play."
+		"Whenever a Flame card is destroyed, {Arctyx} may deal up to 2 targets 1 Fire damage each.",
+		"Whenever a Frost card is destroyed, {Arctyx} may deal a target 2 Cold damage."
 		],
 		"flavorText": "[placeholder]",
 		"icons": [
 		"DealDamageFire",
-		"DealDamageCold",
-		"PlayCardNow"
+		"DealDamageCold"
 		]
 		},
 		{
