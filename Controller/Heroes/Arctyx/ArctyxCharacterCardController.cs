@@ -22,7 +22,7 @@ namespace SybithosInfernyx.Arctyx
                 case 0:
                     {
                         List<SelectCardDecision> storedResults = new List<SelectCardDecision>();
-                        IEnumerator coroutine2 = base.GameController.SelectCardAndStoreResults(this.DecisionMaker, SelectionType.SelectTargetNoDamage, new LinqCardCriteria((Card c) => c.IsTarget, "target", true, false, null, null, false), storedResults, false, false, null, true, base.GetCardSource(null));
+                        IEnumerator coroutine2 = base.GameController.SelectCardAndStoreResults(this.DecisionMaker, SelectionType.SelectTargetNoDamage, new LinqCardCriteria((Card c) => c.IsTarget && c.IsInPlay, "target", true, false, null, null, false), storedResults, false, false, null, true, base.GetCardSource(null));
                         if (base.UseUnityCoroutines)
                         {
                             yield return base.GameController.StartCoroutine(coroutine2);
@@ -51,7 +51,7 @@ namespace SybithosInfernyx.Arctyx
                 case 1:
                     {
                         List<SelectCardDecision> storedResults = new List<SelectCardDecision>();
-                        IEnumerator coroutine2 = base.GameController.SelectCardAndStoreResults(this.DecisionMaker, SelectionType.SelectTargetNoDamage, new LinqCardCriteria((Card c) => c.IsTarget, "target", true, false, null, null, false), storedResults, false, false, null, true, base.GetCardSource(null));
+                        IEnumerator coroutine2 = base.GameController.SelectCardAndStoreResults(this.DecisionMaker, SelectionType.SelectTargetNoDamage, new LinqCardCriteria((Card c) => c.IsTarget && c.IsInPlay, "target", true, false, null, null, false), storedResults, false, false, null, true, base.GetCardSource(null));
                         if (base.UseUnityCoroutines)
                         {
                             yield return base.GameController.StartCoroutine(coroutine2);

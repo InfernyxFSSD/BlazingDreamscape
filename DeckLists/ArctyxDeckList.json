@@ -4,250 +4,288 @@
   "initialCardIdentifiers": [
     "ArctyxCharacter"
   ],
-  "cards": [
-    {
-      "identifier": "ArctyxCharacter",
-      "count": 1,
-      "title": "Arctyx",
-      "body": "Slashing Claws",
-      "backgroundColor": "fbf8f9",
-      "foilBackgroundColor": "FEFEFE",
-      "hitpointsColor": "C94742",
-      "character": true,
-      "powers": [
-        "{Arctyx} deals a target 2 Melee damage."
-      ],
-      "icons": [
-        "HasPower",
+	"cards": [
+		{
+			"identifier": "ArctyxCharacter",
+			"count": 1,
+			"title": "Arctyx",
+			"body": "Slashing Claws",
+			"backgroundColor": "fbf8f9",
+			"foilBackgroundColor": "FEFEFE",
+			"hitpointsColor": "C94742",
+			"character": true,
+			"powers": [
+				"{Arctyx} deals a target 2 Melee damage."
+			],
+			"icons": [
+				"HasPower",
 				"DealDamageMelee"
-      ],
-      "hitpoints": 30,
-      "incapacitatedAbilities": [
-        "Reduce damage dealt by a target by 1 until the start of your next turn.",
-        "Increase damage dealt by a target by 1 until the start of your next turn.",
-        "One player may draw a card."
-      ],
-      "flippedIcons": [
-        "DrawCardNow",
-        "IncreaseDamageDealt",
+			],
+			"hitpoints": 30,
+			"incapacitatedAbilities": [
+				"Reduce damage dealt by a target by 1 until the start of your next turn.",
+				"Increase damage dealt by a target by 1 until the start of your next turn.",
+				"One player may draw a card."
+			],
+			"flippedIcons": [
+				"DrawCardNow",
+				"IncreaseDamageDealt",
 				"ReduceDamageDealt"
-      ],
-      "openingLines": {
-        "default": "It's time to roll some heads, heroes."
-      },
-      "complexity": 2
-    },
-    {
-      "identifier": "HeavyMace",
-      "count": 3,
-      "title": "Heavy Mace",
-      "keywords": [
-        "equipment",
+			],
+			"openingLines": {
+				"default": "It's time to roll some heads, heroes."
+			},
+			"complexity": 2
+		},
+		{
+			"identifier": "HeavyMace",
+			"count": 3,
+			"title": "Heavy Mace",
+			"keywords": [
+				"equipment",
 				"limited"
-        ],
-      "flavorText": "[placeholder]",
-      "powers": [
-        "{Arctyx} deals a target 3 melee damage."
-      ],
-      "icons": [
-        "HasPower",
-        "DealDamageMelee"
-      ]
-    },
+			],
+			"flavorText": "[placeholder]",
+			"powers": [
+				"{Arctyx} deals a target 3 melee damage."
+			],
+			"icons": [
+				"HasPower",
+				"DealDamageMelee"
+			]
+		},
 		{
-		"identifier": "IcyShell",
-		"count": 3,
-		"title": "Icy Shell",
-		"keywords": [
-		  "ongoing",
-		  "aura",
-		  "frost"
-		  ],
-		"body": [
-        "When this card enters play, destroy any other Frost cards in play.",
-        "Arctyx is immune to Cold damage.",
+			"identifier": "IcyShell",
+			"count": 3,
+			"title": "Icy Shell",
+			"keywords": [
+				"ongoing",
+				"aura",
+				"frost"
+			],
+			"body": [
+				"When this card enters play, destroy any other Frost cards in play.",
+				"Arctyx is immune to Cold damage.",
 				"At the end of your turn, Arctyx regains 1 HP."
-		],
-		"flavorText": "[placeholder]",
-		"icons": [
-		   "ImmuneToDamageCold",
-		   "EndOfTurnAction",
-		   "GainHP"
-		]
-    },
-		{
-		"identifier": "IceCoating",
-		"count": 3,
-		"title": "Ice Coating",
-		"keywords": [
-		  "ongoing",
-		  "aura",
-		  "frost"
-		  ],
-		"body": [
-		"When this card enters play, destroy any other Frost cards in play.",
-		"The first time each turn that {Arctyx} deals a target Melee damage, she may deal that target 1 Cold damage.",
-		"When {Arctyx} deals a target Cold damage, reduce damage dealt by that target by 1 until the start of your next turn."
-		],
-		"flavorText": "[placeholder]",
-		"icons": [
-			"DealDamageCold",
-			"ReduceDamageDealt"
-		]
+			],
+			"flavorText": "[placeholder]",
+			"icons": [
+				"ImmuneToDamageCold",
+				"EndOfTurnAction",
+				"GainHP"
+			]
 		},
 		{
-		"identifier": "FlameGuard",
-		"count": 3,
-		"title": "Flame Guard",
-		"keywords": [
-		   "ongoing",
-		   "aura",
-		   "flame"
-		   ],
-		"body": [
-		"When this card enters play, destroy any other Flame cards in play.",
-		"{Arctyx} is immune to Fire damage.",
-		"The first time {Arctyx} is dealt damage by a non-hero target each turn, {Arctyx} deals that target 2 Fire damage."
-		],
-		"flavorText": "[placeholder]",
-		"icons": [
-			"ImmuneToDamageFire",
-			"DealDamageFire"
-		]
+			"identifier": "IceCoating",
+			"count": 3,
+			"title": "Ice Coating",
+			"keywords": [
+				"ongoing",
+				"aura",
+				"frost"
+			],
+			"body": [
+				"When this card enters play, destroy any other Frost cards in play.",
+				"The first time each turn that {Arctyx} deals a target Melee damage, she may deal that target 1 Cold damage.",
+				"When {Arctyx} deals a target Cold damage, reduce damage dealt by that target by 1 until the start of your next turn."
+			],
+			"flavorText": "[placeholder]",
+			"icons": [
+				"DealDamageCold",
+				"ReduceDamageDealt"
+			]
 		},
 		{
-		"identifier": "BurningTrail",
-		"count": 3,
-		"title": "Burning Trail",
-		"keywords": [
-		   "ongoing",
-		   "aura",
-		   "flame"
-		   ],
-		"body": [
-		"When this card enters play, destroy any other Flame cards in play.",
-		"The first time each turn that {Arctyx} deals a target Melee damage, she may deal that target 1 Fire damage.",
-		"When {Arctyx} deals a target Fire damage, increase damage dealt to that target by 1 until the start of your next turn."
-		],
-		"flavorText": "[placeholder]",
-		"icons": [
-			"DealDamageFire",
-			"IncreaseDamageTaken"
-		]
-	},
-		{
-		"identifier": "DragonHide",
-		"count": 4,
-		"title": "Dragon Hide",
-		"keywords": [
-		"ongoing",
-		"limited"
-		],
-		"body": "Reduce damage dealt to {Arctyx} by 1.",
-		"flavorText": "[placeholder]",
-		"icons": "ReduceDamageTaken"
+			"identifier": "FlameGuard",
+			"count": 3,
+			"title": "Flame Guard",
+			"keywords": [
+				"ongoing",
+				"aura",
+				"flame"
+			],
+			"body": [
+				"When this card enters play, destroy any other Flame cards in play.",
+				"{Arctyx} is immune to Fire damage.",
+				"The first time {Arctyx} is dealt damage by a non-hero target each turn, {Arctyx} deals that target 2 Fire damage."
+			],
+			"flavorText": "[placeholder]",
+			"icons": [
+				"ImmuneToDamageFire",
+				"DealDamageFire"
+			]
 		},
 		{
-		"identifier": "AuraLace",
-		"count": 3,
-		"title": "Aura Lace",
-		"keywords": [
-		"ongoing",
-		"limited"
-		],
-		"body": "While there is an Aura in play, whenever {Arctyx} is dealt damage by a target, increase the next damage dealt to that target by {Arctyx} by 1.",
-		"powers": "Discard 2 cards. Search your deck or trash for an Aura and put it into play. Shuffle your trash into your deck.",
-		"flavorText": "[placeholder]",
-		"icons": [
-		"HasPower",
-		"Search"
-		]
+			"identifier": "BurningTrail",
+			"count": 3,
+			"title": "Burning Trail",
+			"keywords": [
+				"ongoing",
+				"aura",
+				"flame"
+			],
+			"body": [
+				"When this card enters play, destroy any other Flame cards in play.",
+				"The first time each turn that {Arctyx} deals a target Melee damage, she may deal that target 1 Fire damage.",
+				"When {Arctyx} deals a target Fire damage, increase damage dealt to that target by 1 until the start of your next turn."
+			],
+			"flavorText": "[placeholder]",
+			"icons": [
+				"DealDamageFire",
+				"IncreaseDamageTaken"
+			]
 		},
 		{
-		"identifier": "ArmorBurst",
-		"count": 3,
-		"title": "Armor Burst",
-		"keywords": "one-shot",
-		"body": [
-		"Destroy all Auras in your play area.",
-		"Choose Fire or Cold. {Arctyx} deals up to X targets 3 damage of that type each.",
-		"Until the start of your next turn, increase damage dealt to {Arctyx} by X.",
-		"X on this card is the number of Auras destroyed this way."
-		],
-		"flavorText": "[placeholder]",
-		"icons": [
-		"Destroy",
-		"DealDamageFire",
-		"DealDamageCold",
-		"IncreaseDamageTaken"
-		]
+			"identifier": "DragonHide",
+			"count": 4,
+			"title": "Dragon Hide",
+			"keywords": [
+				"ongoing",
+				"limited"
+			],
+			"body": "Reduce damage dealt to {Arctyx} by 1.",
+			"flavorText": "[placeholder]",
+			"icons": "ReduceDamageTaken"
 		},
 		{
-		"identifier": "BattleRoar",
-		"count": 3,
-		"title": "Battle Roar",
-		"keywords": "one-shot",
-		"body": "Until the start of your next turn, redirect damage dealt by villain targets to {Arctyx}.",
-		"flavorText": "[placeholder]",
-		"icons": "RedirectDamage"
-	},
-		{
-		"identifier": "FocusedRecovery",
-		"count": 3,
-		"title": "Focused Recovery",
-		"keywords": "one-shot",
-		"body": [
-		"{Arctyx} regains 3 HP.",
-		"You may discard any number of Aura cards from your hand. Draw X cards, where X s the number of cards discarded this way."
-		],
-		"flavorText": "[placeholder]",
-		"icons": [
-		"GainHP",
-		"Discard",
-		"DrawCardNow"
-		]
+			"identifier": "AuraLace",
+			"count": 3,
+			"title": "Aura Lace",
+			"keywords": [
+				"ongoing",
+				"limited"
+			],
+			"body": "While there is an Aura in play, whenever {Arctyx} is dealt damage by a target, increase the next damage dealt to that target by {Arctyx} by 1.",
+			"powers": "Discard 2 cards. Search your deck or trash for an Aura and put it into play. Shuffle your trash into your deck.",
+			"flavorText": "[placeholder]",
+			"icons": [
+				"HasPower",
+				"Search"
+			]
 		},
 		{
-		"identifier": "ShiftingAuras",
-		"count": 3,
-		"title": "Shifting Auras",
-		"keywords": "ongoing",
-		"body": [
-		"Whenever a Flame card is destroyed, {Arctyx} may deal up to 2 targets 1 Fire damage each.",
-		"Whenever a Frost card is destroyed, {Arctyx} may deal a target 2 Cold damage."
-		],
-		"flavorText": "[placeholder]",
-		"icons": [
-		"DealDamageFire",
-		"DealDamageCold"
-		]
+			"identifier": "ArmorBurst",
+			"count": 3,
+			"title": "Armor Burst",
+			"keywords": "one-shot",
+			"body": [
+				"Destroy all Auras in your play area.",
+				"Choose Fire or Cold. {Arctyx} deals up to X targets 3 damage of that type each.",
+				"Until the start of your next turn, increase damage dealt to {Arctyx} by X.",
+				"X on this card is the number of Auras destroyed this way."
+			],
+			"flavorText": "[placeholder]",
+			"icons": [
+				"Destroy",
+				"DealDamageFire",
+				"DealDamageCold",
+				"IncreaseDamageTaken"
+			]
 		},
 		{
-		"identifier": "TauntTheNewcomers",
-		"count": 3,
-		"title": "Taunt The Newcomers",
-		"keywords": [
-		"ongoing",
-		"limited"
-		],
-		"body": "Whenever a non-hero target enters play, {Arctyx} may deal that target 1 Sonic damage.",
-		"flavorText": "[placeholder]",
-		"icons": "DealDamageSonic"
+			"identifier": "BattleRoar",
+			"count": 3,
+			"title": "Battle Roar",
+			"keywords": "one-shot",
+			"body": "Until the start of your next turn, redirect damage dealt by villain targets to {Arctyx}.",
+			"flavorText": "[placeholder]",
+			"icons": "RedirectDamage"
 		},
 		{
-		"identifier": "OpportuneLunge",
-		"count": 3,
-		"title": "Opportune Lunge",
-		"keywords": "one-shot",
-		"body": [
-		"{Arctyx} deals a target 2 Melee damage.",
-		"You may play a card now."
-		],
-		"flavorText": "[placeholder]",
-		"icons": [
-		"DealDamageMelee",
-		"PlayCardNow"
-		]
+			"identifier": "FocusedRecovery",
+			"count": 3,
+			"title": "Focused Recovery",
+			"keywords": "one-shot",
+			"body": [
+				"{Arctyx} regains 3 HP.",
+				"You may discard any number of Aura cards from your hand. Draw X cards, where X s the number of cards discarded this way."
+			],
+			"flavorText": "[placeholder]",
+			"icons": [
+				"GainHP",
+				"Discard",
+				"DrawCardNow"
+			]
+		},
+		{
+			"identifier": "ShiftingAuras",
+			"count": 3,
+			"title": "Shifting Auras",
+			"keywords": "ongoing",
+			"body": [
+				"Whenever a Flame card is destroyed, {Arctyx} may deal up to 2 targets 1 Fire damage each.",
+				"Whenever a Frost card is destroyed, {Arctyx} may deal a target 2 Cold damage."
+			],
+			"flavorText": "[placeholder]",
+			"icons": [
+				"DealDamageFire",
+				"DealDamageCold"
+			]
+		},
+		{
+			"identifier": "TauntTheNewcomers",
+			"count": 3,
+			"title": "Taunt The Newcomers",
+			"keywords": [
+				"ongoing",
+				"limited"
+			],
+			"body": "Whenever a non-hero target enters play, {Arctyx} may deal that target 1 Sonic damage.",
+			"flavorText": "[placeholder]",
+			"icons": "DealDamageSonic"
+		},
+		{
+			"identifier": "OpportuneLunge",
+			"count": 3,
+			"title": "Opportune Lunge",
+			"keywords": "one-shot",
+			"body": [
+				"{Arctyx} deals a target 2 Melee damage.",
+				"You may play a card now."
+			],
+			"flavorText": "[placeholder]",
+			"icons": [
+				"DealDamageMelee",
+				"PlayCardNow"
+			]
 		}
-  ]
+	],
+	"promoCards": [
+		{
+			"identifier": "ArctyxCharacter",
+			"promoIdentifier": "AuraDisplacementArctyxCharacter",
+			"count": 1,
+			"title": "Arctyx",
+			"promoTitle": "Aura Displacement Arctyx",
+			"body": "Aura Displacement",
+			"backgroundColor": "fbf8f9",
+			"foilBackgroundColor": "FEFEFE",
+			"hitpointsColor": "C94742",
+			"character": true,
+			"powers": [
+				"Discard the top card of your deck. If an Aura was discarded this way, one other player may play a card. Otherwise, one player may draw a card."
+			],
+			"icons": [
+				"HasPower",
+				"Discard",
+				"PlayCardNow",
+				"DrawCardNow"
+			],
+			"hitpoints": 28,
+			"incapacitatedAbilities": [
+				"One player may play a card.",
+				"One hero may use a power.",
+				"One player may draw a card."
+			],
+			"flippedIcons": [
+				"DrawCardNow",
+				"PlayCardNow",
+				"UsePowerNow"
+			],
+			"openingLines": {
+				"default": "We can take them down together, team."
+			},
+			"complexity": 2
+		}
+	]
 }

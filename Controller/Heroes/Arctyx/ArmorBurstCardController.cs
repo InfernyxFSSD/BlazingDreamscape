@@ -30,43 +30,50 @@ namespace SybithosInfernyx.Arctyx
 
         private IEnumerator DealDamageResponseAndIncreaseDamageTaken(int X)
         {
-            List<SelectDamageTypeDecision> storedResults = new List<SelectDamageTypeDecision>();
-            IEnumerator chooseDamageType = base.GameController.SelectDamageType(base.HeroTurnTakerController, storedResults, new DamageType[]
+            if (X > 0)
             {
-                DamageType.Fire,
-                DamageType.Cold
-            }, null, SelectionType.DamageType, base.GetCardSource(null));
-            if (base.UseUnityCoroutines)
-            {
-                yield return base.GameController.StartCoroutine(chooseDamageType);
+                List<SelectDamageTypeDecision> storedResults = new List<SelectDamageTypeDecision>();
+                IEnumerator chooseDamageType = base.GameController.SelectDamageType(base.HeroTurnTakerController, storedResults, new DamageType[]
+                {
+                    DamageType.Fire,
+                    DamageType.Cold
+                }, null, SelectionType.DamageType, base.GetCardSource(null));
+                if (base.UseUnityCoroutines)
+                {
+                    yield return base.GameController.StartCoroutine(chooseDamageType);
+                }
+                else
+                {
+                    base.GameController.ExhaustCoroutine(chooseDamageType);
+                }
+                DamageType value = storedResults.First((SelectDamageTypeDecision d) => d.Completed).SelectedDamageType.Value;
+                IEnumerator dealAuraDamage = base.GameController.SelectTargetsAndDealDamage(this.DecisionMaker, new DamageSource(base.GameController, base.CharacterCard), 3, value, new int?(X), false, new int?(0), false, false, false, null, null, null, null, null, false, null, null, false, null, base.GetCardSource(null));
+                if (base.UseUnityCoroutines)
+                {
+                    yield return base.GameController.StartCoroutine(dealAuraDamage);
+                }
+                else
+                {
+                    base.GameController.ExhaustCoroutine(dealAuraDamage);
+                }
+                IncreaseDamageStatusEffect increaseDamageStatusEffect = new IncreaseDamageStatusEffect(X);
+                increaseDamageStatusEffect.TargetCriteria.IsSpecificCard = base.CharacterCard;
+                increaseDamageStatusEffect.UntilStartOfNextTurn(base.TurnTaker);
+                IEnumerator increaseDamageTaken = base.AddStatusEffect(increaseDamageStatusEffect, true);
+                if (base.UseUnityCoroutines)
+                {
+                    yield return base.GameController.StartCoroutine(increaseDamageTaken);
+                }
+                else
+                {
+                    base.GameController.ExhaustCoroutine(increaseDamageTaken);
+                }
+                yield break;
             }
             else
             {
-                base.GameController.ExhaustCoroutine(chooseDamageType);
+                yield break;
             }
-            DamageType value = storedResults.First((SelectDamageTypeDecision d) => d.Completed).SelectedDamageType.Value;
-            IEnumerator dealAuraDamage = base.GameController.SelectTargetsAndDealDamage(this.DecisionMaker, new DamageSource(base.GameController, base.CharacterCard), 3, value, new int?(X), false, new int?(0), false, false, false, null, null, null, null, null, false, null, null, false, null, base.GetCardSource(null));
-            if (base.UseUnityCoroutines)
-            {
-                yield return base.GameController.StartCoroutine(dealAuraDamage);
-            }
-            else
-            {
-                base.GameController.ExhaustCoroutine(dealAuraDamage);
-            }
-            IncreaseDamageStatusEffect increaseDamageStatusEffect = new IncreaseDamageStatusEffect(X);
-            increaseDamageStatusEffect.TargetCriteria.IsSpecificCard = base.CharacterCard;
-            increaseDamageStatusEffect.UntilStartOfNextTurn(base.TurnTaker);
-            IEnumerator increaseDamageTaken = base.AddStatusEffect(increaseDamageStatusEffect, true);
-            if (base.UseUnityCoroutines)
-            {
-                yield return base.GameController.StartCoroutine(increaseDamageTaken);
-            }
-            else
-            {
-                base.GameController.ExhaustCoroutine(increaseDamageTaken);
-            }
-            yield break;
         }
     }
 }
