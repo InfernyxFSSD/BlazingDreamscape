@@ -7,8 +7,7 @@ namespace SybithosInfernyx.Arctyx
 {
     public class ArctyxTurnTakerController : HeroTurnTakerController
     {
-        public ArctyxTurnTakerController(TurnTaker turnTaker, GameController gameController)
-            : base(turnTaker, gameController)
+        public ArctyxTurnTakerController(TurnTaker turnTaker, GameController gameController) : base(turnTaker, gameController)
         {
         }
     }

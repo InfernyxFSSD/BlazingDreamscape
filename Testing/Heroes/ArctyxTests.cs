@@ -475,7 +475,7 @@ namespace SybithosInfernyx.Testing
             DecisionSelectTargets = new Card[] { tachyon.CharacterCard, legacy.CharacterCard };
             QuickHPStorage(tachyon, legacy);
             PlayCard(burst);
-            QuickHPCheck(-3, -3);
+            QuickHPCheck(-6, -6);
             AssertInTrash(coat);
             AssertInTrash(trail);
             //It also increases damage dealt to Arctyx by X until the start of your next turn.
@@ -505,7 +505,7 @@ namespace SybithosInfernyx.Testing
             DecisionSelectTarget = tachyon.CharacterCard;
             QuickHPStorage(tachyon);
             PlayCard(burst);
-            QuickHPCheck(-3);
+            QuickHPCheck(-6);
             AssertInTrash(coat);
             //It also increases damage dealt to Arctyx by X until the start of your next turn.
             QuickHPStorage(arctyx);
@@ -588,7 +588,6 @@ namespace SybithosInfernyx.Testing
             PutInHand("FocusedRecovery");
             Card focus = GetCardFromHand("FocusedRecovery");
             PutInHand("IcyShell");
-            Card shell = GetCardFromHand("IcyShell");
             SetHitPoints(arctyx, 10);
 
             //Focused Recovery should let Arctyx regain 3 HP, then discard any number of auras to draw that many cards

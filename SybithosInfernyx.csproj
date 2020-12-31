@@ -11,24 +11,37 @@
 		<Authors>Infernyx and Sybithos</Authors>
 		<Company />
 		<PackageId>SybithosInfernyx</PackageId>
-		<Version>1.0.0</Version>
+		<Version>1.0.1</Version>
 		<AssemblyVersion>1.0.0.0</AssemblyVersion>
 		<FileVersion>1.0.0.0</FileVersion>
 		<Description>Custom decks from the two people in the title, Infernyx and Sybithos</Description>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Remove="DeckLists\*.json" />
+		<Compile Remove="Controller\Heroes\Unvirno\**" />
+		<Compile Remove="Controller\Heroes\Vikral\**" />
+		<EmbeddedResource Remove="Controller\Heroes\Unvirno\**" />
+		<EmbeddedResource Remove="Controller\Heroes\Vikral\**" />
+		<None Remove="Controller\Heroes\Unvirno\**" />
+		<None Remove="Controller\Heroes\Vikral\**" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Include="DeckLists\*.json">
-		</EmbeddedResource>
+		<EmbeddedResource Include="DeckLists\ArctyxDeckList.json" />
+		<EmbeddedResource Include="DeckLists\KyossDeckList.json" />
 	</ItemGroup>
 
 	<PropertyGroup>
 		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Testing\Heroes\UnvirnoTests.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Remove="DeckLists\UnvirnoDeckList.json" />
+	</ItemGroup>
 
 
 	<ItemGroup>

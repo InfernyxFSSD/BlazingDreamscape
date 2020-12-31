@@ -47,7 +47,7 @@ namespace SybithosInfernyx.Arctyx
                     base.GameController.ExhaustCoroutine(chooseDamageType);
                 }
                 DamageType value = storedResults.First((SelectDamageTypeDecision d) => d.Completed).SelectedDamageType.Value;
-                IEnumerator dealAuraDamage = base.GameController.SelectTargetsAndDealDamage(this.DecisionMaker, new DamageSource(base.GameController, base.CharacterCard), 3, value, new int?(X), false, new int?(0), false, false, false, null, null, null, null, null, false, null, null, false, null, base.GetCardSource(null));
+                IEnumerator dealAuraDamage = base.GameController.SelectTargetsAndDealDamage(this.DecisionMaker, new DamageSource(base.GameController, base.CharacterCard), 6, value, new int?(X), false, new int?(0), false, false, false, null, null, null, null, null, false, null, null, false, null, base.GetCardSource(null));
                 if (base.UseUnityCoroutines)
                 {
                     yield return base.GameController.StartCoroutine(dealAuraDamage);

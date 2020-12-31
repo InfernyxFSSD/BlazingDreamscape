@@ -6,7 +6,8 @@
 	"dll": "SybithosInfernyx.dll",
 	"decks": {
 		"heroes": [
-			"Arctyx"
+			"Arctyx",
+			"Kyoss"
 		]
 	}
 }

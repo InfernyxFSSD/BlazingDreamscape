@@ -1,0 +1,491 @@
+{
+  "name": "Unvirno",
+  "kind": "Hero",
+  "initialCardIdentifiers": [
+    "UnvirnoCharacter"
+  ],
+  "cards": [
+    {
+      "identifier": "UnvirnoCharacter",
+      "count": 1,
+      "title": "Unvirno",
+      "body": "Charge Revolver",
+      "backgroundColor": "fbf8f9",
+      "foilBackgroundColor": "FEFEFE",
+      "hitpointsColor": "C94742",
+      "character": true,
+      "powers": [
+        "{Unvirno} deals a target 1 Energy damage. You may discard up to 5 cards. For each card discarded this way, {Unvirno} deals a target 1 Energy damage."
+      ],
+      "icons": [
+        "HasPower",
+        "DealDamageEnergy",
+        "Discard"
+      ],
+      "hitpoints": 30,
+      "incapacitatedAbilities": [
+        "Reduce the next damage dealt to a hero by 1.",
+        "Until the start of your next turn, reduce damage dealt by each hero by 1 and reduce damage dealt to each hero by 2.",
+        "One player may draw a card."
+      ],
+      "flippedIcons": [
+        "DrawCardNow",
+        "ReduceDamageTaken",
+        "IncreaseDamageDealt"
+      ],
+      "openingLines": {
+        "default": "Weapons live! Keep your mind focused on the objectives!",
+        "OblivAeonFrontPageCharacter": "This is it everyone! Stay focused!"
+      },
+      "complexity": 2
+    },
+    {
+      "identifier": "EmitterGlaive",
+      "count": 2,
+      "title": "Emitter Glaive",
+      "keywords": [
+        "equipment",
+        "arsenal",
+        "limited"
+      ],
+      "flavorText": "[placeholder]",
+      "powers": [
+        "Reduce the next damage dealt to {Unvirno} by 1. {Unvirno} deals a target 2 Melee damage. You may discard a card. If you do, {Unvirno} deals that target 2 damage of any type."
+      ],
+      "icons": [
+        "HasPower",
+        "ReduceDamageTaken",
+        "DealDamageMelee",
+        "Discard"
+      ]
+    },
+    {
+      "identifier": "DrivePartisan",
+      "count": 2,
+      "title": "Drive Partisan",
+      "keywords": [
+        "equipment",
+        "arsenal",
+        "limited"
+      ],
+      "flavorText": "[placeholder]",
+      "powers": [
+        "{Unvirno} deals a target 2 melee damage. You may discard a card. If you do, this damage is irreducible."
+      ],
+      "icons": [
+        "HasPower",
+        "DealDamageMelee",
+        "Discard",
+        "MakeDamageIrreducible"
+      ]
+    },
+    {
+      "identifier": "StunshotRifle",
+      "count": 2,
+      "title": "Stunshot Rifle",
+      "keywords": [
+        "equipment",
+        "arsenal",
+        "limited"
+      ],
+      "flavorText": "[placeholder]",
+      "powers": [
+        "{Unvirno} deals up to 2 targets 1 Projectile damage each. You may discard a card. If you do, prevent the next damage dealt by targets dealt damage this way."
+      ],
+      "icons": [
+        "HasPower",
+        "DealDamageProjectile",
+        "Discard",
+        "CannotDealDamage"
+      ]
+    },
+    {
+      "identifier": "FullPlating",
+      "count": 3,
+      "title": "Full Plating",
+      "keywords": [
+        "equipment",
+        "armor",
+        "limited"
+      ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "Reduce damage dealt to {Unvirno} by 1. When {Unvirno} would be dealt damage, you may activate a {counteract} on an Armor in play."
+      ],
+      "icons": [
+        "ReduceDamageTaken"
+      ]
+    },
+    {
+      "identifier": "ConduitPlating",
+      "count": 2,
+      "title": "Conduit Plating",
+      "keywords": [
+        "equipment",
+        "armor",
+        "limited"
+      ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "When this card would enter play, if Full Plating isn't in play, search your deck or trash for Full Plating, put it into play, then discard this card. If you searched your deck, shuffle it afterwards."
+      ],
+      "activatableAbilities": [
+        {
+          "name": "{counteract}",
+          "text": "The next time {Unvirno} is dealt damage by a target, {Unvirno} deals the source of that damage 2 Lightning damage, then deals each other non-hero target 1 Lightning damage."
+        }
+      ],
+      "icons": [
+        "Search",
+        "DealDamageLightning"
+      ]
+    },
+    {
+      "identifier": "CounterEnergizer",
+      "count": 2,
+      "title": "Counter Energizer",
+      "keywords": [
+        "equipment",
+        "armor",
+        "limited"
+      ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "When this card would enter play, if Full Plating isn't in play, search your deck or trash for Full Plating, put it into play, then discard this card. If you searched your deck, shuffle it afterwards."
+      ],
+      "activatableAbilities": [
+        {
+          "name": "{counteract}",
+          "text": "The next time {Unvirno} is dealt damage, you may use a power."
+        }
+      ],
+      "icons": [
+        "Search",
+        "UsePowerNow"
+      ]
+    },
+    {
+      "identifier": "ImpactBurstGrappler",
+      "count": 2,
+      "title": "Impact-Burst Grappler",
+      "keywords": [
+        "equipment",
+        "armor",
+        "limited"
+      ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "When this card would enter play, if Full Plating isn't in play, search your deck or trash for Full Plating, put it into play, then discard this card. If you searched your deck, shuffle it afterwards."
+      ],
+      "activatableAbilities": [
+        {
+          "name": "{counteract}",
+          "text": "The next time {Unvirno} is dealt damage by a target, until the end of your next turn, reduce damage dealt by the source of that damage to other targets by 1, and increase damage dealt to that target by {Unvirno} by 1."
+        }
+      ],
+      "icons": [
+        "Search",
+        "ReduceDamageDealt",
+        "IncreaseDamageDealt"
+      ]
+    },
+    {
+      "identifier": "BroadShieldProjector",
+      "count": 2,
+      "title": "Broad-Shield Projector",
+      "keywords": [
+        "equipment",
+        "armor",
+        "limited"
+      ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "At the end of your turn, select another Hero. Reduce damage dealt to that Hero by 1 until the start of your turn."
+      ],
+      "activatableAbilities": [
+        {
+          "name": "{counteract}",
+          "text": "Reduce damage dealt to other Hero targets by 1 until the end of this turn."
+        }
+      ],
+      "icons": [
+        "ReduceDamageTaken",
+        "EndOfTurnAction"
+      ]
+    },
+    {
+      "identifier": "MedicalAssistantUnit",
+      "count": 2,
+      "title": "Medical Assistant Unit",
+      "keywords": [
+        "equipment",
+        "armor",
+        "limited"
+      ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "At the end of your turn, a Hero target regains 1 HP."
+      ],
+      "activatableAbilities": [
+        {
+          "name": "{counteract}",
+          "text": "The next time {Unvirno} is dealt damage, {Unvirno} regains 1 HP. Then, ignore any other effects that would trigger from that damage being dealt."
+        }
+      ],
+      "icons": [
+        "EndOfTurnAction",
+        "GainHP"
+      ]
+    },
+    {
+      "identifier": "VolleyMissiles",
+      "count": 2,
+      "title": "Volley Missiles",
+      "keywords": [
+        "equipment",
+        "armor",
+        "limited"
+      ],
+      "flavorText": "[placeholder]",
+      "powers": [
+        "Destroy a target with 5 HP or less. If you do, destroy this card."
+      ],
+      "activatableAbilities": [
+        {
+          "name": "{counteract}",
+          "text": "The next time {Unvirno} is dealt damage by a target, {Unvirno} deals the source of that damage 1 Fire damage X times, where X is the amount of damage dealt to {Unvirno}."
+        }
+      ],
+      "icons": [
+        "Destroy",
+        "DealDamageFire"
+      ]
+    },
+    {
+      "identifier": "ImplantSubstitution",
+      "count": 3,
+      "title": "Implant Substitution",
+      "keywords": [
+        "one-shot"
+      ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "{Unvirno} regains 1 HP.",
+        "You may discard and destroy any number of equipment cards. For each equipment card discarded or destroyed this way, {Unvirno} regains 1 HP."
+      ],
+      "icons": [
+        "GainHP",
+        "Destroy"
+      ]
+    },
+    {
+      "identifier": "NetworkEnergizer",
+      "count": 1,
+      "title": "Network Energizer",
+      "keywords": [
+        "ongoing"
+      ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "When you would play a card, you may instead discard a card. If you do, another player may play a card."
+      ],
+      "icons": [
+        "Discard",
+        "PlayCardNow"
+      ]
+    },
+    {
+      "identifier": "WingDashIntervention",
+      "count": 2,
+      "title": "Wing-Dash Intervention",
+      "keywords": [
+        "ongoing",
+        "limited"
+      ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "Whenever a Hero target would be dealt damage by another source, you may redirect that damage to Unvirno."
+      ],
+      "icons": [
+        "RedirectDamage"
+      ]
+    },
+    {
+      "identifier": "CatchAndDivert",
+      "count": 2,
+      "title": "Catch And Divert",
+      "keywords": [
+        "ongoing",
+        "limited"
+      ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "The first time each turn that damage would be dealt to {Unvirno}, you may redirect that damage to another hero target, or you may discard a card to redirect that damage to any target."
+      ],
+      "icons": [
+        "Redirect"
+      ]
+    },
+    {
+      "identifier": "AggressiveInterruption",
+      "count": 2,
+      "title": "AggressiveInterruption",
+      "keywords": [
+        "ongoing"
+      ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "When another hero target would be dealt damage, you may first have the source of that damage deal {Unvirno} 1 irreducible damage of that type.",
+        "If {Unvirno} is dealt damage this way, you may use a power, then destroy this card."
+      ],
+      "icons": [
+        "Redirect",
+        "UsePowerNow"
+      ]
+    },
+    {
+      "identifier": "Armistice",
+      "count": 2,
+      "title": "Armistice",
+      "keywords": [
+        "one-shot"
+      ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "Skip the next environment play phase.",
+        "Until the start of your next turn, hero targets are immune to damage from environment cards."
+      ],
+      "icons": [
+        "SkipTurn"
+      ]
+    },
+    {
+      "identifier": "CornerOut",
+      "count": 2,
+      "title": "Corner Out",
+      "keywords": [
+        "ongoing",
+        "limited"
+      ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "Play this card next to a non-hero target.",
+        "When the target next to this card would deal damage to any target other than {Unvirno} or itself, prevent it.",
+        "When {Unvirno} would deal damage to any target other than the target next to this card or herself, prevent it.",
+        "At the end of your turn, you may destroy this card."
+      ],
+      "icons": [
+        "CannotDealDamage",
+        "Destroy"
+      ]
+    },
+    {
+      "identifier": "CatalystCharge",
+      "count": 1,
+      "title": "Catalyst Charge",
+      "keywords": [
+        "ongoing"
+      ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "Reduce Lightning damage dealt to {Unvirno} by 2.",
+        "When {Unvirno} is targeted by Lightning damage, she may draw a card.",
+        "When {Unvirno} is dealt Lightning damage, she may play a card."
+      ],
+      "icons": [
+        "ReduceDamageTakenLightning",
+        "DrawCardNow",
+        "PlayCardNow"
+      ]
+    },
+    {
+      "identifier": "Jumpstart",
+      "count": 4,
+      "title": "Jumpstart",
+      "keywords": [
+        "one-shot"
+      ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "Draw 2 cards. If Jumpstart is drawn this way, put it into play.",
+        "You may play a card."
+      ],
+      "icons": [
+        "DrawCardNow",
+        "PlayCardNow"
+      ]
+    }
+  ],
+  "promoCards": [
+    {
+      "identifier": "UnvirnoCharacter",
+      "promoIdentifier": "MercenaryUnvirnoCharacter",
+      "count": 1,
+      "title": "Unvirno",
+      "promoTitle": "Mercenary Unvirno",
+      "body": "Bounty",
+      "backgroundColor": "fbf8f9",
+      "foilBackgroundColor": "FEFEFE",
+      "hitpointsColor": "C94742",
+      "character": true,
+      "powers": [
+        "Until the start of your next turn, whenever a non-hero target is destroyed, {Unvirno} may draw a card or regain 1 HP."
+      ],
+      "icons": [
+        "HasPower",
+        "DrawCardNow",
+        "GainHP"
+      ],
+      "hitpoints": 28,
+      "incapacitatedAbilities": [
+        "Until the start of your next turn, whenever a villain target is destroyed, one player may draw a card.",
+        "Select a hero target. Until the start of your next turn, increase damage dealt to that target by 1 and increase damage dealt by that target by 2.",
+        "Select a hero. The next damage dealt by that hero is irreducible."
+      ],
+      "flippedIcons": [
+        "DrawCardNow",
+        "PlayCardNow",
+        "MakeDamageIrreducible"
+      ],
+      "openingLines": {
+        "default": "I love it when I get an easy job.",
+        "OblivAeonFrontPageCharacter": "You...ah...Guys, I'm not paid enough for this."
+      },
+      "complexity": 2
+    },
+    {
+      "identifier": "UnvirnoCharacter",
+      "promoIdentifier": "RedeemedUnvirnoCharacter",
+      "count": 1,
+      "title": "Unvirno",
+      "promoTitle": "Redeemed Unvirno",
+      "body": "Cannibalize Armor",
+      "backgroundColor": "fbf8f9",
+      "foilBackgroundColor": "FEFEFE",
+      "hitpointsColor": "C94742",
+      "character": true,
+      "powers": [
+        "Shuffle an Armor in play into your deck. If you do, put an Armor from your trash into play."
+      ],
+      "icons": [
+        "PlayCardNow"
+      ],
+      "hitpoints": 32,
+      "incapacitatedAbilities": [
+        "Prevent the next damage that would be dealt to a hero.",
+        "Until the start of your next turn, reduce the first damage dealt to each hero each turn by 1.",
+        "One player may play a card."
+      ],
+      "flippedIcons": [
+        "CannotDealDamage",
+        "ReduceDamageTaken",
+        "PlayCardNow"
+      ],
+      "openingLines": {
+        "default": "The line ends here!",
+        "OblivAeonFrontPageCharacter":  "No more destruction. No more deaths. I'll make you pay for everything!"
+      },
+      "complexity": 2
+    }
+  ]
+}
