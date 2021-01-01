@@ -16,6 +16,7 @@ namespace SybithosInfernyx.Kyoss
         public override IEnumerator UsePower(int index = 0)
         {
             int powerNumeral = base.GetPowerNumeral(0, 1);
+            int powerNumeral2 = base.GetPowerNumeral(1, 1);
             List<SelectCardDecision> storedResults = new List<SelectCardDecision>();
             IEnumerator coroutine = base.GameController.SelectCardAndStoreResults(this.DecisionMaker, SelectionType.SelectTargetFriendly, new LinqCardCriteria((Card c) => c.IsInPlayAndHasGameText && c.IsTarget, "hero target in play", false, false, null, null, false), storedResults, true, false, null, true, base.GetCardSource());
             if (base.UseUnityCoroutines)
@@ -39,6 +40,20 @@ namespace SybithosInfernyx.Kyoss
             else
             {
                 base.GameController.ExhaustCoroutine(coroutine);
+            }
+            ReduceDamageStatusEffect rdse2 = new ReduceDamageStatusEffect(powerNumeral2);
+            rdse2.TargetCriteria.IsSpecificCard = selectedCard;
+            rdse2.DamageTypeCriteria.AddType(DamageType.Projectile);
+            rdse2.UntilStartOfNextTurn(base.TurnTaker);
+            rdse2.UntilCardLeavesPlay(selectedCard);
+            IEnumerator coroutine2 = base.AddStatusEffect(rdse2, true);
+            if (base.UseUnityCoroutines)
+            {
+                yield return base.GameController.StartCoroutine(coroutine2);
+            }
+            else
+            {
+                base.GameController.ExhaustCoroutine(coroutine2);
             }
         }
     }

@@ -118,11 +118,14 @@
         "limited"
       ],
       "flavorText": "[placeholder]",
-      "body": "At the end of each players turn, if they skipped either their play or power phase, they may draw a card.",
-      "icons": [
-        "EndOfTurnAction",
-        "DrawCardNow"
-      ]
+      "body": [
+        "When Kyoss is dealt Lightning damage, you may draw a card.",
+        "At the end of each players turn, if they skipped either their play or power phase, they may draw a card."
+      ],
+        "icons": [
+          "EndOfTurnAction",
+          "DrawCardNow"
+        ]
     },
     {
       "identifier": "BalanceAmplifier",
@@ -133,12 +136,15 @@
         "limited"
       ],
       "flavorText": "[placeholder]",
-      "body": "At the end of your turn, you may select up to two other hero targets. If any targets are selected this way, reduce the next damage dealt by {Kyoss} by 1 and increase the next damage dealt by those targets by 1.",
-      "icons": [
-        "EndOfTurnAction",
-        "ReduceDamageDealt",
-        "IncreaseDamageDealt"
-      ]
+      "body": [
+        "When Kyoss is dealt Energy damage, increase the next damage dealt by Kyoss by 1.",
+        "At the end of your turn, you may select up to two other hero targets. If any targets are selected this way, reduce the next damage dealt by {Kyoss} by 1 and increase the next damage dealt by those targets by 1."
+      ],
+        "icons": [
+          "EndOfTurnAction",
+          "ReduceDamageDealt",
+          "IncreaseDamageDealt"
+        ]
     },
     {
       "identifier": "ForcefieldProjector",
@@ -148,11 +154,15 @@
         "equipment",
         "limited"
       ],
-      "flavorText": "[placeholder]",
-      "powers": "Select a hero target. Reduce damage dealt to that target by 1 until the start of your next turn.",
+      "flavorText": [
+        "Trajectory-based countermeasures ",
+        "initiated. You're welcome."
+      ],
+      "powers": "Select a hero target. Reduce damage dealt to that target by 1 until the start of your next turn. Reduce Projectile damage dealt to that target by an additional 1 until the start of your next turn.",
       "icons": [
         "HasPower",
-        "ReduceDamageTaken"
+        "ReduceDamageTaken",
+        "ReduceDamageTakenProjectile"
       ]
     },
     {

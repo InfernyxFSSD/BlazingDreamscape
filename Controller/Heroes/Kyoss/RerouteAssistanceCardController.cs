@@ -16,7 +16,10 @@ namespace SybithosInfernyx.Kyoss
 		public override void AddTriggers()
 		{
 			base.AddTrigger<PhaseChangeAction>((PhaseChangeAction p) => p.ToPhase.IsEnd && (!this.DidHeroPlayCardDuringCardPhaseThisTurn(p.ToPhase.TurnTaker) || !this.DidHeroUsePowerDuringPowerPhaseThisTurn(p.ToPhase.TurnTaker)), new Func<PhaseChangeAction, IEnumerator>(this.SkippedPhaseToDrawResponse), new TriggerType[] { TriggerType.SkipPhase, TriggerType.DrawCard }, TriggerTiming.After, null, false, true, null, false, null, null, false, false);
+			base.AddTrigger<DealDamageAction>((DealDamageAction dd) => dd.DidDealDamage && dd.Target == base.CharacterCard && dd.DamageType == DamageType.Lightning, (DealDamageAction dd) => base.DrawCard(base.HeroTurnTaker, true, null, true), TriggerType.DrawCard, TriggerTiming.After, ActionDescription.Unspecified, false, true, null, false, null, null, false, false);
+			base.AddTriggers();
 		}
+
 
 		private IEnumerator SkippedPhaseToDrawResponse(PhaseChangeAction p)
         {

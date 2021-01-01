@@ -16,12 +16,30 @@ namespace SybithosInfernyx.Kyoss
 		public override void AddTriggers()
 		{
 			base.AddEndOfTurnTrigger((TurnTaker tt) => tt == base.TurnTaker, new Func<PhaseChangeAction, IEnumerator>(this.EndOfTurnResponse), new TriggerType[] { TriggerType.IncreaseDamage, TriggerType.ReduceDamage }, null, false);
+			base.AddTrigger<DealDamageAction>((DealDamageAction dd) => dd.Target == base.CharacterCard && dd.DamageType == DamageType.Energy && dd.DidDealDamage, new Func<DealDamageAction, IEnumerator>(this.IncreaseNextDamageResponse), new TriggerType[] { TriggerType.WouldBeDealtDamage, TriggerType.IncreaseDamage }, TriggerTiming.After, null, false, true, null, false, null, null, false, false);
+		}
+
+		private IEnumerator IncreaseNextDamageResponse(DealDamageAction dd)
+        {
+			IncreaseDamageStatusEffect increaseDamageStatusEffect = new IncreaseDamageStatusEffect(1);
+			increaseDamageStatusEffect.SourceCriteria.IsSpecificCard = this.HeroTurnTaker.CharacterCard;
+			increaseDamageStatusEffect.UntilCardLeavesPlay(this.HeroTurnTaker.CharacterCard);
+			increaseDamageStatusEffect.NumberOfUses = 1;
+			IEnumerator coroutine = base.AddStatusEffect(increaseDamageStatusEffect, true);
+			if (base.UseUnityCoroutines)
+			{
+				yield return base.GameController.StartCoroutine(coroutine);
+			}
+			else
+			{
+				base.GameController.ExhaustCoroutine(coroutine);
+			}
 		}
 
 		private IEnumerator EndOfTurnResponse(PhaseChangeAction p)
 		{
 			var storedYesNo = new List<YesNoCardDecision>();
-			IEnumerator coroutine = base.GameController.MakeYesNoCardDecision(base.HeroTurnTakerController, SelectionType.IncreaseNextDamage, this.Card, p, storedYesNo, null, base.GetCardSource());
+			IEnumerator coroutine = base.GameController.MakeYesNoCardDecision(base.HeroTurnTakerController, SelectionType.IncreaseDamage, this.Card, p, storedYesNo, null, base.GetCardSource());
 			if (base.UseUnityCoroutines)
 			{
 				yield return base.GameController.StartCoroutine(coroutine);
