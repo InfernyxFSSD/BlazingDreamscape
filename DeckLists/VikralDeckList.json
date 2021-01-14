@@ -1,0 +1,523 @@
+{
+  "name": "Vikral",
+  "kind": "Hero",
+  "initialCardIdentifiers": [
+    "VikralCharacter"
+  ],
+  "cards": [
+    {
+      "identifier": "VikralCharacter",
+      "count": 1,
+      "title": "Vikral",
+      "body": "Storm Fluctuation",
+      "backgroundColor": "fbf8f9",
+      "foilBackgroundColor": "FEFEFE",
+      "hitpointsColor": "C94742",
+      "character": true,
+      "gameplay": [
+        "When a Microstorm enters play, add 3 tokens to its Torrent pool.",
+        "At the start of your turn, remove a token from each Torrent pool in play.",
+        "When a Microstorm has no tokens in its Torrent pool, destroy it."
+      ],
+      "powers": [
+        "Draw a card.  You may remove a Torrent token from a card in your play area to draw another card."
+      ],
+      "icons": [
+        "DrawCardNow",
+        "RemoveTokens"
+      ],
+      "hitpoints": 26,
+      "incapacitatedAbilities": [
+        "Up to 2 non-hero targets deal themselves 1 Radiant damage.",
+        "One hero may use a power.",
+        "Until the start of your next turn, whenever a target is destroyed, one target deals itself 2 Radiant damage."
+      ],
+      "flippedIcons": [
+        "DealDamageRadiant",
+        "UsePowerNow"
+      ],
+      "openingLines": {
+        "default": "You're not nearly the biggest OR the scariest..."
+      },
+      "complexity": 2
+    },
+    {
+      "identifier": "BearClawDash",
+      "count": 2,
+      "title": "Bear Claw Dash",
+      "keywords": "one-shot",
+      "flavorText": "[placeholder]",
+      "body": [
+        "Vikral deals 1 target 2 melee damage. You may discard a card. If you do, you may play a card."
+      ],
+      "icons": [
+        "DealDamageMelee",
+        "Discard",
+        "PlayCardNow"
+      ]
+    },
+    {
+      "identifier": "SerratedClaws",
+      "count": 2,
+      "title": "Serrated Claws",
+      "keywords": [
+        "equipment",
+        "limited"
+      ],
+      "flavorText": "[placeholder]",
+      "powers": [
+        "Vikral deals 1 target 2 melee damage.  That target deals itself one toxic damage at the end of this turn."
+      ],
+      "icons": [
+        "HasPower",
+        "DealDamageMelee",
+        "DealDamageToxic"
+      ]
+    },
+    {
+      "identifier": "ShotgunBlast",
+      "count": 2,
+      "title": "Shotgun Blast",
+      "keywords": [
+        "ongoing",
+        "limited"
+      ],
+      "flavorText": "[placeholder]",
+      "powers": [
+        "Vikral deals one target X energy damage, where X is the amount of microstorms in play plus 1."
+      ],
+      "icons": [
+        "HasPower",
+        "DealDamageEnergy"
+      ]
+    },
+    {
+      "identifier": "ScatterDeflector",
+      "count": 2,
+      "title": "Scatter Deflector",
+      "keywords": [
+        "ongoing",
+        "limited"
+      ],
+      "flavorText": "[placeholder]",
+      "powers": [
+        "The next time Vikral would be dealt three or more damage, prevent that damage. Then, the source of that damage deals up to X targets 1 damage of that type each, where X is the amount of damage prevented this way. This power can not stack."
+      ],
+      "icons": [
+        "HasPower",
+        "ReduceDamageTaken",
+        "DealDamage"
+      ]
+    },
+    {
+      "identifier": "FoiledByWantonDestruction",
+      "count": 2,
+      "title": "Foiled by Wanton Destruction",
+      "keywords": "one-shot",
+      "flavorText": "[placeholder]",
+      "body": [
+        "Destroy a villain ongoing, device with 6 or less HP, or relic with 6 or less HP.",
+        "You may destroy a microstorm. If you do so, skip the next villain play phase."
+      ],
+      "icons": [
+        "Destroy",
+        "RemoveTokens"
+      ]
+    },
+    {
+      "identifier": "WildCalling",
+      "count": 2,
+      "title": "Wild Calling",
+      "keywords": "one-shot",
+      "flavorText": "[placeholder]",
+      "body": [
+        "Select a Microstorm in play. Search your deck or trash for a Microstorm listed on the selected card. If you searched your deck, shuffle it afterwards.",
+        "You may draw a card."
+      ],
+      "icons": [
+        "Search",
+        "DrawCardNow"
+      ]
+    },
+    {
+      "identifier": "StormheartSurge",
+      "count": 2,
+      "title": "Stormheart Surge",
+      "keywords": "one-shot",
+      "flavorText": "[placeholder]",
+      "body": "You may discard any number of cards from your hand. For each card discarded this way, add a Torrent token to a Microstorm.",
+      "icons": [
+        "Discard",
+        "AddTokens"
+      ]
+    },
+    {
+      "identifier": "RecyclingMana",
+      "count": 2,
+      "title": "Recycling Mana",
+      "keywords": "ongoing",
+      "flavorText": "[placeholder]",
+      "body": "When this card enters play, add a torrent token to up to 2 microstorms, then destroy any other copies of Recycling Mana.  When a microstorm enters play, add an extra torrent token to it.",
+      "icons": [
+        "AddTokens",
+        "Destroy"
+      ]
+    },
+    {
+      "identifier": "GaspingSurge",
+      "count": 2,
+      "title": "Gasping Surge",
+      "keywords": [ "ongoing", "limited" ],
+      "flavorText": "[placeholder]",
+      "body": "When this card enters play, you may play a microstorm. When a microstorm is destroyed, Vikral may deal a target 1 damage of a type listed on that card.",
+      "icons": [
+        "PlayCardNow",
+        "DealDamage"
+      ]
+    },
+    {
+      "identifier": "ClarityShot",
+      "count": 2,
+      "title": "Clarity Shot",
+      "keywords": [ "ongoing", "limited" ],
+      "flavorText": "[placeholder]",
+      "powers": "Vikral deals a target X energy damage, where X is 3 minus the number of Microstorms in play. If no damage is dealt this way, increase damage dealt to that target by 1 this turn.",
+      "icons": [
+        "HasPower",
+        "DealDamageEnergy",
+        "IncreaseDamageTaken"
+      ]
+    },
+    {
+      "identifier": "HailFlurry",
+      "count": 2,
+      "title": "Hail Flurry",
+      "keywords": [ "ongoing", "microstorm", "limited" ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "At the end of your turn, Vikral deals 1 target 1 cold damage.",
+        "If Flaring Blaze is in play, Vikral deals 2 other targets 1 cold damage.",
+        "If Bladed Gale is in play, reduce the next damage dealt by targets dealt damage this way by 1."
+      ],
+      "icons": [
+        "DealDamageCold",
+        "ReduceDamageDealt"
+      ],
+      "tokenPools": [
+        {
+          "identifier": "HailFlurryTorrentPool",
+          "name": "Hail Flurry Torrent Pool",
+          "initialValue": 0,
+          "minimumValue": 0,
+          "color": "D1426D"
+        }
+      ]
+    },
+    {
+      "identifier": "FlaringBlaze",
+      "count": 2,
+      "title": "Flaring Blaze",
+      "keywords": [ "ongoing", "microstorm", "limited" ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "At the end of your turn, Vikral deals 1 target 1 fire damage.",
+        "If Hail Flurry is in play, this damage is increased by 1.",
+        "If Toxic Cloud is in play, this damage is irreducible."
+      ],
+      "icons": [
+        "DealDamageFire",
+        "MakeDamageIrreducible"
+      ],
+      "tokenPools": [
+        {
+          "identifier": "FlaringBlazeTorrentPool",
+          "name": "Flaring Blaze Torrent Pool",
+          "initialValue": 0,
+          "minimumValue": 0,
+          "color": "D1426D"
+        }
+      ]
+    },
+    {
+      "identifier": "ScathingSandstorm",
+      "count": 2,
+      "title": "Scathing Sandstorm",
+      "keywords": [ "ongoing", "microstorm", "limited" ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "At the end of your turn, Vikral deals 1 target 1 projectile damage.",
+        "If Psionic Torrent or Toxic Cloud is in play, reduce damage dealt by that target by 1 until the start of your next turn.",
+        "If Psionic Torrent and Toxic Cloud are both in play, skip the next environment play phase."
+      ],
+      "icons": [
+        "DealDamageProjectile",
+        "ReduceDamageDealt"
+      ],
+      "tokenPools": [
+        {
+          "identifier": "ScathingSandstormTorrentPool",
+          "name": "Scathing Sandstorm Torrent Pool",
+          "initialValue": 0,
+          "minimumValue": 0,
+          "color": "D1426D"
+        }
+      ]
+    },
+    {
+      "identifier": "BladedGale",
+      "count": 2,
+      "title": "Bladed Gale",
+      "keywords": [ "ongoing", "microstorm", "limited" ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "At the end of your turn, Vikral deals 1 target 1 sonic damage.",
+        "If Vigilante Justice or Thunder Storm are in play, increase the next damage dealt to that target by 1.",
+        "If Vigilante Justice and Thunder Storm are in play, prevent the next damage dealt by that target."
+      ],
+      "icons": [
+        "DealDamageSonic",
+        "IncreaseDamageTaken",
+        "CannotDealDamage"
+      ],
+      "tokenPools": [
+        {
+          "identifier": "BladedGaleTorrentPool",
+          "name": "Bladed Gale Torrent Pool",
+          "initialValue": 0,
+          "minimumValue": 0,
+          "color": "D1426D"
+        }
+      ]
+    },
+    {
+      "identifier": "VigilanteJustice",
+      "count": 2,
+      "title": "Vigilante Justice",
+      "keywords": [ "ongoing", "microstorm", "limited" ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "At the end of your turn, Vikral deals 1 target 1 radiant damage.",
+        "If Bladed Gale is in play, this damage cannot be redirected.",
+        "If Psionic Torrent is in play, that target deals itself 1 radiant damage."
+      ],
+      "icons": [
+        "DealDamageRadiant",
+        "MakeDamageUnredirectable"
+      ],
+      "tokenPools": [
+        {
+          "identifier": "VigilanteJusticeTorrentPool",
+          "name": "Vigilante Justice Torrent Pool",
+          "initialValue": 0,
+          "minimumValue": 0,
+          "color": "D1426D"
+        }
+      ]
+    },
+    {
+      "identifier": "ViciousRetribution",
+      "count": 2,
+      "title": "Vicious Retribution",
+      "keywords": [ "ongoing", "microstorm", "limited" ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "If Thunder Storm is in play, increase damage dealt due to this card by X, where X is the number of times Vikral has been dealt damage since the end of your last turn.",
+        "At the end of your turn, Vikral deals 1 target 1 infernal damage.",
+        "If Hail Flurry is in play, Vikral deals that target 1 infernal damage."
+      ],
+      "icons": [
+        "DealDamageInfernal",
+        "IncreaseDamageDealt"
+      ],
+      "tokenPools": [
+        {
+          "identifier": "ViciousRetributionTorrentPool",
+          "name": "Vicious Retribution Torrent Pool",
+          "initialValue": 0,
+          "minimumValue": 0,
+          "color": "D1426D"
+        }
+      ]
+    },
+    {
+      "identifier": "ThunderStorm",
+      "count": 2,
+      "title": "Thunder Storm",
+      "keywords": [ "ongoing", "microstorm", "limited" ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "At the end of your turn, Vikral deals 1 target 1 lightning damage.",
+        "If Scathing Sandstorm or Overload Pulse is in play, you may destroy an environment card.",
+        "If Scathing Sandstorm and Overload Pulse are in play, another player may play a card."
+      ],
+      "icons": [
+        "DealDamageLightning",
+        "DestroyEnvironment",
+        "PlayCardNow"
+      ],
+      "tokenPools": [
+        {
+          "identifier": "ThunderStormTorrentPool",
+          "name": "Thunder Storm Torrent Pool",
+          "initialValue": 0,
+          "minimumValue": 0,
+          "color": "D1426D"
+        }
+      ]
+    },
+    {
+      "identifier": "ToxicCloud",
+      "count": 2,
+      "title": "Toxic Cloud",
+      "keywords": [ "ongoing", "microstorm", "limited" ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "At the end of your turn, Vikral deals 1 target 1 toxic damage.",
+        "If Overload Pulse or Vigilante Justice is in play, you may destroy one villain target with 3 HP or less.",
+        "If Overload Pulse and Vigilante Justice are both in play, you may redirect the next damage dealt by that target to another target."
+      ],
+      "icons": [
+        "DealDamageToxic",
+        "Destroy",
+        "RedirectDamage"
+      ],
+      "tokenPools": [
+        {
+          "identifier": "ToxicCloudTorrentPool",
+          "name": "Toxic Cload Torrent Pool",
+          "initialValue": 0,
+          "minimumValue": 0,
+          "color": "D1426D"
+        }
+      ]
+    },
+    {
+      "identifier": "PsionicTorrent",
+      "count": 2,
+      "title": "Psionic Torrent",
+      "keywords": [ "ongoing", "microstorm", "limited" ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "At the end of your turn, Vikral deals 1 target 1 psychic damage.",
+        "If Vicious Retribution is in play, until the end of your next turn, when that target deals another target damage, it deals itself 1 psychic damage.",
+        "If Flaring Blaze is in play, increase the next damage dealt by Vikral by 1."
+      ],
+      "icons": [
+        "DealDamagePsychic",
+        "IncreaseDamage"
+      ],
+      "tokenPools": [
+        {
+          "identifier": "PsionicTorrentTorrentPool",
+          "name": "Psionic Torrent Torrent Pool",
+          "initialValue": 0,
+          "minimumValue": 0,
+          "color": "D1426D"
+        }
+      ]
+    },
+    {
+      "identifier": "OverloadPulse",
+      "count": 2,
+      "title": "Overload Pulse",
+      "keywords": [ "ongoing", "microstorm", "limited" ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "At the end of your turn, Vikral deals 1 target 1 energy damage.",
+        "If Scathing Sandstorm or Vicious Retribution is in play, you may destroy an ongoing card.",
+        "If Scathing Sandstorm and Vicious Retribution are in play, another hero may use a power."
+      ],
+      "icons": [
+        "DealDamageEnergy",
+        "DestroyOngoing",
+        "UsePowerNow"
+      ],
+      "tokenPools": [
+        {
+          "identifier": "OverloadPulseTorrentPool",
+          "name": "Overload Pulse Torrent Pool",
+          "initialValue": 0,
+          "minimumValue": 0,
+          "color": "D1426D"
+        }
+      ]
+    }
+  ],
+  "promoCards": [
+    {
+      "identifier": "VikralCharacter",
+      "promoIdentifier": "ShellstormVikralCharacter",
+      "count": 1,
+      "title": "Vikral",
+      "promoTitle": "Shellstorm Vikral",
+      "body": "Debris Guard",
+      "backgroundColor": "fbf8f9",
+      "foilBackgroundColor": "FEFEFE",
+      "hitpointsColor": "C94742",
+      "character": true,
+      "gameplay": [
+        "When a Microstorm enters play, add 3 tokens to its Torrent pool.",
+        "At the start of your turn, remove a token from each Torrent pool in play.",
+        "When a Microstorm has no tokens in its Torrent pool, destroy it."
+      ],
+      "powers": [
+        "Until the end of your next turn, reduce the first damage dealt to Vikral each turn by X, where X is the number of Microstorms in play."
+      ],
+      "icons": [
+        "ReduceDamageDealt"
+      ],
+      "hitpoints": 28,
+      "incapacitatedAbilities": [
+        "Select a hero target. Reduce damage dealt to that target by 1 until the start of your next turn.",
+        "Until the start of your next turn, whenever a hero is dealt damage, that hero’s player may draw a card.",
+        "Destroy any number of non-character hero cards.  For each card destroyed this way, a hero regains 2 HP."
+      ],
+      "flippedIcons": [
+        "ReduceDamageDealt",
+        "DrawCardNow",
+        "GainHP"
+      ],
+      "openingLines": {
+        "default": "When my ravaging storm is over, only we will stay standing!"
+      },
+      "complexity": 2
+    },
+    {
+      "identifier": "VikralCharacter",
+      "promoIdentifier": "GoodWindsVikralCharacter",
+      "count": 1,
+      "title": "Vikral",
+      "promoTitle": "Good Winds Vikral",
+      "body": "Eye of the Storm",
+      "backgroundColor": "fbf8f9",
+      "foilBackgroundColor": "FEFEFE",
+      "hitpointsColor": "C94742",
+      "character": true,
+      "gameplay": [
+        "When a Microstorm enters play, add 3 tokens to its Torrent pool.",
+        "At the start of your turn, remove a token from each Torrent pool in play.",
+        "When a Microstorm has no tokens in its Torrent pool, destroy it."
+      ],
+      "powers": [
+        "Prevent the end of turn effects of Microstorms this turn. For each Microstorm in play, one player may draw 1 card."
+      ],
+      "icons": [
+        "DrawCardNow"
+      ],
+      "hitpoints": 27,
+      "incapacitatedAbilities": [
+        "One hero target regains 2 HP.",
+        "Until the start of your next turn, whenever a hero deals damage, another hero regains 1 HP.",
+        "Select a target. Until the start of your next turn, damage dealt to that target is irreducible."
+      ],
+      "flippedIcons": [
+        "GainHP",
+        "IncreaseDamageDealt"
+      ],
+      "openingLines": {
+        "default": "I only bring clarity in my storm so that we may pounce at you unhindered!"
+      },
+      "complexity": 2
+    }
+  ]
+}

@@ -57,7 +57,6 @@ namespace SybithosInfernyx.Kyoss
 
 		public override IEnumerator Play()
 		{
-			List<SelectLocationDecision> storedResults = new List<SelectLocationDecision>();
 			if (base.Nuke.IsInDeck || base.Nuke.IsInTrash)
 			{
 				IEnumerator coroutine = base.GameController.PlayCard(base.TurnTakerController, base.Nuke, true, null, false, null, null, false, null, null, null, false, false, true, base.GetCardSource(null));

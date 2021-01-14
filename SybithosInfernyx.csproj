@@ -19,16 +19,12 @@
 
 	<ItemGroup>
 		<Compile Remove="Controller\Heroes\Unvirno\**" />
-		<Compile Remove="Controller\Heroes\Vikral\**" />
 		<EmbeddedResource Remove="Controller\Heroes\Unvirno\**" />
-		<EmbeddedResource Remove="Controller\Heroes\Vikral\**" />
 		<None Remove="Controller\Heroes\Unvirno\**" />
-		<None Remove="Controller\Heroes\Vikral\**" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Include="DeckLists\ArctyxDeckList.json" />
-		<EmbeddedResource Include="DeckLists\KyossDeckList.json" />
+		<EmbeddedResource Include="DeckLists\*DeckList.json" />
 	</ItemGroup>
 
 	<PropertyGroup>
@@ -46,6 +42,7 @@
 
 	<ItemGroup>
 		<None Remove="CodingBugs" />
+		<None Remove="DeckLists\TestWinDeckList.json" />
 		<None Remove="Docs\manifest.json" />
 	</ItemGroup>
 

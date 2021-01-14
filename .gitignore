@@ -339,6 +339,7 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 /Controller/Heroes/Unvirno
-/Controller/Heroes/Vikral
 /Testing/Heroes/UnvirnoTests.cs
-/DeckLists/VikralDeckList.json
+/Controller/Heroes/TestWin
+/DeckLists/TestWinDeckList.json
+/Testing/Heroes/TestWinTests.cs

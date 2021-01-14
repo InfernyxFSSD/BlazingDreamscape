@@ -48,7 +48,8 @@
       "powers": "{Kyoss} deals a target X irreducible Energy damage, where X equals the number of tokens on this card. Then, remove this card from the game.",
       "icons": [
         "HasPower",
-        "DealDamageEnergy"
+        "DealDamageEnergy",
+        "RemoveFromGame"
       ],
       "tokenPools": [
         {

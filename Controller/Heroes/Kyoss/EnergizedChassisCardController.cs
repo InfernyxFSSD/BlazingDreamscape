@@ -24,6 +24,7 @@ namespace SybithosInfernyx.Kyoss
                 base.SetCardPropertyToTrueIfRealAction("KyossDiscardedToReduceDamage", null);
                 return base.DoNothing();
             }, TriggerType.Hidden, TriggerTiming.Before, ActionDescription.Unspecified, false, true, null, false, null, null, false, false));
+            base.AddAfterLeavesPlayAction((GameAction ga) => base.ResetFlagAfterLeavesPlay("KyossDiscardedToReduceDamage"), TriggerType.Hidden);
         }
 
         private IEnumerator ReduceDamageResponse(DealDamageAction dd)
@@ -42,13 +43,6 @@ namespace SybithosInfernyx.Kyoss
             {
                 this.SetCardPropertyToTrueIfRealAction("KyossDiscardedToReduceDamage", null);
                 coroutine = base.GameController.ReduceDamage(dd, 1, this._reduceTrigger, base.GetCardSource(null));
-                /*
-                ReduceDamageStatusEffect rdse = new ReduceDamageStatusEffect(1);
-                rdse.TargetCriteria.IsSpecificCard = base.CharacterCard;
-                rdse.UntilCardLeavesPlay(base.CharacterCard);
-                rdse.BeforeOrAfter = BeforeOrAfter.Before;
-                rdse.NumberOfUses = 1;
-                coroutine = base.AddStatusEffect(rdse, true);*/
                 if (base.UseUnityCoroutines)
                 {
                     yield return base.GameController.StartCoroutine(coroutine);
