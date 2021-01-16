@@ -1,0 +1,272 @@
+{
+  "name": "Blitz",
+  "kind": "Hero",
+  "initialCardIdentifiers": [
+    "BlitzCharacter"
+  ],
+  "cards": [
+    {
+      "identifier": "BlitzCharacter",
+      "count": 1,
+      "title": "Blitz",
+      "body": "Flame's Fury",
+      "backgroundColor": "fbf8f9",
+      "foilBackgroundColor": "FEFEFE",
+      "hitpointsColor": "C94742",
+      "character": true,
+      "powers": [
+        "{Blitz} deals a target 2 Fire damage."
+      ],
+      "icons": [
+        "HasPower",
+        "DealDamageFire"
+      ],
+      "hitpoints": 28,
+      "incapacitatedAbilities": [
+        "One hero deals a target 3 Fire damage.",
+        "Select a hero. Until the start of your next turn, whenever that hero uses a power, that player's hero deals a target 1 Fire damage.",
+        "One hero may use a power."
+      ],
+      "flippedIcons": [
+        "DealDamageFire",
+        "UsePowerNow"
+      ],
+      "openingLines": {
+        "default": "[placeholder]"
+      },
+      "complexity": 2
+    },
+    {
+      "identifier": "Ruby",
+      "count": 4,
+      "title": "Ruby",
+      "keywords": [
+        "equipment",
+        "conduit"
+      ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "At the start of your turn, Blitz may deal a target 3 Fire damage. If damage is dealt this way, destroy this card."
+      ],
+      "powers": [
+        "Shuffle a Conduit from your trash into your deck."
+      ],
+      "icons": [
+        "HasPower",
+        "DealDamageFire"
+      ]
+    },
+    {
+      "identifier": "ConflagrationRod",
+      "count": 2,
+      "title": "Conflagration Rod",
+      "keywords": [
+        "equipment",
+        "focus"
+      ],
+      "flavorText": "[placeholder]",
+      "body": "When this card enters play, return any other Focuses in your play area to your hand.",
+      "powers": "Discard the top card of your deck. If it is a one-shot, you may put it into play. If no cards entered play this way, {Blitz} deals each non-hero target 1 Fire damage.",
+      "icons": [
+        "HasPower",
+        "DealDamageFire"
+      ]
+    },
+    {
+      "identifier": "BonfireCirclet",
+      "count": 2,
+      "title": "Bonfire Circlet",
+      "keywords": [
+        "equipment",
+        "focus"
+      ],
+      "flavorText": "[placeholder]",
+      "body": "When this card enters play, return any other Focuses in your play area to your hand.",
+      "powers": "{Blitz} deals herself up to 3 Fire damage. {Blitz} deals a target X Fire damage, where X is the amount of Fire damage Blitz dealt herself this turn.",
+      "icons": [
+        "HasPower",
+        "DealDamageFire"
+      ]
+    },
+    {
+      "identifier": "CombustionStaff",
+      "count": 2,
+      "title": "Combustion Staff",
+      "keywords": [
+        "equipment",
+        "focus"
+      ],
+      "flavorText": "[placeholder]",
+      "body": "When this card enters play, return any other Focuses in your play area to your hand.",
+      "powers": "Increase damage dealt by Elementals in your play area by 1 until the start of your next turn.",
+      "icons": [
+        "HasPower",
+        "IncreaseDamageDealt"
+      ]
+    },
+    {
+      "identifier": "PowerExplosion",
+      "count": 3,
+      "title": "Power Explosion",
+      "keywords": [
+        "ongoing",
+        "limited"
+      ],
+      "flavorText": "[placeholder]",
+      "body": "The first time you use a power on a Focus each turn, {Blitz} may deal herself 2 Fire damage. If {Blitz} took damage this way, you may use a power now.",
+      "powers": "Discard two cards. Search your deck for a Focus and put it into play. Shuffle your deck afterwards.",
+      "icons": [
+        "DealDamageFire",
+        "UsePowerNow"
+      ]
+    },
+    {
+      "identifier": "Wildfire",
+      "count": 4,
+      "title": "Wildfire",
+      "keywords": [
+        "one-shot"
+      ],
+      "flavorText": "[placeholder]",
+      "body": "{Blitz} either deals one target 4 Fire damage, or deals up to three targets 2 Fire damage each.",
+      "icons": [
+        "DealDamageFire"
+      ]
+    },
+    {
+      "identifier": "ElementalWrath",
+      "count": 3,
+      "title": "Elemental Wrath",
+      "keywords": [
+        "one-shot"
+      ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "Select an elemental in your play area. X on this card equals that targets current HP.",
+        "That target deals another target X Fire damage.",
+        "If there are at least four Conduits in play, instead it deals each villain target X Fire damage."
+      ],
+      "icons": [
+        "DealDamageFire"
+      ]
+    },
+    {
+      "identifier": "ControlledBurn",
+      "count": 4,
+      "title": "Controlled Burn",
+      "keywords": [
+        "one-shot"
+      ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "{Blitz} deals a target 3 Fire damage. If it was a non-character card and you have a Conduit in your play area, prevent any end of turn effects on that card until the start of your next turn."
+      ],
+      "icons": [
+        "DealDamageFire"
+      ]
+    },
+    {
+      "identifier": "ScorchedEarth",
+      "count": 4,
+      "title": "Scorched Earth",
+      "keywords": [
+        "one-shot"
+      ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "{Blitz} deals each target 2 Fire damage.",
+        "If there are at least three Conduits in play, {Blitz} deals a villain target 4 Fire damage."
+      ],
+      "icons": [
+        "DealDamageFire"
+      ]
+    },
+    {
+      "identifier": "InfernoWisp",
+      "count": 4,
+      "title": "Inferno Wisp",
+      "hitpoints": 5,
+      "keywords": [
+        "elemental"
+      ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "The first time each turn that {Blitz} deals a target 2 or more Fire damage at once, increase the next damage dealt by this card by 1.",
+        "At the end of your turn, this card deals a target 1 Fire damage."
+      ],
+      "icons": [
+        "IncreaseDamageDealt",
+        "DealDamageFire"
+      ]
+    },
+    {
+      "identifier": "EverburningPhoenix",
+      "count": 4,
+      "title": "Everburning Phoenix",
+      "hitpoints": 5,
+      "keywords": [
+        "elemental"
+      ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "At the end of your turn, this card deals a target 2 Fire damage.",
+        "At the start of your turn, if this card has less than 5 HP, set its HP to 5."
+      ],
+      "icons": [
+        "DealDamageFire"
+      ]
+    },
+    {
+      "identifier": "BlazingBunny",
+      "count": 4,
+      "title": "Blazing Bunny",
+      "hitpoints": 4,
+      "keywords": [
+        "elemental"
+      ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "At the end of your turn, you may put a Blazing Bunny from your hand into play.",
+        "At the start of your turn, this card deals a target X Fire damage, where X is the number of Blazing Bunnys in play. Then, shuffle this card into your deck."
+      ],
+      "icons": [
+        "DealDamageFire"
+      ]
+    }
+  ],
+  "promoCards": [
+    {
+      "identifier": "BlitzCharacter",
+      "promoIdentifier": "FlamecallerBlitzCharacter",
+      "count": 1,
+      "title": "Blitz",
+      "promoTitle": "Flamecaller Blitz",
+      "body": "Flamecaller",
+      "backgroundColor": "fbf8f9",
+      "foilBackgroundColor": "FEFEFE",
+      "hitpointsColor": "C94742",
+      "character": true,
+      "powers": [
+        "Search your deck for an Elemental and put it into play. Shuffle your deck afterwards."
+      ],
+      "icons": [
+        "Search"
+      ],
+      "hitpoints": 25,
+      "incapacitatedAbilities": [
+        "One player may discard their hand, then draw X cards, where X is the number of cards discarded this way plus 1.",
+        "One hero deals a target 3 Fire damage.",
+        "The environment deals each non-hero target 1 irreducible Fire damage."
+      ],
+      "flippedIcons": [
+        "DealDamageFire",
+        "Discard",
+        "DrawCardNow"
+      ],
+      "openingLines": {
+        "default": "[placeholder]"
+      },
+      "complexity": 2
+    }
+  ]
+}

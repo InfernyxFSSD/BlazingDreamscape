@@ -60,7 +60,6 @@ namespace SybithosInfernyx.Arctyx
                         {
                             base.GameController.ExhaustCoroutine(coroutine2);
                         }
-                        SelectCardDecision selectCardDecision = storedResults.FirstOrDefault<SelectCardDecision>();
                         Card selectedCard = base.GetSelectedCard(storedResults);
                         IncreaseDamageStatusEffect increaseDamageStatusEffect = new IncreaseDamageStatusEffect(1);
                         increaseDamageStatusEffect.SourceCriteria.IsSpecificCard = selectedCard;
