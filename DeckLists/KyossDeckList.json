@@ -15,7 +15,7 @@
       "hitpointsColor": "C94742",
       "character": true,
       "powers": [
-        "One hero target regains 1 HP."
+        "One hero target regains 2 HP."
       ],
       "icons": [
         "GainHP"

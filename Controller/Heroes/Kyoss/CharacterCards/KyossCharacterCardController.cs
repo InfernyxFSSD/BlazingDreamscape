@@ -82,7 +82,7 @@ namespace SybithosInfernyx.Kyoss
 
 		public override IEnumerator UsePower(int index = 0)
 		{
-			IEnumerator coroutine = base.GameController.SelectAndGainHP(this.DecisionMaker, 1, false, (Card c) => c.IsTarget && c.IsHero && c.IsInPlay, 1, null, false, null, base.GetCardSource());
+			IEnumerator coroutine = base.GameController.SelectAndGainHP(this.DecisionMaker, 2, false, (Card c) => c.IsTarget && c.IsHero && c.IsInPlay, 1, null, false, null, base.GetCardSource());
 			if (base.UseUnityCoroutines)
 			{
 				yield return base.GameController.StartCoroutine(coroutine);
