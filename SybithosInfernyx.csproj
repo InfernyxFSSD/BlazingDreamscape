@@ -43,6 +43,7 @@
 	<ItemGroup>
 		<None Remove="CodingBugs" />
 		<None Remove="DeckLists\BlitzDeckList.json" />
+		<None Remove="DeckLists\SilnisDeckList.json" />
 		<None Remove="DeckLists\TestWinDeckList.json" />
 		<None Remove="Docs\manifest.json" />
 	</ItemGroup>
@@ -70,6 +71,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Controller\Heroes\Silnis\CardSubClasses\" />
     <Folder Include="Properties\" />
   </ItemGroup>
 
