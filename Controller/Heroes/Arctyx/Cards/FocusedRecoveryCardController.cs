@@ -24,7 +24,7 @@ namespace BlazingDreamscape.Arctyx
                 base.GameController.ExhaustCoroutine(coroutine);
             }
             List<DiscardCardAction> storedResults = new List<DiscardCardAction>();
-            IEnumerator DiscardCardsAndDrawCards = base.GameController.SelectAndDiscardCards(base.HeroTurnTakerController, null, true, new int?(0), storedResults, false, null, null, null, null, SelectionType.DiscardCard, null);
+            IEnumerator DiscardCardsAndDrawCards = base.GameController.SelectAndDiscardCards(base.HeroTurnTakerController, null, false, new int?(0), storedResults, false, null, null, null, null, SelectionType.DiscardCard, null);
             if (base.UseUnityCoroutines)
             {
                 yield return base.GameController.StartCoroutine(DiscardCardsAndDrawCards);

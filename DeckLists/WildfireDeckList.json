@@ -224,7 +224,8 @@
       "flavorText": "[placeholder]",
       "body": [
         "When this card is destroyed, you may put an Elemental from your trash into play.",
-        "At the end of your turn, this card deals a target X Fire damage, where X is the number of Elementals in your play area plus 1."
+        "X on this card is equal to the number of Elementals in your play area when this card entered play.",
+        "At the end of your turn, this card deals a target X+1 Fire damage."
       ],
       "icons": [
         "DealDamageFire",
