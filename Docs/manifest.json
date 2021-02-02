@@ -1,13 +1,15 @@
 {
-	"title": "SybithosInfernyx",
+	"title": "BlazingDreamscape",
 	"author": "Infernyx and Sybithos",
-	"description": "Custom decks from the two people in the title, Infernyx and Sybithos",
-	"namespace": "SybithosInfernyx",
-	"dll": "SybithosInfernyx.dll",
+	"description": "Custom decks from Infernyx and Sybithos",
+	"namespace": "BlazingDreamscape",
+	"dll": "BlazingDreamscape.dll",
 	"decks": {
 		"heroes": [
 			"Arctyx",
-			"Kyoss"
+			"Wildfire",
+			"Silnis",
+			"TestWin"
 		]
 	}
 }

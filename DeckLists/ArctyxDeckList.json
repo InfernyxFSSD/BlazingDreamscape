@@ -170,7 +170,7 @@
 			"keywords": "one-shot",
 			"body": [
 				"Destroy all Auras in your play area.",
-				"Choose Fire or Cold. {Arctyx} deals up to X targets 3 damage of that type each.",
+				"Choose Fire or Cold. {Arctyx} deals up to X targets 6 damage of that type each.",
 				"Until the start of your next turn, increase damage dealt to {Arctyx} by X.",
 				"X on this card is the number of Auras destroyed this way."
 			],
@@ -198,7 +198,7 @@
 			"keywords": "one-shot",
 			"body": [
 				"{Arctyx} regains 3 HP.",
-				"You may discard any number of Aura cards from your hand. Draw X cards, where X is the number of cards discarded this way."
+				"You may discard any number of cards from your hand. Draw X cards, where X is the number of cards discarded this way."
 			],
 			"flavorText": "[placeholder]",
 			"icons": [
@@ -241,7 +241,7 @@
 			"keywords": "one-shot",
 			"body": [
 				"{Arctyx} deals a target 2 Melee damage.",
-				"You may play a card now."
+				"You may draw or play a card now."
 			],
 			"flavorText": "[placeholder]",
 			"icons": [

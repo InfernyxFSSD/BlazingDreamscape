@@ -6,9 +6,9 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using SybithosInfernyx.Arctyx;
+using BlazingDreamscape.Arctyx;
 
-namespace SybithosInfernyx.Testing
+namespace BlazingDreamscape.Testing
 {
     [TestFixture()]
     public class ArctyxTests : BaseTest
@@ -83,7 +83,7 @@ namespace SybithosInfernyx.Testing
         [Test()]
         public void TestArctyxLoads()
         {
-            SetupGameController("BaronBlade", "SybithosInfernyx.Arctyx", "Megalopolis");
+            SetupGameController("BaronBlade", "BlazingDreamscape.Arctyx", "Megalopolis");
 
             Assert.AreEqual(3, this.GameController.TurnTakerControllers.Count());
 
@@ -96,7 +96,7 @@ namespace SybithosInfernyx.Testing
         [Test()]
         public void TestArctyxADLoads()
         {
-            SetupGameController("BaronBlade", "SybithosInfernyx.Arctyx/AuraDisplacementArctyxCharacter", "Megalopolis");
+            SetupGameController("BaronBlade", "BlazingDreamscape.Arctyx/AuraDisplacementArctyxCharacter", "Megalopolis");
 
             Assert.AreEqual(3, this.GameController.TurnTakerControllers.Count());
 
@@ -109,7 +109,7 @@ namespace SybithosInfernyx.Testing
         [Test()]
         public void TestArctyxInnatePower()
         {
-            SetupGameController("BaronBlade", "SybithosInfernyx.Arctyx", "Legacy", "Tachyon", "Megalopolis");
+            SetupGameController("BaronBlade", "BlazingDreamscape.Arctyx", "Legacy", "Tachyon", "Megalopolis");
             StartGame();
 
             //Arctyx deals one target 2 Melee damage.
@@ -123,7 +123,7 @@ namespace SybithosInfernyx.Testing
         [Test()]
         public void TestArctyxADInnatePowerIsAura()
         {
-            SetupGameController("BaronBlade", "SybithosInfernyx.Arctyx/AuraDisplacementArctyxCharacter", "Tachyon", "Legacy", "Megalopolis");
+            SetupGameController("BaronBlade", "BlazingDreamscape.Arctyx/AuraDisplacementArctyxCharacter", "Tachyon", "Legacy", "Megalopolis");
             StartGame();
 
             //Discard the top card of your deck. If it was an aura, one other player may play a card.
@@ -140,7 +140,7 @@ namespace SybithosInfernyx.Testing
         [Test()]
         public void TestArctyxADInnatePowerIsNotAura()
         {
-            SetupGameController("BaronBlade", "SybithosInfernyx.Arctyx/AuraDisplacementArctyxCharacter", "Legacy", "Tachyon", "Megalopolis");
+            SetupGameController("BaronBlade", "BlazingDreamscape.Arctyx/AuraDisplacementArctyxCharacter", "Legacy", "Tachyon", "Megalopolis");
             StartGame();
 
             //Discard the top card of your deck. If it was not an aura, one player may draw a card.
@@ -155,7 +155,7 @@ namespace SybithosInfernyx.Testing
         [Test()]
         public void TestArctyxIncap1()
         {
-            SetupGameController("BaronBlade", "SybithosInfernyx.Arctyx", "Legacy", "Tachyon", "Megalopolis");
+            SetupGameController("BaronBlade", "BlazingDreamscape.Arctyx", "Legacy", "Tachyon", "Megalopolis");
             StartGame();
 
             SetupIncap(baron);
@@ -183,7 +183,7 @@ namespace SybithosInfernyx.Testing
         [Test()]
         public void TestArctyxADIncap1()
         {
-            SetupGameController("BaronBlade", "SybithosInfernyx.Arctyx/AuraDisplacementArctyxCharacter", "Legacy", "Tachyon", "Megalopolis");
+            SetupGameController("BaronBlade", "BlazingDreamscape.Arctyx/AuraDisplacementArctyxCharacter", "Legacy", "Tachyon", "Megalopolis");
             StartGame();
 
             SetupIncap(baron);
@@ -202,7 +202,7 @@ namespace SybithosInfernyx.Testing
         [Test()]
         public void TestArctyxIncap2()
         {
-            SetupGameController("BaronBlade", "SybithosInfernyx.Arctyx", "Legacy", "Tachyon", "Megalopolis");
+            SetupGameController("BaronBlade", "BlazingDreamscape.Arctyx", "Legacy", "Tachyon", "Megalopolis");
             StartGame();
 
             SetupIncap(baron);
@@ -230,7 +230,7 @@ namespace SybithosInfernyx.Testing
         [Test()]
         public void TestArctyxADIncap2()
         {
-            SetupGameController("BaronBlade", "SybithosInfernyx.Arctyx/AuraDisplacementArctyxCharacter", "Legacy", "Tachyon", "Megalopolis");
+            SetupGameController("BaronBlade", "BlazingDreamscape.Arctyx/AuraDisplacementArctyxCharacter", "Legacy", "Tachyon", "Megalopolis");
             StartGame();
 
             SetupIncap(baron);
@@ -248,7 +248,7 @@ namespace SybithosInfernyx.Testing
         [Test()]
         public void TestArctyxIncap3()
         {
-            SetupGameController("BaronBlade", "SybithosInfernyx.Arctyx", "Legacy", "Tachyon", "Megalopolis");
+            SetupGameController("BaronBlade", "BlazingDreamscape.Arctyx", "Legacy", "Tachyon", "Megalopolis");
             StartGame();
 
             SetupIncap(baron);
@@ -266,7 +266,7 @@ namespace SybithosInfernyx.Testing
         [Test()]
         public void TestArctyxADIncap3()
         {
-            SetupGameController("BaronBlade", "SybithosInfernyx.Arctyx/AuraDisplacementArctyxCharacter", "Legacy", "Tachyon", "Megalopolis");
+            SetupGameController("BaronBlade", "BlazingDreamscape.Arctyx/AuraDisplacementArctyxCharacter", "Legacy", "Tachyon", "Megalopolis");
             StartGame();
 
             SetupIncap(baron);
@@ -284,7 +284,7 @@ namespace SybithosInfernyx.Testing
         [Test()]
         public void TestHeavyMace()
         {
-            SetupGameController("BaronBlade", "SybithosInfernyx.Arctyx", "Legacy", "Tachyon", "Megalopolis");
+            SetupGameController("BaronBlade", "BlazingDreamscape.Arctyx", "Legacy", "Tachyon", "Megalopolis");
             StartGame();
             Card mdp = GetCardInPlay("MobileDefensePlatform");
             DestroyCard(mdp, tachyon.CharacterCard);
@@ -303,7 +303,7 @@ namespace SybithosInfernyx.Testing
         [Test()]
         public void TestIcyShell()
         {
-            SetupGameController("BaronBlade", "SybithosInfernyx.Arctyx", "Legacy", "Tachyon", "Megalopolis");
+            SetupGameController("BaronBlade", "BlazingDreamscape.Arctyx", "Legacy", "Tachyon", "Megalopolis");
             StartGame();
             PutIntoPlay("IceCoating");
             Card coat = GetCardInPlay("IceCoating");
@@ -330,7 +330,7 @@ namespace SybithosInfernyx.Testing
         [Test()]
         public void TestFlameGuard()
         {
-            SetupGameController("BaronBlade", "SybithosInfernyx.Arctyx", "Legacy", "Tachyon", "Megalopolis");
+            SetupGameController("BaronBlade", "BlazingDreamscape.Arctyx", "Legacy", "Tachyon", "Megalopolis");
             StartGame();
             PutIntoPlay("BurningTrail");
             Card trail = GetCardInPlay("BurningTrail");
@@ -363,7 +363,7 @@ namespace SybithosInfernyx.Testing
         [Test()]
         public void TestIceCoating()
         {
-            SetupGameController("BaronBlade", "SybithosInfernyx.Arctyx", "Legacy", "Tachyon", "Megalopolis");
+            SetupGameController("BaronBlade", "BlazingDreamscape.Arctyx", "Legacy", "Tachyon", "Megalopolis");
             StartGame();
             PutIntoPlay("IcyShell");
             Card shell = GetCardInPlay("IcyShell");
@@ -398,7 +398,7 @@ namespace SybithosInfernyx.Testing
         [Test()]
         public void TestBurningTrail()
         {
-            SetupGameController("BaronBlade", "SybithosInfernyx.Arctyx", "Legacy", "Tachyon", "Megalopolis");
+            SetupGameController("BaronBlade", "BlazingDreamscape.Arctyx", "Legacy", "Tachyon", "Megalopolis");
             StartGame();
             PutIntoPlay("FlameGuard");
             Card guard = GetCardInPlay("FlameGuard");
@@ -433,7 +433,7 @@ namespace SybithosInfernyx.Testing
         [Test()]
         public void TestDragonHide()
         {
-            SetupGameController("BaronBlade", "SybithosInfernyx.Arctyx", "Legacy", "Tachyon", "Megalopolis");
+            SetupGameController("BaronBlade", "BlazingDreamscape.Arctyx", "Legacy", "Tachyon", "Megalopolis");
             StartGame();
             PutIntoPlay("DragonHide");
             //Dragon Hide should reduce damage dealt to Arctyx by 1.
@@ -445,7 +445,7 @@ namespace SybithosInfernyx.Testing
         [Test()]
         public void TestBattleRoar()
         {
-            SetupGameController("BaronBlade", "SybithosInfernyx.Arctyx", "Legacy", "Tachyon", "Megalopolis");
+            SetupGameController("BaronBlade", "BlazingDreamscape.Arctyx", "Legacy", "Tachyon", "Megalopolis");
             StartGame();
             PutInHand("BattleRoar");
             //Battle Roar should redirect damage from villain targets to Arctyx
@@ -460,7 +460,7 @@ namespace SybithosInfernyx.Testing
         [Test()]
         public void TestArmorBurst2()
         {
-            SetupGameController("BaronBlade", "SybithosInfernyx.Arctyx", "Legacy", "Tachyon", "Megalopolis");
+            SetupGameController("BaronBlade", "BlazingDreamscape.Arctyx", "Legacy", "Tachyon", "Megalopolis");
             StartGame();
             PutInHand("ArmorBurst");
             PutIntoPlay("IceCoating");
@@ -493,7 +493,7 @@ namespace SybithosInfernyx.Testing
         [Test()]
         public void TestArmorBurst1()
         {
-            SetupGameController("BaronBlade", "SybithosInfernyx.Arctyx", "Legacy", "Tachyon", "Megalopolis");
+            SetupGameController("BaronBlade", "BlazingDreamscape.Arctyx", "Legacy", "Tachyon", "Megalopolis");
             StartGame();
             PutInHand("ArmorBurst");
             PutIntoPlay("IceCoating");
@@ -522,7 +522,7 @@ namespace SybithosInfernyx.Testing
         [Test()]
         public void TestArmorBurst0()
         {
-            SetupGameController("BaronBlade", "SybithosInfernyx.Arctyx", "Legacy", "Tachyon", "Megalopolis");
+            SetupGameController("BaronBlade", "BlazingDreamscape.Arctyx", "Legacy", "Tachyon", "Megalopolis");
             StartGame();
             PutInHand("ArmorBurst");
             Card burst = GetCardFromHand("ArmorBurst");
@@ -538,7 +538,7 @@ namespace SybithosInfernyx.Testing
         [Test()]
         public void TestAuraLace()
         {
-            SetupGameController("BaronBlade", "SybithosInfernyx.Arctyx", "Legacy", "Tachyon", "Megalopolis");
+            SetupGameController("BaronBlade", "BlazingDreamscape.Arctyx", "Legacy", "Tachyon", "Megalopolis");
             StartGame();
             PutIntoPlay("AuraLace");
             PutIntoPlay("IcyShell");
@@ -582,7 +582,7 @@ namespace SybithosInfernyx.Testing
         [Test()]
         public void TestFocusedRecovery()
         {
-            SetupGameController("BaronBlade", "SybithosInfernyx.Arctyx", "Legacy", "Tachyon", "Megalopolis");
+            SetupGameController("BaronBlade", "BlazingDreamscape.Arctyx", "Legacy", "Tachyon", "Megalopolis");
             StartGame();
             DiscardAllCards(arctyx);
             PutInHand("FocusedRecovery");
@@ -604,7 +604,7 @@ namespace SybithosInfernyx.Testing
         [Test()]
         public void TestOpportuneLunge()
         {
-            SetupGameController("BaronBlade", "SybithosInfernyx.Arctyx", "Legacy", "Tachyon", "Megalopolis");
+            SetupGameController("BaronBlade", "BlazingDreamscape.Arctyx", "Legacy", "Tachyon", "Megalopolis");
             StartGame();
             PutInHand("OpportuneLunge");
             PutInHand("IcyShell");
@@ -624,7 +624,7 @@ namespace SybithosInfernyx.Testing
         [Test()]
         public void TestShiftingAurasFlame()
         {
-            SetupGameController("BaronBlade", "SybithosInfernyx.Arctyx", "Legacy", "Tachyon", "Megalopolis");
+            SetupGameController("BaronBlade", "BlazingDreamscape.Arctyx", "Legacy", "Tachyon", "Megalopolis");
             StartGame();
             PutIntoPlay("ShiftingAuras");
             PutIntoPlay("FlameGuard");
@@ -642,7 +642,7 @@ namespace SybithosInfernyx.Testing
         [Test()]
         public void TestShiftingAurasFrost()
         {
-            SetupGameController("BaronBlade", "SybithosInfernyx.Arctyx", "Legacy", "Tachyon", "Megalopolis");
+            SetupGameController("BaronBlade", "BlazingDreamscape.Arctyx", "Legacy", "Tachyon", "Megalopolis");
             StartGame();
             PutIntoPlay("ShiftingAuras");
             PutIntoPlay("IcyShell");
@@ -660,7 +660,7 @@ namespace SybithosInfernyx.Testing
         [Test()]
         public void TestTauntTheNewcomers()
         {
-            SetupGameController("BaronBlade", "SybithosInfernyx.Arctyx", "Legacy", "Tachyon", "Megalopolis");
+            SetupGameController("BaronBlade", "BlazingDreamscape.Arctyx", "Legacy", "Tachyon", "Megalopolis");
             StartGame();
             PutIntoPlay("TauntTheNewcomers");
             PutOnDeck("BladeBattalion");

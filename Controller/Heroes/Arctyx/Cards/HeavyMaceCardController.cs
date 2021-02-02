@@ -3,7 +3,7 @@ using Handelabra.Sentinels.Engine.Model;
 using System.Collections;
 using System.Linq;
 
-namespace SybithosInfernyx.Arctyx
+namespace BlazingDreamscape.Arctyx
 {
     public class HeavyMaceCardController : CardController
     {
@@ -23,6 +23,7 @@ namespace SybithosInfernyx.Arctyx
             {
                 base.GameController.ExhaustCoroutine(coroutine);
             }
+            yield break;
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections;
 using Handelabra.Sentinels.Engine.Controller;
 using Handelabra.Sentinels.Engine.Model;
 
-namespace SybithosInfernyx.Arctyx
+namespace BlazingDreamscape.Arctyx
 {
     public class IceCoatingCardController : FrostCardController
     {

@@ -1,8 +1,8 @@
-﻿using SybithosInfernyx.Arctyx;
+﻿using BlazingDreamscape.Arctyx;
 using Handelabra.Sentinels.Engine.Model;
 using NUnit.Framework;
 
-namespace SybithosInfernyx.Testing
+namespace BlazingDreamscape.Testing
 {
     [SetUpFixture]
     public class Setup
@@ -10,7 +10,7 @@ namespace SybithosInfernyx.Testing
         [OneTimeSetUp]
         public void DoSetup()
         {
-            ModHelper.AddAssembly("SybithosInfernyx", typeof(ArctyxCharacterCardController).Assembly);
+            ModHelper.AddAssembly("BlazingDreamscape", typeof(ArctyxCharacterCardController).Assembly);
         }
     }
 }

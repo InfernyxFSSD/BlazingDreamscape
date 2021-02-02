@@ -5,11 +5,11 @@ using Handelabra.Sentinels.Engine.Controller;
 using System.Linq;
 using System.Collections;
 using System.Reflection;
-using SybithosInfernyx.Arctyx;
+using BlazingDreamscape.Arctyx;
 using Handelabra;
 using System.Collections.Generic;
 
-namespace SybithosInfernyx.Testing
+namespace BlazingDreamscape.Testing
 {
     [TestFixture()]
     public class AssemblyTests
@@ -17,14 +17,14 @@ namespace SybithosInfernyx.Testing
         [Test()]
         public void DeckListResourceNaming()
         {
-            var asb = typeof(SybithosInfernyx.Arctyx.ArctyxCharacterCardController).Assembly;
+            var asb = typeof(BlazingDreamscape.Arctyx.ArctyxCharacterCardController).Assembly;
 
             Console.WriteLine("Checking Embedded Resource Names...");
             foreach (var res in asb.GetManifestResourceNames())
             {
                 var split = res.Split('.');
 
-                Assert.AreEqual("SybithosInfernyx", split[0], "{0} has {1} and should have {2}", res, split[0], "SybithosInfernyx");
+                Assert.AreEqual("BlazingDreamscape", split[0], "{0} has {1} and should have {2}", res, split[0], "BlazingDreamscape");
                 Assert.AreEqual("DeckLists", split[1], "{0} has {1} and should have {2}", res, split[1], "DeckLists");
                 StringAssert.EndsWith("DeckList", split[2], "{0} ends with {1} and end with {2}", res, split[2], "DeckList");
                 Assert.AreEqual("json", split[3], "{0} has {1} and should have {2}", res, split[3], "json");
@@ -35,7 +35,7 @@ namespace SybithosInfernyx.Testing
         [Test()]
         public void DeckListJsonValidation()
         {
-            var asb = typeof(SybithosInfernyx.Arctyx.ArctyxCharacterCardController).Assembly;
+            var asb = typeof(BlazingDreamscape.Arctyx.ArctyxCharacterCardController).Assembly;
 
             Console.WriteLine("Checking Embedded Resource Names...");
             foreach (var res in asb.GetManifestResourceNames())

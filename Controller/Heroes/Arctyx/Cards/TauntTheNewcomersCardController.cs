@@ -5,7 +5,7 @@ using System.Linq;
 using Handelabra.Sentinels.Engine.Controller;
 using Handelabra.Sentinels.Engine.Model;
 
-namespace SybithosInfernyx.Arctyx
+namespace BlazingDreamscape.Arctyx
 {
 	// Token: 0x0200064C RID: 1612
 	public class TauntTheNewcomersCardController : CardController

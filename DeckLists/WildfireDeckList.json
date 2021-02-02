@@ -1,0 +1,235 @@
+{
+  "name": "Wildfire",
+  "kind": "Hero",
+  "initialCardIdentifiers": [
+    "WildfireCharacter"
+  ],
+  "cards": [
+    {
+      "identifier": "WildfireCharacter",
+      "count": 1,
+      "title": "Wildfire",
+      "body": "Flame's Fury",
+      "backgroundColor": "fbf8f9",
+      "foilBackgroundColor": "FEFEFE",
+      "hitpointsColor": "C94742",
+      "character": true,
+      "powers": [
+        "{Wildfire} deals a target 2 Fire damage."
+      ],
+      "icons": [
+        "HasPower",
+        "DealDamageFire"
+      ],
+      "hitpoints": 28,
+      "incapacitatedAbilities": [
+        "One hero deals a target 3 Fire damage.",
+        "Select a hero. Until the start of your next turn, whenever that hero uses a power, that player's hero deals a target 1 Fire damage.",
+        "One hero may use a power."
+      ],
+      "flippedIcons": [
+        "DealDamageFire",
+        "UsePowerNow"
+      ],
+      "openingLines": {
+        "default": "[placeholder]"
+      },
+      "complexity": 2
+    },
+    {
+      "identifier": "ConflagrationRod",
+      "count": 3,
+      "title": "Conflagration Rod",
+      "keywords": [
+        "equipment",
+        "focus",
+        "limited"
+      ],
+      "flavorText": "[placeholder]",
+      "powers": "Discard the top card of your deck. If it is an Elemental, put it into play. If no cards entered play this way, {Wildfire} deals each non-hero target 1 Fire damage.",
+      "icons": [
+        "HasPower",
+        "DealDamageFire"
+      ]
+    },
+    {
+      "identifier": "BonfireCirclet",
+      "count": 3,
+      "title": "Bonfire Circlet",
+      "keywords": [
+        "equipment",
+        "focus",
+        "limited"
+      ],
+      "flavorText": "[placeholder]",
+      "powers": "Search your deck or trash for an Elemental and put it into play. If you searched your deck, shuffle it afterwards.",
+      "icons": [
+        "HasPower",
+        "PlayCardNow"
+      ]
+    },
+    {
+      "identifier": "CombustionStaff",
+      "count": 3,
+      "title": "Combustion Staff",
+      "keywords": [
+        "equipment",
+        "focus",
+        "limited"
+      ],
+      "flavorText": "[placeholder]",
+      "powers": "Increase damage dealt by Elementals in your play area by 1 until the start of your next turn.",
+      "icons": [
+        "HasPower",
+        "IncreaseDamageDealt"
+      ]
+    },
+    {
+      "identifier": "PowerExplosion",
+      "count": 3,
+      "title": "Power Explosion",
+      "keywords": [
+        "ongoing",
+        "limited"
+      ],
+      "flavorText": "[placeholder]",
+      "body": "The first time you use a power on a Focus each turn, {Wildfire} may deal herself 2 Fire damage. If {Wildfire} took damage this way, you may use a power now.",
+      "powers": "Discard two cards. Search your deck for a Focus and put it into play. Shuffle your deck afterwards.",
+      "icons": [
+        "DealDamageFire",
+        "UsePowerNow"
+      ]
+    },
+    {
+      "identifier": "ControlledBurn",
+      "count": 4,
+      "title": "Controlled Burn",
+      "keywords": [
+        "one-shot"
+      ],
+      "flavorText": "[placeholder]",
+      "body": "{Wildfire} either deals one target 4 Fire damage, or deals up to three targets 2 Fire damage each.",
+      "icons": [
+        "DealDamageFire"
+      ]
+    },
+    {
+      "identifier": "ElementalWrath",
+      "count": 3,
+      "title": "Elemental Wrath",
+      "keywords": [
+        "one-shot"
+      ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "Each Elemental in your play area deals a target 1 Fire damage."
+      ],
+      "icons": [
+        "DealDamageFire"
+      ]
+    },
+    {
+      "identifier": "ScorchedEarth",
+      "count": 4,
+      "title": "Scorched Earth",
+      "keywords": [
+        "one-shot"
+      ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "{Wildfire} deals each non-hero target 2 Fire damage."
+      ],
+      "icons": [
+        "DealDamageFire"
+      ]
+    },
+    {
+      "identifier": "InfernoWisp",
+      "count": 4,
+      "title": "Inferno Wisp",
+      "hitpoints": 5,
+      "keywords": [
+        "elemental"
+      ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "The first time each turn that {Wildfire} deals a target 2 or more Fire damage at once, increase the next damage dealt by this card by 1.",
+        "At the end of your turn, this card deals a target 1 Fire damage."
+      ],
+      "icons": [
+        "IncreaseDamageDealt",
+        "DealDamageFire"
+      ]
+    },
+    {
+      "identifier": "EverburningPhoenix",
+      "count": 4,
+      "title": "Everburning Phoenix",
+      "hitpoints": 5,
+      "keywords": [
+        "elemental"
+      ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "At the end of your turn, this card deals a target 2 Fire damage.",
+        "At the start of your turn, if this card has less than 5 HP, set its HP to 5."
+      ],
+      "icons": [
+        "DealDamageFire"
+      ]
+    },
+    {
+      "identifier": "BlazingBunny",
+      "count": 4,
+      "title": "Blazing Bunny",
+      "hitpoints": 4,
+      "keywords": [
+        "elemental"
+      ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "At the end of your turn, you may put a Blazing Bunny from your hand into play.",
+        "At the start of your turn, this card deals a target X Fire damage, where X is the number of Blazing Bunnys in play. Then, shuffle this card into your deck."
+      ],
+      "icons": [
+        "DealDamageFire"
+      ]
+    },
+    {
+      "identifier": "SmolderingSalamander",
+      "count": 4,
+      "title": "Smoldering Salamander",
+      "hitpoints": 5,
+      "keywords": [
+        "elemental"
+      ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "When this card is destroyed, you may draw a card.",
+        "At the end of your turn, this card deals a target 2 Fire damage."
+      ],
+      "icons": [
+        "DealDamageFire",
+        "DrawCardNow"
+      ]
+    },
+    {
+      "identifier": "IncineratingDrake",
+      "count": 1,
+      "title": "Incinerating Drake",
+      "hitpoints": 12,
+      "keywords": [
+        "elemental"
+      ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "When this card is destroyed, you may put an Elemental from your trash into play.",
+        "At the end of your turn, this card deals a target X Fire damage, where X is the number of Elementals in your play area plus 1."
+      ],
+      "icons": [
+        "DealDamageFire",
+        "PlayCardNow"
+      ]
+    }
+  ]
+}

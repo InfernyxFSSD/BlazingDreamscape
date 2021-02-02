@@ -5,7 +5,7 @@ using System.Linq;
 using Handelabra.Sentinels.Engine.Controller;
 using Handelabra.Sentinels.Engine.Model;
 
-namespace SybithosInfernyx.Arctyx
+namespace BlazingDreamscape.Arctyx
 {
     public class FocusedRecoveryCardController : CardController
     {
@@ -23,31 +23,27 @@ namespace SybithosInfernyx.Arctyx
             {
                 base.GameController.ExhaustCoroutine(coroutine);
             }
-            bool func(Card card) => card.DoKeywordsContain("aura", false, false);
-            if (base.HeroTurnTakerController.HeroTurnTaker.Hand.Cards.Where(func).Count<Card>() > 0)
+            List<DiscardCardAction> storedResults = new List<DiscardCardAction>();
+            IEnumerator DiscardCardsAndDrawCards = base.GameController.SelectAndDiscardCards(base.HeroTurnTakerController, null, true, new int?(0), storedResults, false, null, null, null, null, SelectionType.DiscardCard, null);
+            if (base.UseUnityCoroutines)
             {
-                List<DiscardCardAction> storedResults = new List<DiscardCardAction>();
-                IEnumerator DiscardAuraCardsAndDrawCards = base.GameController.SelectAndDiscardCards(base.HeroTurnTakerController, null, true, new int?(0), storedResults, false, null, null, null, new LinqCardCriteria((Card c) => c.DoKeywordsContain("aura", false, false), "aura", true, false, null, null, false), SelectionType.DiscardCard, null);
+                yield return base.GameController.StartCoroutine(DiscardCardsAndDrawCards);
+            }
+            else
+            {
+                base.GameController.ExhaustCoroutine(DiscardCardsAndDrawCards);
+            }
+            int num = base.GetNumberOfCardsDiscarded(storedResults);
+            if (num > 0)
+            {
+                coroutine = base.DrawCards(this.DecisionMaker, num, true, false, null, true, null);
                 if (base.UseUnityCoroutines)
                 {
-                    yield return base.GameController.StartCoroutine(DiscardAuraCardsAndDrawCards);
+                    yield return base.GameController.StartCoroutine(coroutine);
                 }
                 else
                 {
-                    base.GameController.ExhaustCoroutine(DiscardAuraCardsAndDrawCards);
-                }
-                int num = base.GetNumberOfCardsDiscarded(storedResults);
-                if (num > 0)
-                {
-                    coroutine = base.DrawCards(this.DecisionMaker, num, true, false, null, true, null);
-                    if (base.UseUnityCoroutines)
-                    {
-                        yield return base.GameController.StartCoroutine(coroutine);
-                    }
-                    else
-                    {
-                        base.GameController.ExhaustCoroutine(coroutine);
-                    }
+                    base.GameController.ExhaustCoroutine(coroutine);
                 }
             }
             yield break;
