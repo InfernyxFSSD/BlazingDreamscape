@@ -18,9 +18,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Compile Remove="Controller\Heroes\Unvirno\**" />
-		<EmbeddedResource Remove="Controller\Heroes\Unvirno\**" />
-		<None Remove="Controller\Heroes\Unvirno\**" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -32,11 +29,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Testing\Heroes\UnvirnoTests.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Remove="DeckLists\UnvirnoDeckList.json" />
 	</ItemGroup>
 
 

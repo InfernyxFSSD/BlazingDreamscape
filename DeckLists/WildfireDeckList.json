@@ -42,7 +42,6 @@
       "title": "Conflagration Rod",
       "keywords": [
         "equipment",
-        "focus",
         "limited"
       ],
       "flavorText": "[placeholder]",
@@ -58,11 +57,10 @@
       "title": "Bonfire Circlet",
       "keywords": [
         "equipment",
-        "focus",
         "limited"
       ],
       "flavorText": "[placeholder]",
-      "powers": "Search your deck or trash for an Elemental and put it into play. If you searched your deck, shuffle it afterwards.",
+      "powers": "Discard two cards from your hand. If you did, search your deck or trash for an Elemental and put it into play. If you searched your deck, shuffle it afterwards.",
       "icons": [
         "HasPower",
         "PlayCardNow"
@@ -74,7 +72,6 @@
       "title": "Combustion Staff",
       "keywords": [
         "equipment",
-        "focus",
         "limited"
       ],
       "flavorText": "[placeholder]",
@@ -93,8 +90,8 @@
         "limited"
       ],
       "flavorText": "[placeholder]",
-      "body": "The first time you use a power on a Focus each turn, {Wildfire} may deal herself 2 Fire damage. If {Wildfire} took damage this way, you may use a power now.",
-      "powers": "Discard two cards. Search your deck for a Focus and put it into play. Shuffle your deck afterwards.",
+      "body": "The first time you use a power on an Equipment each turn, {Wildfire} may deal herself 2 Fire damage. If {Wildfire} took damage this way, you may use a power now.",
+      "powers": "Discard two cards. Search your deck for an Equipment and put it into play. Shuffle your deck afterwards.",
       "icons": [
         "DealDamageFire",
         "UsePowerNow"
@@ -224,8 +221,8 @@
       "flavorText": "[placeholder]",
       "body": [
         "When this card is destroyed, you may put an Elemental from your trash into play.",
-        "X on this card is equal to the number of Elementals in your play area when this card entered play.",
-        "At the end of your turn, this card deals a target X+1 Fire damage."
+        "X on this card is equal to the number of Elementals in your play area when this card entered play plus 1.",
+        "At the end of your turn, this card deals a target X Fire damage."
       ],
       "icons": [
         "DealDamageFire",

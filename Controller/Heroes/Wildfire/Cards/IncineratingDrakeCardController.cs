@@ -11,12 +11,27 @@ namespace BlazingDreamscape.Wildfire
     {
         public IncineratingDrakeCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
         {
+            base.SpecialStringMaker.ShowSpecialString(() => $"{this.Card.Title} will deal {(int)base.GetCardPropertyJournalEntryInteger(DamageToDeal)} Fire damage.").Condition = (() => base.Card.IsInPlayAndNotUnderCard);
         }
 
         public override void AddTriggers()
         {
-            base.AddDealDamageAtEndOfTurnTrigger(base.TurnTaker, base.Card, (Card c) => true, TargetType.SelectTarget, base.FindCardsWhere((Card c) => c.DoKeywordsContain("elemental", false, false) && c.IsInPlayAndHasGameText && c.Location.IsPlayAreaOf(this.TurnTaker), false, null, false).Count<Card>() + 1, DamageType.Fire, false, false, 1, 1, null, null);
+            Func<Card, int?> damageToDeal = (Card target) => new int?(this.GetValueOfDamageDealt());
+            base.AddDealDamageAtEndOfTurnTrigger(base.TurnTaker, base.Card, (Card c) => true, TargetType.SelectTarget, 0, DamageType.Fire, false, false, 1, 1, null, damageToDeal);
             base.AddWhenDestroyedTrigger(new Func<DestroyCardAction, IEnumerator>(this.OnDestroyResponse), new TriggerType[] { TriggerType.PutIntoPlay }, null, null);
+            base.AddAfterLeavesPlayAction((GameAction ga) => base.ResetFlagAfterLeavesPlay("IncineratingDrakeDamageToDeal"), TriggerType.Hidden);
+        }
+
+        private int GetValueOfDamageDealt()
+        {
+            return (int)base.GetCardPropertyJournalEntryInteger(DamageToDeal);
+        }
+
+        public override IEnumerator Play()
+        {
+            int damageToDeal = base.FindCardsWhere((Card c) => c.DoKeywordsContain("elemental", false, false) && c.IsInPlayAndHasGameText && c.Location.IsPlayAreaOf(this.TurnTaker), false, null, false).Count<Card>() + 1;
+            base.SetCardProperty(DamageToDeal, damageToDeal);
+            yield break;
         }
 
         private IEnumerator OnDestroyResponse(DestroyCardAction dc)
@@ -32,5 +47,7 @@ namespace BlazingDreamscape.Wildfire
             }
             yield break;
         }
+
+        private const string DamageToDeal = "IncineratingDrakeDamageToDeal";
     }
 }

@@ -15,8 +15,23 @@ namespace BlazingDreamscape.Arctyx
 
         public override void AddTriggers()
         {
+            base.AddStartOfTurnTrigger((TurnTaker tt) => tt == base.TurnTaker, (PhaseChangeAction p) => base.SelectAndPlayCardFromHand(this.DecisionMaker, true, null, new LinqCardCriteria((Card c) => c.DoKeywordsContain("aura", false, false), "aura", true, false, null, null, false), false, false, true, null), TriggerType.PlayCard, null, false);
             base.AddTrigger<DestroyCardAction>((DestroyCardAction d) => d.CardToDestroy.Card.DoKeywordsContain("flame", false, false), new Func<DestroyCardAction, IEnumerator>(this.DealFireDamageResponse), TriggerType.DealDamage, TriggerTiming.After, ActionDescription.Unspecified, false, true, null, false, null, null, false, false);
             base.AddTrigger<DestroyCardAction>((DestroyCardAction d) => d.CardToDestroy.Card.DoKeywordsContain("frost", false, false), new Func<DestroyCardAction, IEnumerator>(this.DealColdDamageResponse), TriggerType.DealDamage, TriggerTiming.After, ActionDescription.Unspecified, false, true, null, false, null, null, false, false);
+        }
+
+        public override IEnumerator Play()
+        {
+            IEnumerator playAura = base.SelectAndPlayCardFromHand(this.DecisionMaker, true, null, new LinqCardCriteria((Card c) => c.DoKeywordsContain("aura", false, false), "aura", true, false, null, null, false), false, false, true, null);
+            if (base.UseUnityCoroutines)
+            {
+                yield return base.GameController.StartCoroutine(playAura);
+            }
+            else
+            {
+                base.GameController.ExhaustCoroutine(playAura);
+            }
+            yield break;
         }
 
         private IEnumerator DealFireDamageResponse(DestroyCardAction d)

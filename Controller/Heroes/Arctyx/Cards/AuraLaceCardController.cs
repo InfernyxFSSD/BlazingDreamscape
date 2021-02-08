@@ -11,6 +11,7 @@ namespace BlazingDreamscape.Arctyx
     {
         public AuraLaceCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
         {
+            base.SpecialStringMaker.ShowNumberOfCardsAtLocation(this.TurnTaker.Deck, new LinqCardCriteria((Card c) => c.DoKeywordsContain("aura", false, false), "aura", true, false, null, null, false), null, false);
         }
 
         public override void AddTriggers()
@@ -30,7 +31,8 @@ namespace BlazingDreamscape.Arctyx
             {
                 this.GameController.ExhaustCoroutine(coroutine);
             }
-            coroutine = base.SearchForCards(base.HeroTurnTakerController, true, true, new int?(1), 1, new LinqCardCriteria((Card c) => c.DoKeywordsContain("aura", false, false), "aura", true, false, null, null, false), true, false, false, false, null, false, null, null);
+            LinqCardCriteria auraCards = new LinqCardCriteria((Card c) => c.DoKeywordsContain("aura", false, false), "aura", true, false, null, null, false);
+            coroutine = base.SearchForCards(base.HeroTurnTakerController, true, true, new int?(1), 1, auraCards, true, false, false, false, null, false, null, null);
             if (UseUnityCoroutines)
             {
                 yield return this.GameController.StartCoroutine(coroutine);

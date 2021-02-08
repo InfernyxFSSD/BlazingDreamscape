@@ -11,6 +11,7 @@ namespace BlazingDreamscape.Wildfire
 	{
 		public ElementalWrathCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
 		{
+			base.SpecialStringMaker.ShowNumberOfCardsAtLocation(this.TurnTaker.PlayArea, new LinqCardCriteria((Card c) => c.DoKeywordsContain("elemental", false, false) && c.IsInPlayAndHasGameText, "elemental", true, false, null, null, false), null, false);
 		}
 		public override IEnumerator Play()
 		{

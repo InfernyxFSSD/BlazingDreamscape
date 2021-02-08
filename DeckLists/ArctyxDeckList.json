@@ -65,12 +65,13 @@
 			],
 			"body": [
 				"When this card enters play, destroy any other Frost cards in play.",
-				"Arctyx is immune to Cold damage.",
-				"At the end of your turn, Arctyx regains 1 HP."
+				"At the end of your turn, Arctyx regains 2 HP."
 			],
+			"powers": "Reduce damage dealt to heroes by 1 until the start of your next turn.",
 			"flavorText": "[placeholder]",
 			"icons": [
-				"ImmuneToDamageCold",
+				"HasPower",
+				"ReduceDamageTaken",
 				"EndOfTurnAction",
 				"GainHP"
 			]
@@ -86,11 +87,12 @@
 			],
 			"body": [
 				"When this card enters play, destroy any other Frost cards in play.",
-				"The first time each turn that {Arctyx} deals a target Melee damage, she may deal that target 1 Cold damage.",
 				"When {Arctyx} deals a target Cold damage, reduce damage dealt by that target by 1 until the start of your next turn."
 			],
+			"powers": "{Arctyx} deals a target 2 Cold damage.",
 			"flavorText": "[placeholder]",
 			"icons": [
+				"HasPower",
 				"DealDamageCold",
 				"ReduceDamageDealt"
 			]
@@ -106,12 +108,13 @@
 			],
 			"body": [
 				"When this card enters play, destroy any other Flame cards in play.",
-				"{Arctyx} is immune to Fire damage.",
-				"The first time {Arctyx} is dealt damage by a non-hero target each turn, {Arctyx} deals that target 2 Fire damage."
+				"The first time {Arctyx} is dealt damage by each non-hero target each turn, {Arctyx} deals that target 2 Fire damage."
 			],
+			"powers": "A hero other than {Arctyx} may use a power now.",
 			"flavorText": "[placeholder]",
 			"icons": [
-				"ImmuneToDamageFire",
+				"HasPower",
+				"UsePowerNow",
 				"DealDamageFire"
 			]
 		},
@@ -126,11 +129,12 @@
 			],
 			"body": [
 				"When this card enters play, destroy any other Flame cards in play.",
-				"The first time each turn that {Arctyx} deals a target Melee damage, she may deal that target 1 Fire damage.",
 				"When {Arctyx} deals a target Fire damage, increase damage dealt to that target by 1 until the start of your next turn."
 			],
+			"powers": "{Arctyx} deals a target 2 Fire damage.",
 			"flavorText": "[placeholder]",
 			"icons": [
+				"HasPower",
 				"DealDamageFire",
 				"IncreaseDamageTaken"
 			]
@@ -211,13 +215,20 @@
 			"identifier": "ShiftingAuras",
 			"count": 3,
 			"title": "Shifting Auras",
-			"keywords": "ongoing",
-			"body": [
+			"keywords": [
+				"ongoing",
+				"limited"
+			],
+			"body" : [
+				"When this card enters play and at the start of your turn, you may play an Aura card.",
 				"Whenever a Flame card is destroyed, {Arctyx} may deal up to 2 targets 1 Fire damage each.",
 				"Whenever a Frost card is destroyed, {Arctyx} may deal a target 2 Cold damage."
 			],
-			"flavorText": "[placeholder]",
-			"icons": [
+			"flavorText"
+			:
+			"[placeholder]",
+			"icons" :	[
+				"PlayCardNow",
 				"DealDamageFire",
 				"DealDamageCold"
 			]

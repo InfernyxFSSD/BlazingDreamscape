@@ -11,9 +11,10 @@ namespace BlazingDreamscape.Wildfire
     {
         public PowerExplosionCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
         {
+            base.SpecialStringMaker.ShowHasBeenUsedThisTurn(UsedEquipPower);
         }
 
-        private const string UsedFocusPower = "UsedFocusPower";
+        private const string UsedEquipPower = "UsedEquipPower";
         public override IEnumerator UsePower(int index = 0)
         {
             IEnumerator discardTwo = base.GameController.SelectAndDiscardCards(this.DecisionMaker, 2, false, 2, null, false, null, null, null, null, SelectionType.DiscardCard, null, GetCardSource());
@@ -25,7 +26,7 @@ namespace BlazingDreamscape.Wildfire
             {
                 base.GameController.ExhaustCoroutine(discardTwo);
             }
-            IEnumerator searchDeck = base.SearchForCards(this.DecisionMaker, true, false, 1, 1, new LinqCardCriteria((Card c) => c.DoKeywordsContain("focus", false, false), "focus", true, false, null, null, false), true, false, false, false, null, false, true, null);
+            IEnumerator searchDeck = base.SearchForCards(this.DecisionMaker, true, false, 1, 1, new LinqCardCriteria((Card c) => IsEquipment(c), "equipment", true, false, null, null, false), true, false, false, false, null, false, true, null);
             if (base.UseUnityCoroutines)
             {
                 yield return base.GameController.StartCoroutine(searchDeck);
@@ -38,12 +39,12 @@ namespace BlazingDreamscape.Wildfire
         }
         public override void AddTriggers()
         {
-            base.AddTrigger<UsePowerAction>((UsePowerAction p) => !base.IsPropertyTrue("UsedFocusPower", null) && p.Power.TurnTakerController == this.TurnTakerController && p.Power.CardSource.Card.DoKeywordsContain("focus", false, false), new Func<UsePowerAction, IEnumerator>(this.DamageSelfToUsePowerResponse), new TriggerType[] { TriggerType.DealDamage }, TriggerTiming.After, null, false, true, null, false, null, null, false, false);
+            base.AddTrigger<UsePowerAction>((UsePowerAction p) => !base.IsPropertyTrue("UsedEquipPower", null) && p.Power.TurnTakerController == this.TurnTakerController && IsEquipment(p.Power.CardSource.Card), new Func<UsePowerAction, IEnumerator>(this.DamageSelfToUsePowerResponse), new TriggerType[] { TriggerType.DealDamage }, TriggerTiming.After, null, false, true, null, false, null, null, false, false);
         }
 
         private IEnumerator DamageSelfToUsePowerResponse(UsePowerAction p)
         {
-            base.SetCardPropertyToTrueIfRealAction("UsedFocusPower", null);
+            base.SetCardPropertyToTrueIfRealAction("UsedEquipPower", null);
             List<DealDamageAction> storedResults = new List<DealDamageAction>();
             IEnumerator hitSelf = base.GameController.DealDamageToSelf(this.DecisionMaker, (Card c) => c == base.CharacterCard, 2, DamageType.Fire, false, storedResults, true, null, null, GetCardSource(null));
             if (base.UseUnityCoroutines)

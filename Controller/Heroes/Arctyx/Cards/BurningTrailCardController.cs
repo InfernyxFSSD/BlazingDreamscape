@@ -15,26 +15,23 @@ namespace BlazingDreamscape.Arctyx
 
 		public override void AddTriggers()
 		{
-			base.AddTrigger<DealDamageAction>((DealDamageAction dd) => !base.IsPropertyTrue("FirstTimeDamage", null) && dd.DidDealDamage && dd.DamageSource.IsSameCard(base.CharacterCard) && dd.DamageType == DamageType.Melee, new Func<DealDamageAction, IEnumerator>(this.DealFireDamageResponse), TriggerType.DealDamage, TriggerTiming.After, ActionDescription.Unspecified, false, true, null, false, null, null, false, false);
 			base.AddTrigger<DealDamageAction>((DealDamageAction dd2) => dd2.DidDealDamage && dd2.DamageSource.IsSameCard(base.CharacterCard) && dd2.DamageType == DamageType.Fire, new Func<DealDamageAction, IEnumerator>(base.IncreaseDamageDealtToThatTargetBy1UntilTheStartOfYourNextTurnResponse), TriggerType.DealDamage, TriggerTiming.After, ActionDescription.Unspecified, false, true, null, false, null, null, false, false);
-			base.AddAfterLeavesPlayAction((GameAction ga) => base.ResetFlagAfterLeavesPlay("FirstTimeDamage"), TriggerType.Hidden);
 		}
 
-		private IEnumerator DealFireDamageResponse(DealDamageAction dd)
-        {
-			base.SetCardPropertyToTrueIfRealAction("FirstTimeDamage", null);
-			IEnumerator coroutine = base.DealDamage(base.CharacterCard, dd.Target, 1, DamageType.Fire, false, true, false, null, null, null, false, null);
+		public override IEnumerator UsePower(int index = 0)
+		{
+			int powerNumeral = base.GetPowerNumeral(0, 2);
+			IEnumerator dealFire = base.GameController.SelectTargetsAndDealDamage(this.DecisionMaker, new DamageSource(base.GameController, base.CharacterCard), powerNumeral, DamageType.Fire, 1, false, 1, false, false, false, null, null, null, null, null, false, null, null, false, null, base.GetCardSource(null));
 			if (base.UseUnityCoroutines)
 			{
-				yield return base.GameController.StartCoroutine(coroutine);
+				yield return base.GameController.StartCoroutine(dealFire);
 			}
 			else
 			{
-				base.GameController.ExhaustCoroutine(coroutine);
+				base.GameController.ExhaustCoroutine(dealFire);
 			}
 			yield break;
-        }
+		}
 
-		public const string FirstTimeDamage = "FirstTimeDamage";
 	}
 }

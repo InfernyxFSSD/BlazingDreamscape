@@ -12,6 +12,7 @@ namespace BlazingDreamscape.Wildfire
     {
         public ConflagrationRodCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
         {
+            base.SpecialStringMaker.ShowNumberOfCardsAtLocation(this.TurnTaker.Deck, new LinqCardCriteria((Card c) => c.DoKeywordsContain("elemental", false, false), "elemental", true, false, null, null, false), null, false);
         }
 
         public override IEnumerator UsePower(int index = 0)

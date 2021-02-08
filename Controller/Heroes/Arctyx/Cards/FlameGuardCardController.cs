@@ -15,8 +15,21 @@ namespace BlazingDreamscape.Arctyx
 
         public override void AddTriggers()
         {
-            base.AddImmuneToDamageTrigger((DealDamageAction dealDamage) => dealDamage.Target == base.CharacterCard && dealDamage.DamageType == DamageType.Fire, false);
             base.AddCounterDamageTrigger((DealDamageAction dealDamage) => dealDamage.Target == base.CharacterCard && dealDamage.DamageSource.IsTarget && !dealDamage.DamageSource.IsHero, () => base.CharacterCard, () => base.CharacterCard, true, 2, DamageType.Fire, null, true, null);
+        }
+
+        public override IEnumerator UsePower(int index = 0)
+        {
+            IEnumerator usePower = base.GameController.SelectHeroToUsePower(this.DecisionMaker, false, true, false, null, null, new LinqTurnTakerCriteria((TurnTaker tt) => tt != this.TurnTaker), true, true, GetCardSource(null));
+            if (base.UseUnityCoroutines)
+            {
+                yield return base.GameController.StartCoroutine(usePower);
+            }
+            else
+            {
+                base.GameController.ExhaustCoroutine(usePower);
+            }
+            yield break;
         }
     }
 }
