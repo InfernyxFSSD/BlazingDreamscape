@@ -1,7 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using Handelabra.Sentinels.Engine.Controller;
 using Handelabra.Sentinels.Engine.Model;
 
@@ -15,14 +12,15 @@ namespace BlazingDreamscape.Arctyx
 
 		public override IEnumerator Play()
 		{
-			IEnumerator coroutine = base.GameController.DestroyCards(this.DecisionMaker, new LinqCardCriteria((Card c) => c != base.Card && c.DoKeywordsContain("frost", false, false), "frost", true, false, null, null, false), false, null, null, null, SelectionType.DestroyCard, base.GetCardSource(null));
-			if (base.UseUnityCoroutines)
+			//When one of your Frost cards enters play, break other Frost cards.
+			IEnumerator breakFrost = GameController.DestroyCards(DecisionMaker, new LinqCardCriteria((Card c) => c != Card && c.DoKeywordsContain("frost"), "frost"), cardSource: GetCardSource(null));
+			if (UseUnityCoroutines)
 			{
-				yield return base.GameController.StartCoroutine(coroutine);
+				yield return GameController.StartCoroutine(breakFrost);
 			}
 			else
 			{
-				base.GameController.ExhaustCoroutine(coroutine);
+				GameController.ExhaustCoroutine(breakFrost);
 			}
 			yield break;
 		}

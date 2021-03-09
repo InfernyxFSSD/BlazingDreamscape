@@ -9,67 +9,75 @@ namespace BlazingDreamscape.Arctyx
 {
     public class AuraLaceCardController : CardController
     {
+        //While there is an Aura card in your play area, whenever Arctyx is dealt damage by a non-hero target, increase the next damage dealt to that target by Arctyx by 1.
+        //Power: Discard 2 cards. Search your deck or trash for an aura and put it into play. Shuffle your trash into your deck.
+
         public AuraLaceCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
         {
-            base.SpecialStringMaker.ShowNumberOfCardsAtLocation(this.TurnTaker.Deck, new LinqCardCriteria((Card c) => c.DoKeywordsContain("aura", false, false), "aura", true, false, null, null, false), null, false);
+            SpecialStringMaker.ShowNumberOfCardsAtLocation(TurnTaker.Deck, new LinqCardCriteria((Card c) => c.DoKeywordsContain("aura") && c.Location == TurnTaker.PlayArea));
         }
 
         public override void AddTriggers()
         {
-            base.AddTrigger<DealDamageAction>((DealDamageAction dd) => dd.DamageSource != null && dd.DamageSource.IsTarget && dd.Target == base.CharacterCard && dd.DidDealDamage && dd.Amount > 0 && base.FindCardsWhere((Card c) => c.IsInPlay && c.DoKeywordsContain("aura", false, false), false, null, false).Count<Card>() > 0, new Func<DealDamageAction, IEnumerator>(this.AddStatusEffectResponse), TriggerType.DealDamage, TriggerTiming.After, ActionDescription.DamageTaken, false, true, null, false, null, null, false, false);
+            //If you're hit by a non-hero target and have an Aura in your play area, increase your next damage dealt to that target
+            AddTrigger<DealDamageAction>((DealDamageAction dd) => dd.DamageSource != null && dd.DamageSource.IsTarget && !dd.DamageSource.IsHero && dd.Target == CharacterCard && dd.DidDealDamage && dd.Amount > 0 && FindCardsWhere((Card c) => c.IsInPlay && c.DoKeywordsContain("aura") && c.Location == TurnTaker.PlayArea).Count<Card>() > 0, new Func<DealDamageAction, IEnumerator>(AddStatusEffectResponse), TriggerType.DealDamage, TriggerTiming.After, ActionDescription.DamageTaken);
         }
 
         public override IEnumerator UsePower(int index = 0)
         {
-            int powerNumeral = base.GetPowerNumeral(0, 2);
-            IEnumerator coroutine = base.GameController.SelectAndDiscardCards(base.HeroTurnTakerController, powerNumeral, false, null, null, false, null, null, null, null, SelectionType.DiscardCard, null, this.GetCardSource(null));
+            //Discard 2 cards...
+            int powerNumeral = GetPowerNumeral(0, 2);
+            IEnumerator discardCards = GameController.SelectAndDiscardCards(DecisionMaker, powerNumeral, false, powerNumeral, selectionType: SelectionType.DiscardCard, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
-                yield return this.GameController.StartCoroutine(coroutine);
+                yield return GameController.StartCoroutine(discardCards);
             }
             else
             {
-                this.GameController.ExhaustCoroutine(coroutine);
+                GameController.ExhaustCoroutine(discardCards);
             }
-            LinqCardCriteria auraCards = new LinqCardCriteria((Card c) => c.DoKeywordsContain("aura", false, false), "aura", true, false, null, null, false);
-            coroutine = base.SearchForCards(base.HeroTurnTakerController, true, true, new int?(1), 1, auraCards, true, false, false, false, null, false, null, null);
+            LinqCardCriteria auraCards = new LinqCardCriteria((Card c) => c.DoKeywordsContain("aura"), "aura");
+            //Search your deck or trash for an Aura...
+            IEnumerator searchForCards = SearchForCards(DecisionMaker, true, true, new int?(1), 1, auraCards, true, false, false);
             if (UseUnityCoroutines)
             {
-                yield return this.GameController.StartCoroutine(coroutine);
+                yield return GameController.StartCoroutine(searchForCards);
             }
             else
             {
-                this.GameController.ExhaustCoroutine(coroutine);
+                GameController.ExhaustCoroutine(searchForCards);
             }
             List<Card> list = new List<Card>();
-            list.AddRange(base.TurnTaker.Trash.Cards);
-            base.AddInhibitorException((GameAction ga) => ga is ShuffleCardsAction);
-            coroutine = base.GameController.ShuffleCardsIntoLocation(this.DecisionMaker, list, base.TurnTaker.Deck, true, base.GetCardSource(null));
+            list.AddRange(TurnTaker.Trash.Cards);
+            AddInhibitorException((GameAction ga) => ga is ShuffleCardsAction);
+            //Shuffle your trash into your deck
+            IEnumerator shuffleCards = GameController.ShuffleCardsIntoLocation(DecisionMaker, list, TurnTaker.Deck, cardSource: GetCardSource(null));
             if (UseUnityCoroutines)
             {
-                yield return this.GameController.StartCoroutine(coroutine);
+                yield return GameController.StartCoroutine(shuffleCards);
             }
             else
             {
-                this.GameController.ExhaustCoroutine(coroutine);
+                GameController.ExhaustCoroutine(shuffleCards);
             }
             yield break;
         }
 
         private IEnumerator AddStatusEffectResponse(DealDamageAction dd)
         {
-            IncreaseDamageStatusEffect increaseDamageStatusEffect = new IncreaseDamageStatusEffect(1);
-            increaseDamageStatusEffect.SourceCriteria.IsSpecificCard = this.CharacterCard;
-            increaseDamageStatusEffect.TargetCriteria.IsSpecificCard = dd.DamageSource.Card;
-            increaseDamageStatusEffect.NumberOfUses = 1;
-            IEnumerator coroutine = AddStatusEffect(increaseDamageStatusEffect);
+            //Status that increases the next damage dealt to the target that hit Arctyx
+            IncreaseDamageStatusEffect idse = new IncreaseDamageStatusEffect(1);
+            idse.SourceCriteria.IsSpecificCard = CharacterCard;
+            idse.TargetCriteria.IsSpecificCard = dd.DamageSource.Card;
+            idse.NumberOfUses = 1;
+            IEnumerator applyStatus = AddStatusEffect(idse);
             if(UseUnityCoroutines)
             {
-                yield return this.GameController.StartCoroutine(coroutine);
+                yield return GameController.StartCoroutine(applyStatus);
             }
             else
             {
-                this.GameController.ExhaustCoroutine(coroutine);
+                GameController.ExhaustCoroutine(applyStatus);
             }
             yield break;
         }

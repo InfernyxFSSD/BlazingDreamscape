@@ -159,10 +159,11 @@
 				"ongoing",
 				"limited"
 			],
-			"body": "While there is an Aura in play, whenever {Arctyx} is dealt damage by a target, increase the next damage dealt to that target by {Arctyx} by 1.",
+			"body": "While there is an Aura card in your play area, whenever {Arctyx} is dealt damage by a non-hero target, increase the next damage dealt to that target by {Arctyx} by 1.",
 			"powers": "Discard 2 cards. Search your deck or trash for an Aura and put it into play. Shuffle your trash into your deck.",
 			"flavorText": "[placeholder]",
 			"icons": [
+				"IncreaseDamageDealt",
 				"HasPower",
 				"Search"
 			]
@@ -173,10 +174,9 @@
 			"title": "Armor Burst",
 			"keywords": "one-shot",
 			"body": [
-				"Destroy all Auras in your play area.",
+				"Destroy all Aura cards in your play area. X on this card is the number of Auras destroyed this way.",
 				"Choose Fire or Cold. {Arctyx} deals up to X targets 6 damage of that type each.",
-				"Until the start of your next turn, increase damage dealt to {Arctyx} by X.",
-				"X on this card is the number of Auras destroyed this way."
+				"Until the start of your next turn, increase damage dealt to {Arctyx} by X."
 			],
 			"flavorText": "[placeholder]",
 			"icons": [

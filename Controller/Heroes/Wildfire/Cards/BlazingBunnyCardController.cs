@@ -10,51 +10,62 @@ namespace BlazingDreamscape.Wildfire
 {
     public class BlazingBunnyCardController : CardController
     {
+        //At the end of your turn, you may put a Blazing Bunny from your hand into play.
+        //At the start of your turn, this card deals a target X fire damage, where X is the number of Blazing Bunnys in play. Then, shuffle this card into your deck.
+
         public BlazingBunnyCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
         {
+            //How many Blazing Bunnys are in play?
+            SpecialStringMaker.ShowNumberOfCardsInPlay(new LinqCardCriteria((Card c) => c.Identifier == "BlazingBunny", "Blazing Bunnys in play"));
         }
 
         public override void AddTriggers()
         {
-            base.AddEndOfTurnTrigger((TurnTaker tt) => tt == base.TurnTaker, new Func<PhaseChangeAction, IEnumerator>(this.EndOfTurnResponse), new TriggerType[] { TriggerType.PutIntoPlay }, null, false);
-            base.AddStartOfTurnTrigger((TurnTaker tt) => tt == base.TurnTaker, new Func<PhaseChangeAction, IEnumerator>(this.StartOfTurnResponse), new TriggerType[] { TriggerType.DealDamage, TriggerType.ShuffleCardIntoDeck}, null, false);
+            //Put a Blazing Bunny from your hand into play if you want
+            AddEndOfTurnTrigger((TurnTaker tt) => tt == TurnTaker, new Func<PhaseChangeAction, IEnumerator>(EndOfTurnResponse), new TriggerType[] { TriggerType.PutIntoPlay });
+            //Blazing Bunny deals damage then bounces away
+            AddStartOfTurnTrigger((TurnTaker tt) => tt == TurnTaker, new Func<PhaseChangeAction, IEnumerator>(StartOfTurnResponse), new TriggerType[] { TriggerType.DealDamage, TriggerType.ShuffleCardIntoDeck});
         }
 
         private IEnumerator EndOfTurnResponse(PhaseChangeAction p)
         {
-            IEnumerable<Card> choices = base.FindCardsWhere(new LinqCardCriteria((Card c) => c.Identifier == "BlazingBunny" && c.IsInHand));
-            IEnumerator moreBunnies = base.GameController.SelectAndPlayCard(this.DecisionMaker, choices, true, true, null, null, false);
-            if (base.UseUnityCoroutines)
+            //Play more bunnies
+            IEnumerable<Card> choices = FindCardsWhere(new LinqCardCriteria((Card c) => c.Identifier == "BlazingBunny" && c.IsInHand));
+            IEnumerator moreBunnies = GameController.SelectAndPlayCard(DecisionMaker, choices, true, true, cardSource: GetCardSource());
+            if (UseUnityCoroutines)
             {
-                yield return base.GameController.StartCoroutine(moreBunnies);
+                yield return GameController.StartCoroutine(moreBunnies);
             }
             else
             {
-                base.GameController.ExhaustCoroutine(moreBunnies);
+                GameController.ExhaustCoroutine(moreBunnies);
             }
         }
 
         private IEnumerator StartOfTurnResponse(PhaseChangeAction p)
         {
-            int X = base.FindCardsWhere((Card c) => c.Identifier == "BlazingBunny" && c.IsInPlayAndHasGameText).Count<Card>();
-            IEnumerator dealFire = base.GameController.SelectTargetsAndDealDamage(this.DecisionMaker, new DamageSource(base.GameController, base.Card), X, DamageType.Fire, 1, false, 0, false, false, false, null, null, null, null, null, false, null, null, false, null, GetCardSource(null));
-            if (base.UseUnityCoroutines)
+            //Deal damage equal to the number of bunnies in play
+            int X = FindCardsWhere((Card c) => c.Identifier == "BlazingBunny" && c.IsInPlayAndHasGameText).Count<Card>();
+            IEnumerator dealFire = GameController.SelectTargetsAndDealDamage(DecisionMaker, new DamageSource(GameController, Card), X, DamageType.Fire, 1, false, 0, cardSource: GetCardSource());
+            if (UseUnityCoroutines)
             {
-                yield return base.GameController.StartCoroutine(dealFire);
+                yield return GameController.StartCoroutine(dealFire);
             }
             else
             {
-                base.GameController.ExhaustCoroutine(dealFire);
+                GameController.ExhaustCoroutine(dealFire);
             }
-            IEnumerator shuffleIntoDeck = base.GameController.ShuffleCardIntoLocation(this.DecisionMaker, this.Card, this.TurnTaker.Deck, false, false, GetCardSource(null));
-            if (base.UseUnityCoroutines)
+            //Blazing Bunny bounces...baway. Shut up.
+            IEnumerator bounceAway = GameController.ShuffleCardIntoLocation(DecisionMaker, Card, TurnTaker.Deck, false, cardSource: GetCardSource());
+            if (UseUnityCoroutines)
             {
-                yield return base.GameController.StartCoroutine(shuffleIntoDeck);
+                yield return GameController.StartCoroutine(bounceAway);
             }
             else
             {
-                base.GameController.ExhaustCoroutine(shuffleIntoDeck);
+                GameController.ExhaustCoroutine(bounceAway);
             }
+            yield break;
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Handelabra.Sentinels.Engine.Controller;
@@ -10,62 +9,69 @@ namespace BlazingDreamscape.Wildfire
 {
     public class ConflagrationRodCardController : CardController
     {
+        //Power: Discard the top card of your deck. If it is an elemental, put it into play. If no cards entered play this way, wildfire deals each non-hero target 1 fire damage.
+
         public ConflagrationRodCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
         {
-            base.SpecialStringMaker.ShowNumberOfCardsAtLocation(this.TurnTaker.Deck, new LinqCardCriteria((Card c) => c.DoKeywordsContain("elemental", false, false), "elemental", true, false, null, null, false), null, false);
+            //How many elementals are in your deck?
+            SpecialStringMaker.ShowNumberOfCardsAtLocation(TurnTaker.Deck, new LinqCardCriteria((Card c) => c.DoKeywordsContain("elemental"), "elemental"));
         }
 
         public override IEnumerator UsePower(int index = 0)
         {
             IEnumerator dealFire;
-            int powerNumeral = base.GetPowerNumeral(0, 1);
+            int powerNumeral = GetPowerNumeral(0, 1);
             List<MoveCardAction> storedResults = new List<MoveCardAction>();
-            IEnumerator discardTopCard = base.GameController.DiscardTopCard(this.TurnTaker.Deck, storedResults, null, base.TurnTaker, GetCardSource(null));
-            if (base.UseUnityCoroutines)
+            //Discard the top card of your deck
+            IEnumerator discardTopCard = GameController.DiscardTopCard(TurnTaker.Deck, storedResults, responsibleTurnTaker: TurnTaker, cardSource: GetCardSource());
+            if (UseUnityCoroutines)
             {
-                yield return base.GameController.StartCoroutine(discardTopCard);
+                yield return GameController.StartCoroutine(discardTopCard);
             }
             else
             {
-                base.GameController.ExhaustCoroutine(discardTopCard);
+                GameController.ExhaustCoroutine(discardTopCard);
             }
             MoveCardAction moveCard = storedResults.FirstOrDefault<MoveCardAction>();
-            if (moveCard != null && moveCard.CardToMove != null && moveCard.CardToMove.DoKeywordsContain("elemental", false, false))
+            if (moveCard != null && moveCard.CardToMove != null && moveCard.CardToMove.DoKeywordsContain("elemental"))
             {
+                //If it was an elemental, put it into play
                 List<PlayCardAction> playedCard = new List<PlayCardAction>();
-                IEnumerator maybePlayCard = base.GameController.PlayCard(this.DecisionMaker, moveCard.CardToMove, true, null, false, null, null, false, null, playedCard, null, false, false, true, GetCardSource(null));
-                if (base.UseUnityCoroutines)
+                IEnumerator playCard = GameController.PlayCard(DecisionMaker, moveCard.CardToMove, true, storedResults: playedCard, cardSource: GetCardSource());
+                if (UseUnityCoroutines)
                 {
-                    yield return base.GameController.StartCoroutine(maybePlayCard);
+                    yield return GameController.StartCoroutine(playCard);
                 }
                 else
                 {
-                    base.GameController.ExhaustCoroutine(maybePlayCard);
+                    GameController.ExhaustCoroutine(playCard);
                 }
-                PlayCardAction playCard = playedCard.FirstOrDefault<PlayCardAction>();
+                //Do I actually need this section? It only plays it if it's an elemental anyways
+                /*PlayCardAction playCard = playedCard.FirstOrDefault<PlayCardAction>();
                 if (playCard == null)
                 {
-                    dealFire = base.GameController.DealDamage(this.DecisionMaker, base.CharacterCard, (Card c) => !c.IsHero && c.IsTarget && c.IsInPlayAndHasGameText, powerNumeral, DamageType.Fire, false, false, null, null, null, false, null, null, false, false, GetCardSource(null));
-                    if (base.UseUnityCoroutines)
+                    dealFire = GameController.DealDamage(DecisionMaker, CharacterCard, (Card c) => !c.IsHero && c.IsTarget && c.IsInPlayAndHasGameText, powerNumeral, DamageType.Fire, cardSource: GetCardSource());
+                    if (UseUnityCoroutines)
                     {
-                        yield return base.GameController.StartCoroutine(dealFire);
+                        yield return GameController.StartCoroutine(dealFire);
                     }
                     else
                     {
-                        base.GameController.ExhaustCoroutine(dealFire);
+                        GameController.ExhaustCoroutine(dealFire);
                     }
-                }
+                }*/
             }
             else
             {
-                dealFire = base.GameController.DealDamage(this.DecisionMaker, base.CharacterCard, (Card c) => !c.IsHero && c.IsTarget && c.IsInPlayAndHasGameText, powerNumeral, DamageType.Fire, false, false, null, null, null, false, null, null, false, false, GetCardSource(null));
-                if (base.UseUnityCoroutines)
+                //If no cards entered play this way, Wildfire deals fire
+                dealFire = GameController.DealDamage(DecisionMaker, CharacterCard, (Card c) => !c.IsHero && c.IsTarget && c.IsInPlayAndHasGameText, powerNumeral, DamageType.Fire, cardSource: GetCardSource());
+                if (UseUnityCoroutines)
                 {
-                    yield return base.GameController.StartCoroutine(dealFire);
+                    yield return GameController.StartCoroutine(dealFire);
                 }
                 else
                 {
-                    base.GameController.ExhaustCoroutine(dealFire);
+                    GameController.ExhaustCoroutine(dealFire);
                 }
             }
             yield break;

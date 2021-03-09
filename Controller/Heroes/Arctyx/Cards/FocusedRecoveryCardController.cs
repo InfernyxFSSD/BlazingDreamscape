@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Handelabra.Sentinels.Engine.Controller;
 using Handelabra.Sentinels.Engine.Model;
 
@@ -9,41 +7,48 @@ namespace BlazingDreamscape.Arctyx
 {
     public class FocusedRecoveryCardController : CardController
     {
+        //Arctyx regains 3 HP.
+        //You may discard any number of cards from your hand. Draw X cards, where X is the number of cards discarded this way.
+
         public FocusedRecoveryCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
         {
         }
+
         public override IEnumerator Play()
         {
-            IEnumerator coroutine = base.GameController.GainHP(base.CharacterCard, new int?(3), null, null, base.GetCardSource(null));
-            if (base.UseUnityCoroutines)
+            //Arctyx regains 3 HP
+            IEnumerator heal = GameController.GainHP(CharacterCard, new int?(3), cardSource: GetCardSource(null));
+            if (UseUnityCoroutines)
             {
-                yield return base.GameController.StartCoroutine(coroutine);
+                yield return GameController.StartCoroutine(heal);
             }
             else
             {
-                base.GameController.ExhaustCoroutine(coroutine);
+                GameController.ExhaustCoroutine(heal);
             }
             List<DiscardCardAction> storedResults = new List<DiscardCardAction>();
-            IEnumerator DiscardCardsAndDrawCards = base.GameController.SelectAndDiscardCards(base.HeroTurnTakerController, null, false, new int?(0), storedResults, false, null, null, null, null, SelectionType.DiscardCard, null);
-            if (base.UseUnityCoroutines)
+            //Discard any number of cards
+            IEnumerator discardCards = GameController.SelectAndDiscardCards(DecisionMaker, null, false, new int?(0), storedResults, cardSource: GetCardSource());
+            if (UseUnityCoroutines)
             {
-                yield return base.GameController.StartCoroutine(DiscardCardsAndDrawCards);
+                yield return GameController.StartCoroutine(discardCards);
             }
             else
             {
-                base.GameController.ExhaustCoroutine(DiscardCardsAndDrawCards);
+                GameController.ExhaustCoroutine(discardCards);
             }
-            int num = base.GetNumberOfCardsDiscarded(storedResults);
+            int num = GetNumberOfCardsDiscarded(storedResults);
             if (num > 0)
             {
-                coroutine = base.DrawCards(this.DecisionMaker, num, true, false, null, true, null);
-                if (base.UseUnityCoroutines)
+                //Draw cards equal to the amount discarded
+                IEnumerator drawCards = DrawCards(DecisionMaker, num);
+                if (UseUnityCoroutines)
                 {
-                    yield return base.GameController.StartCoroutine(coroutine);
+                    yield return GameController.StartCoroutine(drawCards);
                 }
                 else
                 {
-                    base.GameController.ExhaustCoroutine(coroutine);
+                    GameController.ExhaustCoroutine(drawCards);
                 }
             }
             yield break;

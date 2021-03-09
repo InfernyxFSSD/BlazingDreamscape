@@ -1,27 +1,28 @@
 using Handelabra.Sentinels.Engine.Controller;
 using Handelabra.Sentinels.Engine.Model;
 using System.Collections;
-using System.Linq;
 
 namespace BlazingDreamscape.Arctyx
 {
     public class HeavyMaceCardController : CardController
     {
+        //Power: Arctyx deals a target 3 Melee damage.
+
         public HeavyMaceCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
         {
         }
 
         public override IEnumerator UsePower(int index = 0)
         {
-            int powerNumeral = base.GetPowerNumeral(0, 3);
-            IEnumerator coroutine = base.GameController.SelectTargetsAndDealDamage(this.DecisionMaker, new DamageSource(base.GameController, base.CharacterCard), powerNumeral, DamageType.Melee, 1, false, 1, false, false, false, null, null, null, null, null, false, null, null, false, null, base.GetCardSource(null));
-            if (base.UseUnityCoroutines)
+            int powerNumeral = GetPowerNumeral(0, 3);
+            IEnumerator smack = GameController.SelectTargetsAndDealDamage(DecisionMaker, new DamageSource(GameController, CharacterCard), powerNumeral, DamageType.Melee, 1, false, 1, cardSource: GetCardSource());
+            if (UseUnityCoroutines)
             {
-                yield return base.GameController.StartCoroutine(coroutine);
+                yield return GameController.StartCoroutine(smack);
             }
             else
             {
-                base.GameController.ExhaustCoroutine(coroutine);
+                GameController.ExhaustCoroutine(smack);
             }
             yield break;
         }

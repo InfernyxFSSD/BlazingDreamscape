@@ -1,0 +1,242 @@
+{
+  "name": "Whirlwind",
+  "kind": "Hero",
+  "initialCardIdentifiers": [
+    "WhirlwindCharacter"
+  ],
+  "cards": [
+    {
+      "identifier": "WhirlwindCharacter",
+      "count": 1,
+      "title": "Whirlwind",
+      "body": "Storm Fluctuation",
+      "backgroundColor": "fbf8f9",
+      "foilBackgroundColor": "FEFEFE",
+      "hitpointsColor": "C94742",
+      "character": true,
+      "powers": [
+        "Either {Whirlwind} deals a target 1 Projectile damage, or you draw a card."
+      ],
+      "icons": [
+        "HasPower",
+        "DealDamageProjectile",
+        "DrawCardNow"
+      ],
+      "hitpoints": 26,
+      "incapacitatedAbilities": [
+        "One hero may use a power now.",
+        "Up to 2 non-hero targets deal themselves 1 Radiant damage.",
+        "Reduce damage dealt to hero targets by 1 until the start of your next turn."
+      ],
+      "flippedIcons": [
+        "UsePowerNow",
+        "DealDamageRadiant",
+        "ReduceDamageTaken"
+      ],
+      "openingLines": {
+        "default": "You're not nearly the biggest OR the scariest..."
+      },
+      "complexity": 2
+    },
+    {
+      "identifier": "HailFlurry",
+      "count": 3,
+      "title": "Hail Flurry",
+      "keywords": [
+        "ongoing",
+        "microstorm",
+        "limited"
+      ],
+      "flavorText": "[placeholder]",
+      "body": "At the end of your turn, {Whirlwind} deals up to X targets 1 Cold damage each, where X is the number of Microstorms in play.",
+      "icons": [
+        "DealDamageCold"
+      ]
+    },
+    {
+      "identifier": "ToxicCloud",
+      "count": 3,
+      "title": "Toxic Cloud",
+      "keywords": [
+        "ongoing",
+        "microstorm",
+        "limited"
+      ],
+      "flavorText": "[placeholder]",
+      "body": "At the end of your turn, {Whirlwind} deals a target 1 Toxic damage. Until the start of your next turn, reduce damage dealt by a target dealt damage this way by X, where X is the number of Microstorms in play minus 2.",
+      "icons": [
+        "DealDamageToxic",
+        "ReduceDamageDealt"
+      ]
+    },
+    {
+      "identifier": "PsionicTorrent",
+      "count": 3,
+      "title": "Psionic Torrent",
+      "keywords": [
+        "ongoing",
+        "microstorm",
+        "limited"
+      ],
+      "flavorText": "[placeholder]",
+      "body": "At the end of your turn, {Whirlwind} deals a target 1 Psychic damage. Then, up to X players may use a power, where X is the number of Microstorms in play minus 2.",
+      "icons": [
+        "DealDamagePsychic",
+        "UsePowerNow"
+      ]
+    },
+    {
+      "identifier": "VigilanteGales",
+      "count": 3,
+      "title": "Vigilante Gales",
+      "keywords": [
+        "ongoing",
+        "microstorm",
+        "limited"
+      ],
+      "flavorText": "[placeholder]",
+      "body": "At the end of your turn, {Whirlwind} deals a target 1 Radiant damage. Then, up to X targets deal themselves 1 Radiant damage each, where X is the number of Microstorms in play minus 1.",
+      "icons": [
+        "DealDamageRadiant"
+      ]
+    },
+    {
+      "identifier": "LightningStorm",
+      "count": 3,
+      "title": "Lightning Storm",
+      "keywords": [
+        "ongoing",
+        "microstorm",
+        "limited"
+      ],
+      "flavorText": "[placeholder]",
+      "body": "At the end of your turn, {Whirlwind} deals a target 1 Lightning damage. Then, up to X players may play a card, where X is the number of Microstorms in play minus 2.",
+      "icons": [
+        "DealDamageLightning",
+        "PlayCardNow"
+      ]
+    },
+    {
+      "identifier": "Consolidation",
+      "count": 3,
+      "title": "Consolidation",
+      "keywords": [
+        "ongoing",
+        "limited"
+      ],
+      "flavorText": "[placeholder]",
+      "powers": "Destroy a Microstorm. If you do, select a target. Increase damage dealt to that target by 1 until the start of your next turn.",
+      "icons": [
+        "Destroy",
+        "IncreaseDamageTaken"
+      ]
+    },
+    {
+      "identifier": "GaspingSurge",
+      "count": 3,
+      "title": "Gasping Surge",
+      "keywords": [
+        "ongoing",
+        "limited"
+      ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "When this card enters play, you may play a Microstorm.",
+        "When one of your Microstorms is destroyed, {Whirlwind} may deal a target 1 damage of a type listed on that card."
+      ],
+      "icons": [
+        "PlayCardNow",
+        "DealDamage"
+      ]
+    },
+    {
+      "identifier": "PersonalStorm",
+      "count": 3,
+      "title": "Personal Storm",
+      "keywords": [
+        "ongoing",
+        "limited"
+      ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "When Whirlwind would be dealt 3 or more damage at once, you may prevent that damage. If you do, destroy a Microstorm or this card.",
+        "When this card is destroyed, Whirlwind deals up to 3 targets 1 Projectile damage each."
+      ],
+      "icons": [
+        "Destroy",
+        "CancelledDamageGreen",
+        "DealDamageProjectile"
+      ]
+    },
+    {
+      "identifier": "CloudsOnTheHorizon",
+      "count": 3,
+      "title": "Clouds On The Horizon",
+      "keywords": [
+        "ongoing",
+        "limited"
+      ],
+      "flavorText": "[placeholder]",
+      "body": [
+        "At the start of your turn, you may put a Microstorm from your trash into play. Then, if there are at least five Microstorms in play, destroy this card.",
+        "You may draw an extra card during your draw phase."
+      ],
+      "icons": [
+        "PlayCardNow",
+        "DrawCardExtra"
+      ]
+    },
+    {
+      "identifier": "WildCalling",
+      "count": 4,
+      "title": "Wild Calling",
+      "keywords": [
+        "one-shot"
+      ],
+      "flavorText": "[placeholder]",
+      "body": "Search your deck or trash for a Microstorm and put it into play. If you searched your deck, shuffle it afterwards.",
+      "icons": [
+        "PlayCardNow"
+      ]
+    },
+    {
+      "identifier": "SurgeForth",
+      "count": 3,
+      "title": "Surge Forth",
+      "keywords": [
+        "one-shot"
+      ],
+      "flavorText": "[placeholder]",
+      "body": "Discard any number of cards. Whirlwind deals X targets 3 Cold damage each, where X is the number of cards discarded this way.",
+      "icons": [
+        "DealDamageCold"
+      ]
+    },
+    {
+      "identifier": "DeflectingSquall",
+      "count": 4,
+      "title": "Deflecting Squall",
+      "keywords": [
+        "one-shot"
+      ],
+      "flavorText": "[placeholder]",
+      "body": "Select a hero other than Whirlwind. Reduce the next damage dealt to that target by 2.",
+      "icons": [
+        "ReduceDamageTaken"
+      ]
+    },
+    {
+      "identifier": "HinderingTempests",
+      "count": 2,
+      "title": "Hindering Tempests",
+      "keywords": [
+        "one-shot"
+      ],
+      "flavorText": "[placeholder]",
+      "body": "Destroy two Microstorms. If you do, skip either the next villain play phase or the next environment play phase.",
+      "icons": [
+        "Destroy"
+      ]
+    }
+  ]
+}

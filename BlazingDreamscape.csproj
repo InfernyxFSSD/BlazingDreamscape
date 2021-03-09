@@ -11,9 +11,7 @@
 		<Authors>Infernyx and Sybithos</Authors>
 		<Company />
 		<PackageId>BlazingDreamscape</PackageId>
-		<Version>1.0.1</Version>
-		<AssemblyVersion>1.0.0.0</AssemblyVersion>
-		<FileVersion>1.0.0.0</FileVersion>
+		<Version>0.1.3</Version>
 		<Description>Custom decks from the two people in the title, Infernyx and Sybithos</Description>
 	</PropertyGroup>
 
@@ -63,6 +61,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Controller\Heroes\Kyoss21\CardSubClasses\" />
+    <Folder Include="Controller\Heroes\Whirlwind\CardSubClasses\" />
     <Folder Include="Controller\Heroes\Wildfire\CardSubClasses\" />
     <Folder Include="Properties\" />
   </ItemGroup>

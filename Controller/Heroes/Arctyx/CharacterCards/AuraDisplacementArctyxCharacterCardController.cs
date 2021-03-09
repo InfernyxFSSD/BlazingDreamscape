@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Handelabra.Sentinels.Engine.Controller;
 using Handelabra.Sentinels.Engine.Model;
 
@@ -9,7 +7,6 @@ namespace BlazingDreamscape.Arctyx
 {
     public class AuraDisplacementArctyxCharacterCardController : HeroCharacterCardController
     {
-        public string str;
 
         public AuraDisplacementArctyxCharacterCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
         {
@@ -21,40 +18,43 @@ namespace BlazingDreamscape.Arctyx
 			{
 				case 0:
 					{
-						IEnumerator coroutine = base.SelectHeroToPlayCard(this.DecisionMaker, false, true, false, null, null, null, false, true);
-						if (base.UseUnityCoroutines)
+						//One player may play a card.
+						IEnumerator playCard = SelectHeroToPlayCard(DecisionMaker);
+						if (UseUnityCoroutines)
 						{
-							yield return base.GameController.StartCoroutine(coroutine);
+							yield return GameController.StartCoroutine(playCard);
 						}
 						else
 						{
-							base.GameController.ExhaustCoroutine(coroutine);
+							GameController.ExhaustCoroutine(playCard);
 						}
 						break;
 					}
 				case 1:
 					{
-						IEnumerator coroutine2 = base.GameController.SelectHeroToUsePower(this.DecisionMaker, false, true, false, null, null, null, true, true, base.GetCardSource(null));
-						if (base.UseUnityCoroutines)
+						//One hero may use a power.
+						IEnumerator usePower = GameController.SelectHeroToUsePower(DecisionMaker, cardSource: GetCardSource());
+						if (UseUnityCoroutines)
 						{
-							yield return base.GameController.StartCoroutine(coroutine2);
+							yield return GameController.StartCoroutine(usePower);
 						}
 						else
 						{
-							base.GameController.ExhaustCoroutine(coroutine2);
+							GameController.ExhaustCoroutine(usePower);
 						}
 						break;
 					}
 				case 2:
 					{
-						IEnumerator coroutine3 = base.GameController.SelectHeroToDrawCard(this.DecisionMaker, false, true, false, null, null, null, base.GetCardSource(null));
-						if (base.UseUnityCoroutines)
+						//One player may draw a card.
+						IEnumerator drawCard = GameController.SelectHeroToDrawCard(DecisionMaker, cardSource: GetCardSource());
+						if (UseUnityCoroutines)
 						{
-							yield return base.GameController.StartCoroutine(coroutine3);
+							yield return GameController.StartCoroutine(drawCard);
 						}
 						else
 						{
-							base.GameController.ExhaustCoroutine(coroutine3);
+							GameController.ExhaustCoroutine(drawCard);
 						}
 						break;
 					}
@@ -64,33 +64,35 @@ namespace BlazingDreamscape.Arctyx
 
         public override IEnumerator UsePower(int index = 0)
         {
+			//Discard the top card of your deck. If an aura was discarded this way, one other player may play a card. Otherwise, one player may draw a card.
 			List<MoveCardAction> storedResults = new List<MoveCardAction>();
-			IEnumerator coroutine = base.DiscardCardsFromTopOfDeck(base.TurnTakerController, 1, false, storedResults, true, base.TurnTaker);
-			if (base.UseUnityCoroutines)
+			IEnumerator discardTop = DiscardCardsFromTopOfDeck(TurnTakerController, 1, storedResults: storedResults, responsibleTurnTaker: TurnTaker);
+			if (UseUnityCoroutines)
 			{
-				yield return base.GameController.StartCoroutine(coroutine);
+				yield return GameController.StartCoroutine(discardTop);
 			}
 			else
 			{
-				base.GameController.ExhaustCoroutine(coroutine);
+				GameController.ExhaustCoroutine(discardTop);
 			}
 			foreach (MoveCardAction moveCardAction in storedResults)
             {
-				if (moveCardAction.CardToMove.DoKeywordsContain("aura", false, false))
+				IEnumerator drawOrPlayCard;
+				if (moveCardAction.CardToMove.DoKeywordsContain("aura"))
                 {
-					coroutine = base.SelectHeroToPlayCard(this.DecisionMaker, false, true, false, null, null, new LinqTurnTakerCriteria((TurnTaker h) => h != base.TurnTaker, () => "a hero other than " + base.TurnTaker.Name), false, true);
+					drawOrPlayCard = SelectHeroToPlayCard(DecisionMaker, heroCriteria: new LinqTurnTakerCriteria((TurnTaker h) => h != TurnTaker, () => "a hero other than " + TurnTaker.Name));
 				}
 				else
                 {
-					coroutine = base.GameController.SelectHeroToDrawCard(base.HeroTurnTakerController, false, true, false, null, null, new int?(1), base.GetCardSource(null));
+					drawOrPlayCard = GameController.SelectHeroToDrawCard(DecisionMaker, numberOfCards: new int?(1), cardSource: GetCardSource());
 				}
-				if (base.UseUnityCoroutines)
+				if (UseUnityCoroutines)
 				{
-					yield return base.GameController.StartCoroutine(coroutine);
+					yield return GameController.StartCoroutine(drawOrPlayCard);
 				}
 				else
 				{
-					base.GameController.ExhaustCoroutine(coroutine);
+					GameController.ExhaustCoroutine(drawOrPlayCard);
 				}
 				yield break;
             }

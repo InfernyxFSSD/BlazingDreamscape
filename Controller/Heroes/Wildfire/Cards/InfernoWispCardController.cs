@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using Handelabra.Sentinels.Engine.Controller;
 using Handelabra.Sentinels.Engine.Model;
 
@@ -9,6 +7,9 @@ namespace BlazingDreamscape.Wildfire
 {
     public class InfernoWispCardController : CardController
     {
+        //The first time each turn that Wildfire deals a target 2 or more fire damage at once, increase the next damage dealt by this card by 1.
+        //At the end of your turn, this card deals a target 1 fire damage.
+
         public InfernoWispCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
         {
         }
@@ -17,24 +18,27 @@ namespace BlazingDreamscape.Wildfire
 
         public override void AddTriggers()
         {
-            base.AddDealDamageAtEndOfTurnTrigger(base.TurnTaker, base.Card, (Card c) => true, TargetType.SelectTarget, 1, DamageType.Fire, false, false, 1, 1, null, null);
-            base.AddTrigger<DealDamageAction>((DealDamageAction dd) => !base.IsPropertyTrue("WildfireDealtEnoughDamage", null) && dd.DamageSource.IsSameCard(base.CharacterCard) && dd.Amount >= 2, new Func<DealDamageAction, IEnumerator>(this.IncreaseNextDamageResponse), new TriggerType[] { TriggerType.IncreaseDamage }, TriggerTiming.After, null, false, true, null, false, null, null, false, false);
+            //Deal damage at the end of your turn
+            AddDealDamageAtEndOfTurnTrigger(TurnTaker, Card, (Card c) => true, TargetType.SelectTarget, 1, DamageType.Fire);
+            //Increase this cards next damage dealt the first time Wildfire deals enough damage each turn
+            AddTrigger<DealDamageAction>((DealDamageAction dd) => !IsPropertyTrue(WildfireDealtEnoughDamage) && dd.DamageSource.IsSameCard(CharacterCard) && dd.Amount >= 2, new Func<DealDamageAction, IEnumerator>(IncreaseNextDamageResponse), new TriggerType[] { TriggerType.IncreaseDamage }, TriggerTiming.After);
         }
 
-        private IEnumerator IncreaseNextDamageResponse(DealDamageAction dd)
+        private IEnumerator IncreaseNextDamageResponse(DealDamageAction _)
         {
-            base.SetCardPropertyToTrueIfRealAction("WildfireDealtEnoughDamage", null);
+            //When Wildfire first deals enough damage, increase the next damage from this card
+            SetCardPropertyToTrueIfRealAction(WildfireDealtEnoughDamage);
             IncreaseDamageStatusEffect idse = new IncreaseDamageStatusEffect(1);
-            idse.SourceCriteria.IsSpecificCard = this.Card;
+            idse.SourceCriteria.IsSpecificCard = Card;
             idse.NumberOfUses = 1;
-            IEnumerator coroutine = base.AddStatusEffect(idse, true);
-            if (base.UseUnityCoroutines)
+            IEnumerator applyStatus = AddStatusEffect(idse);
+            if (UseUnityCoroutines)
             {
-                yield return base.GameController.StartCoroutine(coroutine);
+                yield return GameController.StartCoroutine(applyStatus);
             }
             else
             {
-                base.GameController.ExhaustCoroutine(coroutine);
+                GameController.ExhaustCoroutine(applyStatus);
             }
         }
     }

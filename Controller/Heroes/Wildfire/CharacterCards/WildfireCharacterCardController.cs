@@ -16,16 +16,16 @@ namespace BlazingDreamscape.Wildfire
 
         public override IEnumerator UsePower(int index = 0)
         {
-            //...deal a target 2 fire damage
-            int powerNumeral = base.GetPowerNumeral(0, 2);
-            IEnumerator dealFire = base.GameController.SelectTargetsAndDealDamage(this.DecisionMaker, new DamageSource(base.GameController, base.Card), powerNumeral, DamageType.Fire, 1, false, 0, false, false, false, null, null, null, null, null, false, null, null, false, null, GetCardSource(null));
-            if (base.UseUnityCoroutines)
+            //Wildfire deals a target 2 fire damage
+            int powerNumeral = GetPowerNumeral(0, 2);
+            IEnumerator dealFire = GameController.SelectTargetsAndDealDamage(DecisionMaker, new DamageSource(GameController, Card), powerNumeral, DamageType.Fire, 1, false, 1, cardSource: GetCardSource());
+            if (UseUnityCoroutines)
             {
-                yield return base.GameController.StartCoroutine(dealFire);
+                yield return GameController.StartCoroutine(dealFire);
             }
             else
             {
-                base.GameController.ExhaustCoroutine(dealFire);
+                GameController.ExhaustCoroutine(dealFire);
             }
             yield break;
         }
@@ -38,24 +38,24 @@ namespace BlazingDreamscape.Wildfire
                     {
                         //one hero deals a target 3 fire damage
                         List<SelectCardDecision> storedResults = new List<SelectCardDecision>();
-                        IEnumerator dealFire = base.GameController.SelectCardAndStoreResults(this.DecisionMaker, SelectionType.SelectTargetNoDamage, new LinqCardCriteria((Card c) => c.IsTarget && c.IsInPlay && c.IsHeroCharacterCard, "hero", true, false, null, null, false), storedResults, false, false, null, true, base.GetCardSource(null));
-                        if (base.UseUnityCoroutines)
+                        IEnumerator selectHero = GameController.SelectCardAndStoreResults(DecisionMaker, SelectionType.SelectTargetNoDamage, new LinqCardCriteria((Card c) => c.IsTarget && c.IsInPlay && c.IsHeroCharacterCard, "hero", false), storedResults, false, cardSource: GetCardSource());
+                        if (UseUnityCoroutines)
                         {
-                            yield return base.GameController.StartCoroutine(dealFire);
+                            yield return GameController.StartCoroutine(selectHero);
                         }
                         else
                         {
-                            base.GameController.ExhaustCoroutine(dealFire);
+                            GameController.ExhaustCoroutine(selectHero);
                         }
-                        Card selectedCard = base.GetSelectedCard(storedResults);
-                        dealFire = base.GameController.SelectTargetsAndDealDamage(this.DecisionMaker, new DamageSource(base.GameController, selectedCard), 3, DamageType.Fire, 1, false, 0, false, false, false, null, null, null, null, null, false, null, null, false, null, GetCardSource(null));
-                        if (base.UseUnityCoroutines)
+                        Card selectedCard = GetSelectedCard(storedResults);
+                        IEnumerator dealFire = GameController.SelectTargetsAndDealDamage(DecisionMaker, new DamageSource(GameController, selectedCard), 3, DamageType.Fire, 1, false, 1, cardSource: GetCardSource());
+                        if (UseUnityCoroutines)
                         {
-                            yield return base.GameController.StartCoroutine(dealFire);
+                            yield return GameController.StartCoroutine(dealFire);
                         }
                         else
                         {
-                            base.GameController.ExhaustCoroutine(dealFire);
+                            GameController.ExhaustCoroutine(dealFire);
                         }
                         break;
                     }
@@ -63,18 +63,20 @@ namespace BlazingDreamscape.Wildfire
                     {
                         //Select a hero. Until the start of your next turn, whenever that hero uses a power, that player's hero deals a target 1 Fire damage.
                         List<SelectTurnTakerDecision> storedResults = new List<SelectTurnTakerDecision>();
-                        IEnumerator selectPlayer = base.GameController.SelectHeroTurnTaker(this.DecisionMaker, SelectionType.TurnTaker, false, false, storedResults, null, null, false, null, null, true, null, GetCardSource(null));
-                        if (base.UseUnityCoroutines)
+                        //First, select a hero
+                        IEnumerator selectPlayer = GameController.SelectHeroTurnTaker(DecisionMaker, SelectionType.TurnTaker, false, false, storedResults, canBeCancelled: false, cardSource: GetCardSource());
+                        if (UseUnityCoroutines)
                         {
-                            yield return base.GameController.StartCoroutine(selectPlayer);
+                            yield return GameController.StartCoroutine(selectPlayer);
                         }
                         else
                         {
-                            base.GameController.ExhaustCoroutine(selectPlayer);
+                            GameController.ExhaustCoroutine(selectPlayer);
                         }
                         if (storedResults.Any((SelectTurnTakerDecision d) => d.Completed && d.SelectedTurnTaker != null && d.SelectedTurnTaker.IsHero))
                         {
-                            TurnTaker selectedTurnTaker = base.GetSelectedTurnTaker(storedResults);
+                            //If a hero was successfully selected, they deal fire damage after each power
+                            TurnTaker selectedTurnTaker = GetSelectedTurnTaker(storedResults);
                             if (selectedTurnTaker.IsHero)
                             {
                                 HeroTurnTaker htt = selectedTurnTaker.ToHero();
@@ -93,15 +95,15 @@ namespace BlazingDreamscape.Wildfire
                                 {
                                     ddaupse.CardDestroyedExpiryCriteria.Card = htt.CharacterCard;
                                 }
-                                ddaupse.UntilStartOfNextTurn(this.TurnTaker);
-                                IEnumerator dealDamageEffect = base.AddStatusEffect(ddaupse, true);
-                                if (base.UseUnityCoroutines)
+                                ddaupse.UntilStartOfNextTurn(TurnTaker);
+                                IEnumerator applyStatus = AddStatusEffect(ddaupse, true);
+                                if (UseUnityCoroutines)
                                 {
-                                    yield return base.GameController.StartCoroutine(dealDamageEffect);
+                                    yield return GameController.StartCoroutine(applyStatus);
                                 }
                                 else
                                 {
-                                    base.GameController.ExhaustCoroutine(dealDamageEffect);
+                                    GameController.ExhaustCoroutine(applyStatus);
                                 }
                             }
                         }
@@ -110,14 +112,14 @@ namespace BlazingDreamscape.Wildfire
                 case 2:
                     {
                         //one hero may use a power
-                        IEnumerator usePower = base.GameController.SelectHeroToUsePower(base.HeroTurnTakerController, false, true, false, null, null, null, true, true, base.GetCardSource(null));
-                        if (base.UseUnityCoroutines)
+                        IEnumerator usePower = GameController.SelectHeroToUsePower(DecisionMaker, cardSource: GetCardSource());
+                        if (UseUnityCoroutines)
                         {
-                            yield return base.GameController.StartCoroutine(usePower);
+                            yield return GameController.StartCoroutine(usePower);
                         }
                         else
                         {
-                            base.GameController.ExhaustCoroutine(usePower);
+                            GameController.ExhaustCoroutine(usePower);
                         }
                         break;
                     }

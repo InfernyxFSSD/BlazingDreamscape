@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using Handelabra.Sentinels.Engine.Controller;
 using Handelabra.Sentinels.Engine.Model;
@@ -9,41 +8,53 @@ namespace BlazingDreamscape.Wildfire
 {
     public class IncineratingDrakeCardController : CardController
     {
+        //When this card is destroyed, you may put an elemental from your trash into play.
+        //X on this card is equal to the number of elementals in your play area when this card entered play plus 1.
+        //At the end of your turn, this card deals a target X fire damage.
+
         public IncineratingDrakeCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
         {
-            base.SpecialStringMaker.ShowSpecialString(() => $"{this.Card.Title} will deal {(int)base.GetCardPropertyJournalEntryInteger(DamageToDeal)} Fire damage.").Condition = (() => base.Card.IsInPlayAndNotUnderCard);
+            //How much damage will this card deal?
+            SpecialStringMaker.ShowSpecialString(() => $"{Card.Title} will deal {(int)GetCardPropertyJournalEntryInteger(DamageToDeal)} Fire damage.").Condition = (() => Card.IsInPlayAndNotUnderCard);
         }
 
         public override void AddTriggers()
         {
-            Func<Card, int?> damageToDeal = (Card target) => new int?(this.GetValueOfDamageDealt());
-            base.AddDealDamageAtEndOfTurnTrigger(base.TurnTaker, base.Card, (Card c) => true, TargetType.SelectTarget, 0, DamageType.Fire, false, false, 1, 1, null, damageToDeal);
-            base.AddWhenDestroyedTrigger(new Func<DestroyCardAction, IEnumerator>(this.OnDestroyResponse), new TriggerType[] { TriggerType.PutIntoPlay }, null, null);
-            base.AddAfterLeavesPlayAction((GameAction ga) => base.ResetFlagAfterLeavesPlay("IncineratingDrakeDamageToDeal"), TriggerType.Hidden);
+            //Find the amount of damage that's supposed to be dealt
+            int? damageToDeal(Card target) => new int?(GetValueOfDamageDealt());
+            //Deal that damage at the end of your turn
+            AddDealDamageAtEndOfTurnTrigger(TurnTaker, Card, (Card c) => true, TargetType.SelectTarget, 0, DamageType.Fire, dynamicAmount: damageToDeal);
+            //When this card is destroyed, get an elemental from your trash
+            AddWhenDestroyedTrigger(new Func<DestroyCardAction, IEnumerator>(OnDestroyResponse), new TriggerType[] { TriggerType.PutIntoPlay });
+            //When this card leaves play, reset the flag that determines how much damage to deal
+            AddAfterLeavesPlayAction((GameAction ga) => ResetFlagAfterLeavesPlay("IncineratingDrakeDamageToDeal"), TriggerType.Hidden);
         }
 
         private int GetValueOfDamageDealt()
         {
-            return (int)base.GetCardPropertyJournalEntryInteger(DamageToDeal);
+            //fetch the damage amount
+            return (int)GetCardPropertyJournalEntryInteger(DamageToDeal);
         }
 
         public override IEnumerator Play()
         {
-            int damageToDeal = base.FindCardsWhere((Card c) => c.DoKeywordsContain("elemental", false, false) && c.IsInPlayAndHasGameText && c.Location.IsPlayAreaOf(this.TurnTaker), false, null, false).Count<Card>() + 1;
-            base.SetCardProperty(DamageToDeal, damageToDeal);
+            //Set the amount of damage that should be dealt
+            int damageToDeal = FindCardsWhere((Card c) => c.DoKeywordsContain("elemental") && c.IsInPlayAndHasGameText && c.Location.IsPlayAreaOf(TurnTaker)).Count<Card>() + 1;
+            SetCardProperty(DamageToDeal, damageToDeal);
             yield break;
         }
 
         private IEnumerator OnDestroyResponse(DestroyCardAction dc)
         {
-            IEnumerator findElem = base.SearchForCards(base.HeroTurnTakerController, false, true, new int?(1), 1, new LinqCardCriteria((Card c) => c.DoKeywordsContain("elemental", false, false), "elemental", true, false, null, null, false), true, false, false, false, null, false, true, null);
-            if (base.UseUnityCoroutines)
+            //When this is destroyed, find an elemental to play
+            IEnumerator findElem = SearchForCards(DecisionMaker, false, true, new int?(1), 1, new LinqCardCriteria((Card c) => c.DoKeywordsContain("elemental"), "elemental"), true, false, false);
+            if (UseUnityCoroutines)
             {
-                yield return base.GameController.StartCoroutine(findElem);
+                yield return GameController.StartCoroutine(findElem);
             }
             else
             {
-                base.GameController.ExhaustCoroutine(findElem);
+                GameController.ExhaustCoroutine(findElem);
             }
             yield break;
         }

@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using Handelabra.Sentinels.Engine.Controller;
 using Handelabra.Sentinels.Engine.Model;
 
 namespace BlazingDreamscape.Arctyx
 {
+    //When this card enters play and at the start of your turn, you may play an Aura card.
+    //Whenever a Flame card is destroyed, Arctyx may deal up to 2 targets 1 Fire damage each.
+    //Whenever a Frost card is destroyed, Arctyx may deal a target 2 Cold damage.
+
     public class ShiftingAurasCardController : CardController
     {
         public ShiftingAurasCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
@@ -15,49 +17,53 @@ namespace BlazingDreamscape.Arctyx
 
         public override void AddTriggers()
         {
-            base.AddStartOfTurnTrigger((TurnTaker tt) => tt == base.TurnTaker, (PhaseChangeAction p) => base.SelectAndPlayCardFromHand(this.DecisionMaker, true, null, new LinqCardCriteria((Card c) => c.DoKeywordsContain("aura", false, false), "aura", true, false, null, null, false), false, false, true, null), TriggerType.PlayCard, null, false);
-            base.AddTrigger<DestroyCardAction>((DestroyCardAction d) => d.CardToDestroy.Card.DoKeywordsContain("flame", false, false), new Func<DestroyCardAction, IEnumerator>(this.DealFireDamageResponse), TriggerType.DealDamage, TriggerTiming.After, ActionDescription.Unspecified, false, true, null, false, null, null, false, false);
-            base.AddTrigger<DestroyCardAction>((DestroyCardAction d) => d.CardToDestroy.Card.DoKeywordsContain("frost", false, false), new Func<DestroyCardAction, IEnumerator>(this.DealColdDamageResponse), TriggerType.DealDamage, TriggerTiming.After, ActionDescription.Unspecified, false, true, null, false, null, null, false, false);
+            //Start of your turn, can play an aura
+            AddStartOfTurnTrigger((TurnTaker tt) => tt == TurnTaker, (PhaseChangeAction p) => SelectAndPlayCardFromHand(DecisionMaker, cardCriteria: new LinqCardCriteria((Card c) => c.DoKeywordsContain("aura"), "aura")), TriggerType.PlayCard);
+            //When a flame is destroyed, burn things
+            AddTrigger<DestroyCardAction>((DestroyCardAction d) => d.CardToDestroy.Card.DoKeywordsContain("flame"), new Func<DestroyCardAction, IEnumerator>(DealFireDamageResponse), TriggerType.DealDamage, TriggerTiming.After, ActionDescription.Unspecified);
+            //When a frost is destroyed, freeze things
+            AddTrigger<DestroyCardAction>((DestroyCardAction d) => d.CardToDestroy.Card.DoKeywordsContain("frost"), new Func<DestroyCardAction, IEnumerator>(DealColdDamageResponse), TriggerType.DealDamage, TriggerTiming.After, ActionDescription.Unspecified);
         }
 
         public override IEnumerator Play()
         {
-            IEnumerator playAura = base.SelectAndPlayCardFromHand(this.DecisionMaker, true, null, new LinqCardCriteria((Card c) => c.DoKeywordsContain("aura", false, false), "aura", true, false, null, null, false), false, false, true, null);
-            if (base.UseUnityCoroutines)
+            //When this card enters play, you may play an aura
+            IEnumerator playAura = SelectAndPlayCardFromHand(DecisionMaker, cardCriteria: new LinqCardCriteria((Card c) => c.DoKeywordsContain("aura"), "aura"));
+            if (UseUnityCoroutines)
             {
-                yield return base.GameController.StartCoroutine(playAura);
+                yield return GameController.StartCoroutine(playAura);
             }
             else
             {
-                base.GameController.ExhaustCoroutine(playAura);
+                GameController.ExhaustCoroutine(playAura);
             }
             yield break;
         }
 
         private IEnumerator DealFireDamageResponse(DestroyCardAction d)
         {
-            IEnumerator coroutine = base.GameController.SelectTargetsAndDealDamage(this.DecisionMaker, new DamageSource(base.GameController, base.CharacterCard), 1, DamageType.Fire, new int?(2), false, new int?(0), false, false, false, null, null, null, null, null, false, null, null, false, null, base.GetCardSource(null));
-            if (base.UseUnityCoroutines)
+            IEnumerator burnThings = GameController.SelectTargetsAndDealDamage(DecisionMaker, new DamageSource(GameController, CharacterCard), 1, DamageType.Fire, new int?(2), false, new int?(0), cardSource: GetCardSource());
+            if (UseUnityCoroutines)
             {
-                yield return base.GameController.StartCoroutine(coroutine);
+                yield return GameController.StartCoroutine(burnThings);
             }
             else
             {
-                base.GameController.ExhaustCoroutine(coroutine);
+                GameController.ExhaustCoroutine(burnThings);
             }
             yield break;
         }
 
         private IEnumerator DealColdDamageResponse(DestroyCardAction d)
         {
-            IEnumerator coroutine = base.GameController.SelectTargetsAndDealDamage(this.DecisionMaker, new DamageSource(base.GameController, base.CharacterCard), 2, DamageType.Cold, new int?(1), false, new int?(0), false, false, false, null, null, null, null, null, false, null, null, false, null, base.GetCardSource(null));
-            if (base.UseUnityCoroutines)
+            IEnumerator freezeThing = GameController.SelectTargetsAndDealDamage(DecisionMaker, new DamageSource(GameController, CharacterCard), 2, DamageType.Cold, new int?(1), false, new int?(0), cardSource: GetCardSource());
+            if (UseUnityCoroutines)
             {
-                yield return base.GameController.StartCoroutine(coroutine);
+                yield return GameController.StartCoroutine(freezeThing);
             }
             else
             {
-                base.GameController.ExhaustCoroutine(coroutine);
+                GameController.ExhaustCoroutine(freezeThing);
             }
             yield break;
         }

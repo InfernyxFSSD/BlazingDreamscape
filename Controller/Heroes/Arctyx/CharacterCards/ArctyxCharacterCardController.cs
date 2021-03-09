@@ -9,8 +9,6 @@ namespace BlazingDreamscape.Arctyx
 {
     public class ArctyxCharacterCardController : HeroCharacterCardController
     {
-        public string str;
-
         public ArctyxCharacterCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
         {
         }
@@ -21,71 +19,74 @@ namespace BlazingDreamscape.Arctyx
             {
                 case 0:
                     {
+                        //Reduce damage dealt by a target by 1 until the start of your next turn.
                         List<SelectCardDecision> storedResults = new List<SelectCardDecision>();
-                        IEnumerator coroutine2 = base.GameController.SelectCardAndStoreResults(this.DecisionMaker, SelectionType.SelectTargetNoDamage, new LinqCardCriteria((Card c) => c.IsTarget && c.IsInPlay, "target", true, false, null, null, false), storedResults, false, false, null, true, base.GetCardSource(null));
-                        if (base.UseUnityCoroutines)
+                        IEnumerator selectWeakling = GameController.SelectCardAndStoreResults(DecisionMaker, SelectionType.SelectTargetNoDamage, new LinqCardCriteria((Card c) => c.IsTarget && c.IsInPlay, "target"), storedResults, false, cardSource: GetCardSource());
+                        if (UseUnityCoroutines)
                         {
-                            yield return base.GameController.StartCoroutine(coroutine2);
+                            yield return GameController.StartCoroutine(selectWeakling);
                         }
                         else
                         {
-                            base.GameController.ExhaustCoroutine(coroutine2);
+                            GameController.ExhaustCoroutine(selectWeakling);
                         }
                         SelectCardDecision selectCardDecision = storedResults.FirstOrDefault<SelectCardDecision>();
-                        Card selectedCard = base.GetSelectedCard(storedResults);
-                        ReduceDamageStatusEffect reduceDamageStatusEffect = new ReduceDamageStatusEffect(1);
-                        reduceDamageStatusEffect.SourceCriteria.IsSpecificCard = selectedCard;
-                        reduceDamageStatusEffect.UntilStartOfNextTurn(base.TurnTaker);
-                        reduceDamageStatusEffect.UntilCardLeavesPlay(selectedCard);
-                        coroutine2 = base.AddStatusEffect(reduceDamageStatusEffect, true);
-                        if (base.UseUnityCoroutines)
+                        Card selectedCard = GetSelectedCard(storedResults);
+                        ReduceDamageStatusEffect rdse = new ReduceDamageStatusEffect(1);
+                        rdse.SourceCriteria.IsSpecificCard = selectedCard;
+                        rdse.UntilStartOfNextTurn(TurnTaker);
+                        rdse.UntilCardLeavesPlay(selectedCard);
+                        IEnumerator applyStatus = AddStatusEffect(rdse);
+                        if (UseUnityCoroutines)
                         {
-                            yield return base.GameController.StartCoroutine(coroutine2);
+                            yield return GameController.StartCoroutine(applyStatus);
                         }
                         else
                         {
-                            base.GameController.ExhaustCoroutine(coroutine2);
+                            GameController.ExhaustCoroutine(applyStatus);
                         }
                         break;
                     }
                 case 1:
                     {
+                        //Increase damage dealt by a target by 1 until the start of your next turn.
                         List<SelectCardDecision> storedResults = new List<SelectCardDecision>();
-                        IEnumerator coroutine2 = base.GameController.SelectCardAndStoreResults(this.DecisionMaker, SelectionType.SelectTargetNoDamage, new LinqCardCriteria((Card c) => c.IsTarget && c.IsInPlay, "target", true, false, null, null, false), storedResults, false, false, null, true, base.GetCardSource(null));
-                        if (base.UseUnityCoroutines)
+                        IEnumerator selectStrongman = GameController.SelectCardAndStoreResults(DecisionMaker, SelectionType.SelectTargetFriendly, new LinqCardCriteria((Card c) => c.IsTarget && c.IsInPlay, "target"), storedResults, false, cardSource: GetCardSource());;
+                        if (UseUnityCoroutines)
                         {
-                            yield return base.GameController.StartCoroutine(coroutine2);
+                            yield return GameController.StartCoroutine(selectStrongman);
                         }
                         else
                         {
-                            base.GameController.ExhaustCoroutine(coroutine2);
+                            GameController.ExhaustCoroutine(selectStrongman);
                         }
-                        Card selectedCard = base.GetSelectedCard(storedResults);
-                        IncreaseDamageStatusEffect increaseDamageStatusEffect = new IncreaseDamageStatusEffect(1);
-                        increaseDamageStatusEffect.SourceCriteria.IsSpecificCard = selectedCard;
-                        increaseDamageStatusEffect.UntilStartOfNextTurn(base.TurnTaker);
-                        increaseDamageStatusEffect.UntilCardLeavesPlay(selectedCard);
-                        coroutine2 = base.AddStatusEffect(increaseDamageStatusEffect, true);
-                        if (base.UseUnityCoroutines)
+                        Card selectedCard = GetSelectedCard(storedResults);
+                        IncreaseDamageStatusEffect idse = new IncreaseDamageStatusEffect(1);
+                        idse.SourceCriteria.IsSpecificCard = selectedCard;
+                        idse.UntilStartOfNextTurn(TurnTaker);
+                        idse.UntilCardLeavesPlay(selectedCard);
+                        IEnumerator applyStatus = AddStatusEffect(idse);
+                        if (UseUnityCoroutines)
                         {
-                            yield return base.GameController.StartCoroutine(coroutine2);
+                            yield return GameController.StartCoroutine(applyStatus);
                         }
                         else
                         {
-                            base.GameController.ExhaustCoroutine(coroutine2);
+                            GameController.ExhaustCoroutine(applyStatus);
                         }
                         break;
                     }
                 case 2:
                     {
-                        IEnumerator coroutine = base.GameController.SelectHeroToDrawCard(base.HeroTurnTakerController, false, true, false, null, null, null, base.GetCardSource(null));
-                        if (base.UseUnityCoroutines)
+                        //One player may draw a card.
+                        IEnumerator drawCard = GameController.SelectHeroToDrawCard(DecisionMaker, cardSource: GetCardSource());
+                        if (UseUnityCoroutines)
                         {
-                            yield return base.GameController.StartCoroutine(coroutine);
+                            yield return GameController.StartCoroutine(drawCard);
                         }
                         else
                         {
-                            base.GameController.ExhaustCoroutine(coroutine);
+                            GameController.ExhaustCoroutine(drawCard);
                         }
                         break;
                     }
@@ -94,15 +95,16 @@ namespace BlazingDreamscape.Arctyx
 
         public override IEnumerator UsePower(int index = 0)
         {
-            int powerNumeral = base.GetPowerNumeral(0, 2);
-            IEnumerator coroutine = base.GameController.SelectTargetsAndDealDamage(this.DecisionMaker, new DamageSource(base.GameController, base.Card), powerNumeral, DamageType.Melee, new int?(1), false, new int?(1), false, false, false, null, null, null, null, null, false, null, null, false, null, base.GetCardSource(null));
-            if (base.UseUnityCoroutines)
+            //Arctyx deals a target 2 melee damage.
+            int powerNumeral = GetPowerNumeral(0, 2);
+            IEnumerator bap = GameController.SelectTargetsAndDealDamage(DecisionMaker, new DamageSource(GameController, Card), powerNumeral, DamageType.Melee, new int?(1), false, new int?(1), cardSource: GetCardSource());
+            if (UseUnityCoroutines)
             {
-                yield return base.GameController.StartCoroutine(coroutine);
+                yield return GameController.StartCoroutine(bap);
             }
             else
             {
-                base.GameController.ExhaustCoroutine(coroutine);
+                GameController.ExhaustCoroutine(bap);
             }
             yield break;
         }

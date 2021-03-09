@@ -1,0 +1,333 @@
+{
+  "name": "Kyoss 2.1",
+  "kind": "Hero",
+  "initialCardIdentifiers": [
+    "Kyoss21Character"
+  ],
+  "cards": [
+    {
+      "identifier": "Kyoss21Character",
+      "count": 1,
+      "title": "Kyoss 2.1",
+      "body": "Invigorate",
+      "backgroundColor": "fbf8f9",
+      "foilBackgroundColor": "FEFEFE",
+      "hitpointsColor": "C94742",
+      "character": true,
+      "powers": [
+        "One hero target regains 2 HP."
+      ],
+      "icons": [
+        "HasPower",
+        "GainHP"
+      ],
+      "hitpoints": 26,
+      "incapacitatedAbilities": [
+        "One player may play a card, even if they would otherwise be prevented.",
+        "One hero may use a power, even if they would otherwise be prevented.",
+        "One player may draw a card, even if they would otherwise be prevented."
+      ],
+      "flippedIcons": [
+        "PlayCardNow",
+        "UsePowerNow",
+        "DrawCardNow"
+      ],
+      "openingLines": {
+        "default": "As long as this is your route, it will be my function to cease your operation."
+      },
+      "complexity": 2
+    },
+    {
+      "identifier": "CommandRedistribution",
+      "count": 3,
+      "title": "Command Redistribution",
+      "keywords": [
+        "one-shot"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Kyoss 2.1",
+          "text": "Your resources have been acquired{BR}for the good of all. You will{BR}be compensated at a later date."
+        }
+      ],
+      "flavorReference": "Kyoss 2.1",
+      "body": "Destroy up to 2 Ongoing or Environment cards. Up to X players may play a card, where X is the number of cards destroyed this way.",
+      "icons": [
+        "DestroyOngoing",
+        "DestroyEnvironment",
+        "PlayCardNow"
+      ]
+    },
+    {
+      "identifier": "ShockStall",
+      "count": 3,
+      "title": "Shock Stall",
+      "keywords": [
+        "one-shot"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Warlock",
+          "text": "Thanks. -huff- Just -huff- five minutes. -huff-{BR}Can you -huff- do that?"
+        }
+      ],
+      "flavorReference": "Warlock",
+      "body": "{Kyoss21} deals each non-hero target 1 Lightning damage. For each target dealt damage this way, one player may draw a card.",
+      "icons": [
+        "DealDamageLightning",
+        "DrawCardNow"
+      ]
+    },
+    {
+      "identifier": "Recycle",
+      "count": 3,
+      "title": "Recycle",
+      "keywords": [
+        "one-shot"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Fleet's Hand",
+          "text": "Sometimes it's less using what you have,{BR}more refurbishing what you had."
+        }
+      ],
+      "flavorReference": "Fleet's Hand",
+      "body": "Each player may discard a card. Any player who does may put a card from their trash into their hand.",
+      "icons": [
+        "DealDamageLightning",
+        "DrawCardNow"
+      ]
+    },
+    {
+      "identifier": "NanobotResourceCache",
+      "count": 4,
+      "title": "Nanobot Resource Cache",
+      "keywords": [
+        "one-shot"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Kyoss 2.1",
+          "text": "I can make any swarm model{BR}if given the right resource pile."
+        }
+      ],
+      "flavorReference": "Kyoss 2.1",
+      "body": "Reveal cards from the top of your deck until two Equipment cards are revealed. Put one into play and the other in your hand. Shuffle the other revealed cards back into the deck.",
+      "icons": [
+        "Manipulate"
+      ]
+    },
+    {
+      "identifier": "GuardianStorm",
+      "count": 3,
+      "title": "Guardian Storm",
+      "keywords": [
+        "equipment"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Kyoss 2.1",
+          "text": "Go! I can rebuild the swarm,{BR}you cannot rebuild hostages!"
+        }
+      ],
+      "flavorReference": "Kyoss 2.1",
+      "body": [
+        "Reduce damage dealt to hero targets by 2.",
+        "At the start of your turn, destroy this card."
+      ],
+      "icons": [
+        "ReduceDamageTaken",
+        "DestroySelf"
+      ]
+    },
+    {
+      "identifier": "VariableProjector",
+      "count": 3,
+      "title": "Variable Projector",
+      "keywords": [
+        "equipment"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Cyberknight",
+          "text": "So when you say this gate{BR}can amplify ANYTHING..."
+        }
+      ],
+      "flavorReference": "Cyberknight",
+      "body": [
+        "When this card enters play, place it next to a hero. That hero gains the following power:",
+        "[b]Power:[/b] Select a damage type. This hero deals{BR}        two targets 2 damage of that type."
+      ],
+      "icons": [
+        "HasPower",
+        "DealDamage"
+      ]
+    },
+    {
+      "identifier": "CatalystSwarm",
+      "count": 3,
+      "title": "Catalyst Swarm",
+      "keywords": [
+        "equipment",
+        "limited"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Kyoss 2.1",
+          "text": "Push yourself to the limit.{BR}I will address the strain."
+        }
+      ],
+      "flavorReference": "Kyoss 2.1",
+      "body": [
+        "When this card enters play, place it next to a hero.",
+        "Increase damage dealt by that hero by 1.",
+        "After that hero uses a power, they may draw or play a card."
+      ],
+      "icons": [
+        "IncreaseDamageDealt",
+        "UsePowerNow"
+      ]
+    },
+    {
+      "identifier": "SupplementaryBatch",
+      "count": 3,
+      "title": "Supplementary Batch",
+      "keywords": [
+        "equipment"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Warlock",
+          "text": "It's almost like there's two of me!"
+        }
+      ],
+      "flavorReference": "Warlock",
+      "powers": "One player may play a card, use a power, and draw a card in any order now. Destroy this card.",
+      "icons": [
+        "HasPower",
+        "DrawCardNow",
+        "PlayCardNow",
+        "UsePowerNow"
+      ]
+    },
+    {
+      "identifier": "AidGuidanceProtocols",
+      "count": 3,
+      "title": "Aid Guidance Protocols",
+      "keywords": [
+        "equipment",
+        "limited"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Kyoss 2.1",
+          "text": "Verify: Give a little, get a little."
+        }
+      ],
+      "flavorReference": "Kyoss 2.1",
+      "body": "At the end of your turn, reveal the top card of two decks. Replace one and put the other on the bottom of its deck.",
+      "powers": "One player may draw two cards, then they may play a card. Destroy this card.",
+      "icons": [
+        "Manipulate",
+        "HasPower",
+        "DrawCardNow",
+        "PlayCardNow"
+      ]
+    },
+    {
+      "identifier": "MandatoryShutdown",
+      "count": 3,
+      "title": "Mandatory Shutdown",
+      "keywords": [
+        "equipment"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Slayer",
+          "text": "I would prefer if you DON'T{BR}restart your process."
+        }
+      ],
+      "flavorReference": "Slayer",
+      "powers": "{Kyoss21} deals a target 2 Lightning damage. Prevent the next damage dealt by that target.",
+      "icons": [
+        "HasPower",
+        "DealDamageLightning",
+        "CancelledDamageGreen"
+      ]
+    },
+    {
+      "identifier": "SiphonCarriers",
+      "count": 3,
+      "title": "Siphon Carriers",
+      "keywords": [
+        "equipment"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Instruction Pamphlet",
+          "text": "Even with the intense{BR}performance-compromising diagnostics,{BR}use sparingly."
+        }
+      ],
+      "flavorReference": "Instruction Pamphlet",
+      "body": [
+        "Whenever a villain card would be played, {Kyoss21} may deal herself 3 Psychic damage. If she takes damage this way, play the top card of a hero deck instead.",
+        "At the start of your turn, destroy this card."
+      ],
+      "icons": [
+        "DealDamagePsychic",
+        "PlayCardNow",
+        "StartOfTurnAction",
+        "DestroySelf"
+      ]
+    },
+    {
+      "identifier": "Microcoat",
+      "count": 3,
+      "title": "Microcoat",
+      "keywords": [
+        "equipment",
+        "limited"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Kyoss 2.1",
+          "text": "You won't feel it."
+        },
+        {
+          "identifier": "Slayer",
+          "text": "The hit or the coat?"
+        },
+        {
+          "identifier": "Kyoss 2.1",
+          "text": "Correct."
+        }
+      ],
+      "powers": "Discard up to {H - 1} cards. Select up to X heroes, where X is the number of cards discarded this way plus one. Reduce damage dealt to the selected heroes by 1 until the start of your next turn.",
+      "icons": [
+        "HasPower",
+        "Discard",
+        "ReduceDamageTaken"
+      ]
+    },
+    {
+      "identifier": "CritPrimerNanobots",
+      "count": 3,
+      "title": "Crit-Primer Nanobots",
+      "keywords": [
+        "one-shot"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Carrier",
+          "text": "The space warping can help{BR}you make openings, but they'll fry{BR}themselves. Make it count!"
+        }
+      ],
+      "flavorReference": "Carrier",
+      "body": "{Kyoss21} deals each villain target 1 irreducible Lightning damage. Until the start of your next turn, damage dealt to any targets dealt damage this way is irreducible.",
+      "icons": [
+        "DealDamageLightning",
+        "MakeDamageIrreducible"
+      ]
+    }
+  ]
+}
