@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Handelabra.Sentinels.Engine.Controller;
@@ -6,14 +7,12 @@ using Handelabra.Sentinels.Engine.Model;
 
 namespace BlazingDreamscape.Whirlwind
 {
-    public class LightningStormCardController : CardController
+    public class LightningStormCardController : MicroWeatherCardController
     {
-        //At the end of your turn, Whirlwind deals a target 1 Lightning damage. Then, up to X players may play a card, where X is the number of Microstorms in play minus 2.
+        //At the end of your turn, Whirlwind deals a target 1 Lightning damage. Then, up to X players may play a card, where X is the number of Weather Effects in play minus 2.
 
         public LightningStormCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
         {
-            //How many Microstorms are in play?
-            SpecialStringMaker.ShowNumberOfCardsInPlay(new LinqCardCriteria((Card c) => c.DoKeywordsContain("microstorm"), "microstorm", false, singular: "microstorm", plural: "microstorms"));
         }
         public override void AddTriggers()
         {
@@ -33,28 +32,31 @@ namespace BlazingDreamscape.Whirlwind
             {
                 GameController.ExhaustCoroutine(hitTarget);
             }
-            //See if (microstorms in play minus 2) is greater than 0
-            int givePlayCount = FindCardsWhere(new LinqCardCriteria((Card c) => c.DoKeywordsContain("microstorm") && c.IsInPlayAndHasGameText)).Count() - 2;
-            if (givePlayCount > 0)
+            var givePlayCount = this.FindCardsWhere(new LinqCardCriteria((Card c) => c.IsWeatherEffect && c.IsInPlayAndHasGameText));
+            List<TurnTaker> selectedHeroes = new List<TurnTaker>();
+            int playsGiven = 0;
+            foreach (Card weather in givePlayCount)
             {
-                //If enough microstorms in play, start handing out plays
-                List<TurnTaker> selectedHeroes = new List<TurnTaker>();
-                for (int i = 0; i < givePlayCount; i++)
+                int quickCheck = this.FindCardsWhere(new LinqCardCriteria((Card c) => c.IsWeatherEffect && c.IsInPlayAndHasGameText)).Count<Card>() - 2;
+                //If there aren't enough weather effects in play, don't continue with giving out plays
+                if (playsGiven >= quickCheck)
                 {
-                    List<SelectTurnTakerDecision> storedResults = new List<SelectTurnTakerDecision>();
-                    IEnumerator givePlay = GameController.SelectHeroToPlayCard(DecisionMaker, additionalCriteria: new LinqTurnTakerCriteria((TurnTaker tt) => !selectedHeroes.Contains(tt)), storedResultsTurnTaker: storedResults, cardSource: GetCardSource());
-                    if (UseUnityCoroutines)
-                    {
-                        yield return GameController.StartCoroutine(givePlay);
-                    }
-                    else
-                    {
-                        GameController.ExhaustCoroutine(givePlay);
-                    }
-                    TurnTaker chosenHero = GetSelectedTurnTaker(storedResults);
-                    selectedHeroes.Add(chosenHero);
-                    storedResults = null;
+                    break;
                 }
+                List<SelectTurnTakerDecision> storedResults = new List<SelectTurnTakerDecision>();
+                IEnumerator givePlay = GameController.SelectHeroToPlayCard(DecisionMaker, additionalCriteria: new LinqTurnTakerCriteria((TurnTaker tt) => !selectedHeroes.Contains(tt)), storedResultsTurnTaker: storedResults, cardSource: GetCardSource());
+                if (UseUnityCoroutines)
+                {
+                    yield return GameController.StartCoroutine(givePlay);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(givePlay);
+                }
+                TurnTaker chosenHero = GetSelectedTurnTaker(storedResults);
+                selectedHeroes.Add(chosenHero);
+                playsGiven++;
+                storedResults = null;
             }
             yield break;
         }

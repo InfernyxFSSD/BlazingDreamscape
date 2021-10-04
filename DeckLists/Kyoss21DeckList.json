@@ -1,6 +1,7 @@
 {
   "name": "Kyoss 2.1",
   "kind": "Hero",
+  "expansionIdentifier": "Blazing Dreamscape",
   "initialCardIdentifiers": [
     "Kyoss21Character"
   ],
@@ -94,8 +95,8 @@
       "flavorReference": "Fleet's Hand",
       "body": "Each player may discard a card. Any player who does may put a card from their trash into their hand.",
       "icons": [
-        "DealDamageLightning",
-        "DrawCardNow"
+        "Discard",
+        "Search"
       ]
     },
     {
@@ -185,7 +186,8 @@
       ],
       "icons": [
         "IncreaseDamageDealt",
-        "UsePowerNow"
+        "DrawCardNow",
+        "PlayCardNow"
       ]
     },
     {

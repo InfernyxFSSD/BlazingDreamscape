@@ -8,7 +8,7 @@ namespace BlazingDreamscape.Whirlwind
 {
     public class HinderingTempestsCardController : CardController
     {
-        //Destroy two Microstorms. If you do, skip either the next villain play phase or the next environment play phase.
+        //Destroy two of your Weather Effects. If you do, skip either the next villain play phase or the next environment play phase.
 
         public HinderingTempestsCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
         {
@@ -16,20 +16,20 @@ namespace BlazingDreamscape.Whirlwind
 
         public override IEnumerator Play()
         {
-            //Destroy two Microstorms.
+            //Destroy two of your weather effects.
             List<DestroyCardAction> storedResults = new List<DestroyCardAction>();
-            IEnumerator destroyMicrostorms = GameController.SelectAndDestroyCards(DecisionMaker, new LinqCardCriteria((Card c) => c.DoKeywordsContain("microstorm"), "microstorm"), 2, false, 2, storedResultsAction: storedResults, cardSource: GetCardSource());
+            IEnumerator destroyWeathers = GameController.SelectAndDestroyCards(DecisionMaker, new LinqCardCriteria((Card c) => c.IsWeatherEffect && c.Owner == this.TurnTaker, "weather effect"), 2, false, 2, storedResultsAction: storedResults, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
-                yield return GameController.StartCoroutine(destroyMicrostorms);
+                yield return GameController.StartCoroutine(destroyWeathers);
             }
             else
             {
-                GameController.ExhaustCoroutine(destroyMicrostorms);
+                GameController.ExhaustCoroutine(destroyWeathers);
             }
             if(GetNumberOfCardsDestroyed(storedResults) == 2)
             {
-                //If you did destroy two microstorms...
+                //If you did destroy two weather effects...
                 //Set up the status effects to skip either the next villain phase or the next environment phase
                 var vilTurnTaker = GameController.AllTurnTakers.Where((TurnTaker tt) => tt.IsVillain || tt.IsVillainTeam);
                 var vilToSkip = vilTurnTaker.FirstOrDefault();
@@ -64,8 +64,8 @@ namespace BlazingDreamscape.Whirlwind
             }
             else
             {
-                //If not enough microstorms were destroyed...
-                IEnumerator failState = GameController.SendMessageAction("Not enough microstorms were destroyed!", Priority.High, GetCardSource());
+                //If not enough weather effects were destroyed...
+                IEnumerator failState = GameController.SendMessageAction("Not enough weather effects were destroyed!", Priority.High, GetCardSource());
                 if (UseUnityCoroutines)
                 {
                     yield return GameController.StartCoroutine(failState);

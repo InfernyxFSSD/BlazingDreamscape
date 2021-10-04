@@ -1,0 +1,506 @@
+{
+  "name": "Cyberknight",
+  "kind": "Hero",
+  "expansionIdentifier": "Blazing Dreamscape",
+  "initialCardIdentifiers": [
+    "CyberknightCharacter"
+  ],
+  "cards": [
+    {
+      "identifier": "CyberknightCharacter",
+      "count": 1,
+      "title": "Cyberknight",
+      "body": "Charge Revolver",
+      "backgroundColor": "fbf8f9",
+      "foilBackgroundColor": "FEFEFE",
+      "hitpointsColor": "C94742",
+      "character": true,
+      "powers": [
+        "Cyberknight deals a target 2 Energy damage. You may discard up to 5 cards. For each card discarded this way, Cyberknight deals a target 1 Energy damage."
+      ],
+      "icons": [
+        "HasPower",
+        "DealDamageEnergy",
+        "Discard"
+      ],
+      "hitpoints": 30,
+      "incapacitatedAbilities": [
+        "Select a hero target. Until the start of your next turn, reduce damage dealt to that target by 1.",
+        "Select a hero target. The next damage dealt by that target is irreducible and increased by 1.",
+        "One player may draw a card."
+      ],
+      "flippedIcons": [
+        "ReduceDamageTaken",
+        "IncreaseDamageDealt",
+        "MakeDamageIrreducible",
+        "DrawCardNow"
+      ],
+      "openingLines": {
+        "default": "Weapons live!  Keep your mind focused on the objectives!"
+      },
+      "complexity": 2
+    },
+    {
+      "identifier": "PlateReinforcement",
+      "count": 1,
+      "title": "Plate Reinforcement",
+      "keywords": [
+        "equipment",
+        "armor"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Cyberknight",
+          "text": "Techno-armor? Expensive. Safety? Priceless."
+        }
+      ],
+      "flavorReference": "Cyberknight",
+      "body": "Reduce damage dealt to Cyberknight by 1.",
+      "icons": [
+        "ReduceDamageTaken"
+      ]
+    },
+    {
+      "identifier": "ThunderstormConduit",
+      "count": 1,
+      "title": "Thunderstorm Conduit",
+      "keywords": [
+        "equipment",
+        "armor"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Cyberknight",
+          "text": "Ah! I see someone eager to take the brunt of the storm!"
+        }
+      ],
+      "flavorReference": "Cyberknight",
+      "body": "When Cyberknight would be dealt damage by a target other than herself, she may deal that target 4 Lightning damage, then deal each other non-hero target 2 Lightning damage. If Cyberknight deals damage this way, destroy this card.",
+      "icons": [
+        "DealDamageLightning",
+        "DestroySelf"
+      ]
+    },
+    {
+      "identifier": "BurstEnergizer",
+      "count": 1,
+      "title": "Burst Energizer",
+      "keywords": [
+        "equipment",
+        "armor"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Fleet's Hand",
+          "text": "I'd keep up easier if you didn't expend the emergency units with a hair-trigger temper..."
+        }
+      ],
+      "flavorReference": "Fleet's Hand",
+      "body": "When Cyberknight would be dealt damage by a target other than herself, she may use a power, and if that power deals damage, increase it by 3. If she uses a power this way, destroy this card.",
+      "icons": [
+        "UsePowerNow",
+        "IncreaseDamageDealt",
+        "DestroySelf"
+      ]
+    },
+    {
+      "identifier": "SnareClutchMount",
+      "count": 1,
+      "title": "Snare-Clutch Mount",
+      "keywords": [
+        "equipment",
+        "armor"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Everyone",
+          "text": "Ah! Robot Snake!"
+        }
+      ],
+      "flavorReference": "Everyone",
+      "body": "When Cyberknight would be dealt damage by a target other than herself, you may reduce damage dealt to Cyberknight by that target by 2 and reidrect damage dealt by that target to Cyberknight until the start of your next turn. If you do, destroy this card.",
+      "icons": [
+        "ReduceDamageDealt",
+        "RedirectDamage",
+        "DestroySelf"
+      ]
+    },
+    {
+      "identifier": "CounterShieldProjector",
+      "count": 1,
+      "title": "Counter-Shield Projector",
+      "keywords": [
+        "equipment",
+        "armor"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Cyberknight",
+          "text": "Stand behind me!"
+        }
+      ],
+      "flavorReference": "Cyberknight",
+      "body": "When Cyberknight would be dealt damage by a target other than herself, you may reduce damage dealt to other hero targets by 2 until the start of your next turn. If you do, destroy this card.",
+      "icons": [
+        "ReduceDamageDealt",
+        "DestroySelf"
+      ]
+    },
+    {
+      "identifier": "MedicalAssistantUnit",
+      "count": 1,
+      "title": "Medical Assistant Unit",
+      "keywords": [
+        "equipment",
+        "armor"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Fleet's Hand",
+          "text": "With how much you get roughed up, test this new tool. Apply to new injuries immediately, or else it loses potency."
+        }
+      ],
+      "flavorReference": "Fleet's Hand",
+      "body": "When Cyberknight would be dealt damage by a target other than herself, Cyberknight may regain 5 HP. If Cyberknight regains any HP this way, each other hero target regains 2 HP, then destroy this card.",
+      "icons": [
+        "GainHP",
+        "DestroySelf"
+      ]
+    },
+    {
+      "identifier": "CrossbladeMissiles",
+      "count": 1,
+      "title": "Crossblade Missiles",
+      "keywords": [
+        "equipment",
+        "armor"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Cyberknight",
+          "text": "Come on, give me all you've got. You'll have a blast."
+        }
+      ],
+      "flavorReference": "Cyberknight",
+      "body": "When Cyberknight would be dealt damage by a target other than herself, she may deal that target 2 Fire damage X times, where X is the amount of damage Cyberknight would be dealt. If Cyberknight deals damage this way, destroy this card.",
+      "icons": [
+        "DealDamageFire",
+        "DestroySelf"
+      ]
+    },
+    {
+      "identifier": "QuakeLance",
+      "count": 1,
+      "title": "Quake Lance",
+      "keywords": [
+        "equipment",
+        "arsenal"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Slayer",
+          "text": "Tremors, personally delivered...I'm not jealous."
+        }
+      ],
+      "flavorReference": "Slayer",
+      "powers": "Cyberknight may deal herself 1 irreducible Lightning damage. If she takes damage this way, Cyberknight deals a target 4 irreducible Melee damage. Otherwise, Cyberknight deals a target 3 Melee damage.",
+      "icons": [
+        "HasPower",
+        "DealDamageLightning",
+        "DealDamageMelee"
+      ]
+    },
+    {
+      "identifier": "PolyburstGlaive",
+      "count": 1,
+      "title": "Polyburst Glaive",
+      "keywords": [
+        "equipment",
+        "arsenal"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Fleet's Hand",
+          "text": "The shaft extender wouldn't die on you if you didn't eat its power for a quick surge!"
+        }
+      ],
+      "flavorReference": "Fleet's Hand",
+      "powers": "Cyberknight deals a target 2 Melee damage and 2 damage of a type of your choice. Cyberknight may deal herself 1 irreducible Lightning damage. If she takes damage this way, reduce the next damage dealt to Cyberknight by 4.",
+      "icons": [
+        "HasPower",
+        "DealDamageMelee",
+        "DealDamage",
+        "ReduceDamageTaken"
+      ]
+    },
+    {
+      "identifier": "SuppressionRifle",
+      "count": 1,
+      "title": "Suppression Rifle",
+      "keywords": [
+        "equipment",
+        "arsenal"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Cyberknight",
+          "text": "You will stand down! It happens with or without compliance!"
+        }
+      ],
+      "flavorReference": "Cyberknight",
+      "powers": "Cyberknight deals up to three targets 1 Projectile damage each. Cyberknight may deal herself 1 irreducible Lightning damage. If she takes damage this way, prevent the next damage dealt by non-hero targets dealt damage this way.",
+      "icons": [
+        "HasPower",
+        "DealDamageProjectile",
+        "DealDamageLightning",
+        "CannotDealDamage"
+      ]
+    },
+    {
+      "identifier": "HeroicIntervention",
+      "count": 3,
+      "title": "Heroic Intervention",
+      "keywords": [
+        "ongoing",
+        "limited"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Cyberknight",
+          "text": "Nobody falls on my watch!"
+        }
+      ],
+      "flavorReference": "Cyberknight",
+      "body": "Whenever a Hero target would be dealt damage by a non-hero card, you may redirect that damage to Cyberknight.",
+      "icons": [
+        "RedirectDamage"
+      ]
+    },
+    {
+      "identifier": "PulseDisplacer",
+      "count": 3,
+      "title": "Pulse Displacer",
+      "keywords": [
+        "equipment"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Cyberknight",
+          "text": "Just you, me, and a decent sense of honor."
+        }
+      ],
+      "flavorReference": "Cyberknight",
+      "body": [
+        "Environment cards can not be played.",
+        "Hero targets are immune to damage from environment cards.",
+        "At the start of your turn, destroy this card."
+      ],
+      "icons": [
+        "CannotPlayCards",
+        "ImmuneToDamage",
+        "StartOfTurnAction",
+        "DestroySelf"
+      ]
+    },
+    {
+      "identifier": "AffinityCatalyst",
+      "count": 2,
+      "title": "Affinity Catalyst",
+      "keywords": [
+        "ongoing",
+        "limited"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Cyberknight",
+          "text": "What on Earth made you think a cattleprod on a lightning elemental was smart?!"
+        }
+      ],
+      "flavorReference": "Cyberknight",
+      "body": "When Cyberknight is dealt Lightning damage, you may either draw a card or play a card.",
+      "icons": [
+        "PlayCardNow",
+        "DrawCardNow"
+      ]
+    },
+    {
+      "identifier": "ArmedAndArmored",
+      "count": 3,
+      "title": "Armed And Armored",
+      "keywords": [
+        "one-shot"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Cyberknight",
+          "text": "Never leave unprepared for the fight. Never come unprepared to feel the fight."
+        }
+      ],
+      "flavorReference": "Cyberknight",
+      "body": [
+        "Draw a card.",
+        "Search your deck for one Arsenal card and one Armor card. Put one into play and the other into your hand. Shuffle your deck afterwards."
+      ],
+      "icons": [
+        "DrawCardNow",
+        "Search",
+        "Manipulate"
+      ]
+    },
+    {
+      "identifier": "RepairArmor",
+      "count": 3,
+      "title": "Repair Armor",
+      "keywords": [
+        "ongoing",
+        "limited"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "[placeholder]",
+          "text": "[placeholder]"
+        }
+      ],
+      "flavorReference": "[placeholder]",
+      "powers": "Discard a card. If you do, put an Armor from your trash into play.",
+      "icons": [
+        "Discard",
+        "Manipulate"
+      ]
+    },
+    {
+      "identifier": "Restock",
+      "count": 4,
+      "title": "Restock",
+      "keywords": [
+        "one-shot"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "[placeholder]",
+          "text": "[placeholder]"
+        }
+      ],
+      "flavorReference": "[placeholder]",
+      "body": "Draw three cards",
+      "icons": [
+        "DrawCardNow"
+      ]
+    },
+    {
+      "identifier": "OverclockedArsenal",
+      "count": 2,
+      "title": "Overclocked Arsenal",
+      "keywords": [
+        "ongoing"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "[placeholder]",
+          "text": "[placeholder]"
+        }
+      ],
+      "flavorReference": "[placeholder]",
+      "body": [
+        "You may use an additional power during your power phase.",
+        "At the start of your turn, Cyberknight may deal herself 1 irreducible Lightning damage. If she took no damage this way, destroy this card."
+      ],
+      "icons": [
+        "UsePowerExtra",
+        "StartOfTurnAction",
+        "DealDamageLightning"
+      ]
+    },
+    {
+      "identifier": "ClearingTheField",
+      "count": 3,
+      "title": "Clearing The Field",
+      "keywords": [
+        "one-shot"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Cyberknight",
+          "text": "It's just us now, Igsazill! No distractions."
+        }
+      ],
+      "flavorReference": "Cyberknight",
+      "body": "Destroy up to two environment cards.",
+      "icons": [
+        "DestroyEnvironment"
+      ]
+    },
+    {
+      "identifier": "BountyHunt",
+      "count": 3,
+      "title": "Bounty Hunt",
+      "keywords": [
+        "ongoing",
+        "limited"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Cyberknight",
+          "text": "Immoral!? I do my work and pay my bills!"
+        }
+      ],
+      "flavorReference": "Cyberknight",
+      "body": "When a villain target is reduced to 2 HP or less, destroy it, then you may draw a card.",
+      "icons": [
+        "Destroy",
+        "DrawCardNow"
+      ]
+    },
+    {
+      "identifier": "PriorityTarget",
+      "count": 3,
+      "title": "Priority Target",
+      "keywords": [
+        "ongoing",
+        "limited"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "[placeholder]",
+          "text": "[placeholder]"
+        }
+      ],
+      "flavorReference": "[placeholder]",
+      "body": [
+        "When this card enters play, place it next to a target.",
+        "When the target next to this card is destroyed, each player may draw a card.",
+        "When any target is destroyed, destroy this card."
+      ],
+      "icons": [
+        "DrawCardNow",
+        "DestroySelf"
+      ]
+    },
+    {
+      "identifier": "SacrificeInEmpowerment",
+      "count": 1,
+      "title": "Sacrifice In Empowerment",
+      "keywords": [
+        "ongoing"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "[placeholder]",
+          "text": "[placeholder]"
+        }
+      ],
+      "flavorReference": "[placeholder]",
+      "body": [
+        "Increase damage dealt to and by Cyberknight by 2.",
+        "You may use an extra power during your power phase.",
+        "At the end of your next turn, Cyberknight deals herself 3 Infernal damage, then destroy this card."
+      ],
+      "icons": [
+        "IncreaseDamageDealt",
+        "UsePowerExtra",
+        "DealDamageInfernal",
+        "DestroySelf"
+      ]
+    }
+  ]
+}

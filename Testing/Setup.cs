@@ -1,6 +1,9 @@
-﻿using BlazingDreamscape.Arctyx;
-using Handelabra.Sentinels.Engine.Model;
+﻿using System;
 using NUnit.Framework;
+using System.Reflection;
+using BlazingDreamscape.Arctyx;
+using Handelabra.Sentinels.Engine.Model;
+using Handelabra;
 
 namespace BlazingDreamscape.Testing
 {
@@ -10,7 +13,8 @@ namespace BlazingDreamscape.Testing
         [OneTimeSetUp]
         public void DoSetup()
         {
-            ModHelper.AddAssembly("BlazingDreamscape", typeof(ArctyxCharacterCardController).Assembly);
+            var assembly = Assembly.GetAssembly(typeof(ArctyxCharacterCardController));
+            ModHelper.AddAssembly("BlazingDreamscape", assembly);
         }
     }
 }

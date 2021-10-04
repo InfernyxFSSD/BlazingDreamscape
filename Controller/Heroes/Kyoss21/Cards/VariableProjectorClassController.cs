@@ -18,7 +18,6 @@ namespace BlazingDreamscape.Kyoss21
 
         public override void AddTriggers()
         {
-            AddTriggers();
             AddAsPowerContributor();
         }
 

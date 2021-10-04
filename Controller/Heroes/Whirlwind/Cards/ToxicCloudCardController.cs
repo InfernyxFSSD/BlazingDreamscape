@@ -6,14 +6,12 @@ using Handelabra.Sentinels.Engine.Model;
 
 namespace BlazingDreamscape.Whirlwind
 {
-    //At the end of your turn, Whirlwind deals a target 1 Toxic damage. Until the start of your next turn, reduce damage dealt by a target dealt damage this way by X, where X is the number of Microstorms in play minus 2.
+    //At the end of your turn, Whirlwind deals a target 1 Toxic damage. Until the start of your next turn, reduce damage dealt by a target dealt damage this way by X, where X is the number of Weather Effects in play minus 2.
 
-    public class ToxicCloudCardController : CardController
+    public class ToxicCloudCardController : MicroWeatherCardController
     {
         public ToxicCloudCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
         {
-            //How many Microstorms are in play?
-            SpecialStringMaker.ShowNumberOfCardsInPlay(new LinqCardCriteria((Card c) => c.DoKeywordsContain("microstorm"), "microstorm", false, singular: "microstorm", plural: "microstorms"));
         }
 
         public override void AddTriggers()
@@ -39,11 +37,11 @@ namespace BlazingDreamscape.Whirlwind
 
         private IEnumerator ReduceDamageResponse(DealDamageAction d)
         {
-            //See if (microstorms in play minus 2) is greater than 0
-            int reduceAmount = FindCardsWhere(new LinqCardCriteria((Card c) => c.DoKeywordsContain("microstorm") && c.IsInPlayAndHasGameText)).Count() - 2;
+            //See if (weather effects in play minus 2) is greater than 0
+            int reduceAmount = FindCardsWhere(new LinqCardCriteria((Card c) => c.IsWeatherEffect && c.IsInPlayAndHasGameText)).Count<Card>() - 2;
             if (d.DidDealDamage && reduceAmount > 0)
             {
-                //If Whirlwind dealt a target damage and there are enough microstorms in play to matter
+                //If Whirlwind dealt a target damage and there are enough weather effects in play to matter
                 ReduceDamageStatusEffect rdse = new ReduceDamageStatusEffect(reduceAmount);
                 rdse.SourceCriteria.IsSpecificCard = d.Target;
                 rdse.UntilStartOfNextTurn(this.TurnTaker);

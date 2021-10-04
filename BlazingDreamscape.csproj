@@ -11,15 +11,13 @@
 		<Authors>Infernyx and Sybithos</Authors>
 		<Company />
 		<PackageId>BlazingDreamscape</PackageId>
-		<Version>0.1.3</Version>
-		<Description>Custom decks from the two people in the title, Infernyx and Sybithos</Description>
+		<Version>0.6</Version>
+		<Description>Custom decks from Infernyx and Sybithos</Description>
 	</PropertyGroup>
 
 	<ItemGroup>
-	</ItemGroup>
-
-	<ItemGroup>
-		<EmbeddedResource Include="DeckLists\*DeckList.json" />
+		<EmbeddedResource Include="DeckLists\Heroes\*.json" />
+		<EmbeddedResource Include="DeckLists\Villains\*.json" />
 	</ItemGroup>
 
 	<PropertyGroup>
@@ -27,14 +25,23 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Controller\Heroes\Sploder\**" />
+	  <EmbeddedResource Remove="Controller\Heroes\Sploder\**" />
+	  <None Remove="Controller\Heroes\Sploder\**" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Testing\Heroes\SploderTests.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Remove="DeckLists\SploderDeckList.json" />
 	</ItemGroup>
 
 
 	<ItemGroup>
 		<None Remove="CodingBugs" />
+		<None Remove="DeckLists\SploderDeckList.json" />
 		<None Remove="Docs\manifest.json" />
 	</ItemGroup>
 
@@ -44,7 +51,16 @@
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 	</ItemGroup>
-	
+
+	<ItemGroup>
+	  <EmbeddedResource Include="DeckLists\ArctyxDeckList.json" />
+	  <EmbeddedResource Include="DeckLists\CyberknightDeckList.json" />
+	  <EmbeddedResource Include="DeckLists\Kyoss21DeckList.json" />
+	  <EmbeddedResource Include="DeckLists\NightmareHordeDeckList.json" />
+	  <EmbeddedResource Include="DeckLists\WhirlwindDeckList.json" />
+	  <EmbeddedResource Include="DeckLists\WildfireDeckList.json" />
+	</ItemGroup>
+
 	<ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3" />
     <PackageReference Include="NUnit" Version="3.12.0" />
@@ -61,9 +77,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Controller\Heroes\Cyberknight\CardSubClasses\" />
     <Folder Include="Controller\Heroes\Kyoss21\CardSubClasses\" />
-    <Folder Include="Controller\Heroes\Whirlwind\CardSubClasses\" />
     <Folder Include="Controller\Heroes\Wildfire\CardSubClasses\" />
+    <Folder Include="DeckLists\Heroes\" />
+    <Folder Include="DeckLists\Villains\" />
     <Folder Include="Properties\" />
   </ItemGroup>
 

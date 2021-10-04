@@ -345,3 +345,5 @@ healthchecksdb
 /Testing/Heroes/TestWinTests.cs
 /Controller/Heroes/Silnis
 /DeckLists/SilnisDeckList.json
+/Controller/Heroes/Sploder
+/DeckLists/SploderDeckList.json

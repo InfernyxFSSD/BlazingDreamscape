@@ -1,6 +1,7 @@
 {
   "name": "Arctyx",
-  "kind": "Hero",
+	"kind": "Hero",
+	"expansionIdentifier": "Blazing Dreamscape",
   "initialCardIdentifiers": [
     "ArctyxCharacter"
   ],

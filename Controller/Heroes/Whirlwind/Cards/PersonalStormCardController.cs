@@ -8,13 +8,13 @@ namespace BlazingDreamscape.Whirlwind
 {
 	public class PersonalStormCardController : CardController
 	{
-		//When Whirlwind would be dealt 3 or more damage at once, you may prevent that damage. If you do, destroy a microstorm or this card.
+		//When Whirlwind would be dealt 3 or more damage at once, you may prevent that damage. If you do, destroy a weather effect or this card.
 		//When this card is destroyed, Whirlwind deals up to 3 targets 1 projectile damage each.
 
 		public PersonalStormCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
 		{
-			//How many Microstorms are in play?
-			SpecialStringMaker.ShowNumberOfCardsInPlay(new LinqCardCriteria((Card c) => c.DoKeywordsContain("microstorm"), "microstorm", false, singular: "microstorm", plural: "microstorms"));
+			//How many weather effects are in play?
+			SpecialStringMaker.ShowNumberOfCardsInPlay(new LinqCardCriteria((Card c) => c.IsWeatherEffect, "weather effect", false, singular: "weather effect", plural: "weather effects"));
 		}
 
 		public override void AddTriggers()
@@ -58,8 +58,8 @@ namespace BlazingDreamscape.Whirlwind
             {
 				//If you did choose to prevent that damage, prevent it
 				IEnumerator preventDamage = CancelAction(dd, isPreventEffect: true);
-				//Destroy either a microstorm or this card
-				IEnumerator destroyCard = GameController.SelectAndDestroyCard(DecisionMaker, new LinqCardCriteria((Card c) => (c.DoKeywordsContain("microstorm") || c == Card) && c.IsInPlayAndHasGameText, "a microstorm or this card"), false, responsibleCard: Card, cardSource: GetCardSource(null));
+				//Destroy either a weather effect or this card
+				IEnumerator destroyCard = GameController.SelectAndDestroyCard(DecisionMaker, new LinqCardCriteria((Card c) => (c.IsWeatherEffect || c == Card) && c.IsInPlayAndHasGameText, "a weather effect or this card"), false, responsibleCard: Card, cardSource: GetCardSource(null));
 				if (UseUnityCoroutines)
 				{
 					yield return GameController.StartCoroutine(preventDamage);

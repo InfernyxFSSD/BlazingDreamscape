@@ -7,8 +7,8 @@ namespace BlazingDreamscape.Whirlwind
 {
 	public class GaspingSurgeCardController : CardController
 	{
-		//When this card enters play, you may play a microstorm.
-		//When one of your microstorms is destroyed, Whirlwind may deal a target 1 damage of a type listed on that card.
+		//When this card enters play, you may play a weather effect.
+		//When a weather effect is destroyed, Whirlwind may deal a target 1 energy damage.
 
 		public GaspingSurgeCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
 		{
@@ -16,35 +16,13 @@ namespace BlazingDreamscape.Whirlwind
 
 		public override void AddTriggers()
 		{
-			//When a microstorm is destroyed, may deal damage.
-			AddTrigger<DestroyCardAction>((DestroyCardAction d) => d.CardToDestroy.Card.DoKeywordsContain("microstorm") && d.WasCardDestroyed, new Func<DestroyCardAction, IEnumerator>(DealDamageResponse), TriggerType.DealDamage, TriggerTiming.After, ActionDescription.Unspecified);
+			//When a weather effect is destroyed, may deal damage.
+			AddTrigger<DestroyCardAction>((DestroyCardAction d) => d.CardToDestroy.Card.IsWeatherEffect && d.WasCardDestroyed, new Func<DestroyCardAction, IEnumerator>(DealDamageResponse), TriggerType.DealDamage, TriggerTiming.After, ActionDescription.Unspecified);
 		}
 
 		private IEnumerator DealDamageResponse(DestroyCardAction d)
 		{
-			var microstormIdentifier = d.CardToDestroy.Card.Identifier;
-			var damageType = new DamageType();
-			//Check which of your microstorms was destroyed to set damage type
-			switch (microstormIdentifier)
-            {
-				case "HailFlurry":
-					damageType = DamageType.Cold;
-					break;
-				case "VigilanteGales":
-					damageType = DamageType.Radiant;
-					break;
-				case "LightningStorm":
-					damageType = DamageType.Lightning;
-					break;
-				case "ToxicCloud":
-					damageType = DamageType.Toxic;
-					break;
-				case "PsionicTorrent":
-					damageType = DamageType.Psychic;
-					break;
-            }
-			//May deal damage of that type
-			IEnumerator blowAir = GameController.SelectTargetsAndDealDamage(DecisionMaker, new DamageSource(GameController, CharacterCard), 1, damageType, 1, false, 0, cardSource: GetCardSource());
+			IEnumerator blowAir = GameController.SelectTargetsAndDealDamage(DecisionMaker, new DamageSource(GameController, CharacterCard), 1, DamageType.Energy, 1, false, 0, cardSource: GetCardSource());
 			if (UseUnityCoroutines)
 			{
 				yield return GameController.StartCoroutine(blowAir);
@@ -58,8 +36,8 @@ namespace BlazingDreamscape.Whirlwind
 
 		public override IEnumerator Play()
 		{
-			//When this card enters play, may play a Microstorm
-			IEnumerator playCard = GameController.SelectAndPlayCardFromHand(DecisionMaker, true, cardCriteria: new LinqCardCriteria((Card c) => c.DoKeywordsContain("microstorm")), cardSource: GetCardSource());
+			//When this card enters play, may play a Weather Effect
+			IEnumerator playCard = GameController.SelectAndPlayCardFromHand(DecisionMaker, true, cardCriteria: new LinqCardCriteria((Card c) => c.IsWeatherEffect), cardSource: GetCardSource());
 			if (UseUnityCoroutines)
 			{
 				yield return GameController.StartCoroutine(playCard);

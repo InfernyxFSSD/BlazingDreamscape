@@ -1,6 +1,7 @@
 {
   "name": "Whirlwind",
   "kind": "Hero",
+  "expansionIdentifier": "Blazing Dreamscape",
   "initialCardIdentifiers": [
     "WhirlwindCharacter"
   ],
@@ -44,11 +45,11 @@
       "title": "Hail Flurry",
       "keywords": [
         "ongoing",
-        "microstorm",
+        "weather effect",
         "limited"
       ],
       "flavorText": "[placeholder]",
-      "body": "At the end of your turn, {Whirlwind} deals up to X targets 1 Cold damage each, where X is the number of Microstorms in play.",
+      "body": "At the end of your turn, {Whirlwind} deals up to X targets 1 Cold damage each, where X is the number of Weather Effects in play.",
       "icons": [
         "DealDamageCold"
       ]
@@ -59,11 +60,11 @@
       "title": "Toxic Cloud",
       "keywords": [
         "ongoing",
-        "microstorm",
+        "weather effect",
         "limited"
       ],
       "flavorText": "[placeholder]",
-      "body": "At the end of your turn, {Whirlwind} deals a target 1 Toxic damage. Until the start of your next turn, reduce damage dealt by a target dealt damage this way by X, where X is the number of Microstorms in play minus 2.",
+      "body": "At the end of your turn, {Whirlwind} deals a target 1 Toxic damage. Until the start of your next turn, reduce damage dealt by a target dealt damage this way by X, where X is the number of Weather Effects in play minus 2.",
       "icons": [
         "DealDamageToxic",
         "ReduceDamageDealt"
@@ -75,11 +76,11 @@
       "title": "Psionic Torrent",
       "keywords": [
         "ongoing",
-        "microstorm",
+        "weather effect",
         "limited"
       ],
       "flavorText": "[placeholder]",
-      "body": "At the end of your turn, {Whirlwind} deals a target 1 Psychic damage. Then, up to X players may use a power, where X is the number of Microstorms in play minus 2.",
+      "body": "At the end of your turn, {Whirlwind} deals a target 1 Psychic damage. Then, up to X players may use a power, where X is the number of Weather Effects in play minus 2.",
       "icons": [
         "DealDamagePsychic",
         "UsePowerNow"
@@ -91,11 +92,11 @@
       "title": "Vigilante Gales",
       "keywords": [
         "ongoing",
-        "microstorm",
+        "weather effect",
         "limited"
       ],
       "flavorText": "[placeholder]",
-      "body": "At the end of your turn, {Whirlwind} deals a target 1 Radiant damage. Then, up to X targets deal themselves 1 Radiant damage each, where X is the number of Microstorms in play minus 1.",
+      "body": "At the end of your turn, {Whirlwind} deals a target 1 Radiant damage. Then, up to X targets deal themselves 1 Radiant damage each, where X is the number of Weather Effects in play minus 1.",
       "icons": [
         "DealDamageRadiant"
       ]
@@ -106,11 +107,11 @@
       "title": "Lightning Storm",
       "keywords": [
         "ongoing",
-        "microstorm",
+        "weather effect",
         "limited"
       ],
       "flavorText": "[placeholder]",
-      "body": "At the end of your turn, {Whirlwind} deals a target 1 Lightning damage. Then, up to X players may play a card, where X is the number of Microstorms in play minus 2.",
+      "body": "At the end of your turn, {Whirlwind} deals a target 1 Lightning damage. Then, up to X players may play a card, where X is the number of Weather Effects in play minus 2.",
       "icons": [
         "DealDamageLightning",
         "PlayCardNow"
@@ -125,7 +126,7 @@
         "limited"
       ],
       "flavorText": "[placeholder]",
-      "powers": "Destroy a Microstorm. If you do, select a target. Increase damage dealt to that target by 1 until the start of your next turn.",
+      "powers": "Destroy a Weather Effect. If you do, select a target. Increase damage dealt to that target by 1 until the start of your next turn.",
       "icons": [
         "Destroy",
         "IncreaseDamageTaken"
@@ -141,12 +142,12 @@
       ],
       "flavorText": "[placeholder]",
       "body": [
-        "When this card enters play, you may play a Microstorm.",
-        "When one of your Microstorms is destroyed, {Whirlwind} may deal a target 1 damage of a type listed on that card."
+        "When this card enters play, you may play a Weather Effect.",
+        "When Weather Effect is destroyed, {Whirlwind} may deal a target 1 energy damage."
       ],
       "icons": [
         "PlayCardNow",
-        "DealDamage"
+        "DealDamageEnergy"
       ]
     },
     {
@@ -159,7 +160,7 @@
       ],
       "flavorText": "[placeholder]",
       "body": [
-        "When Whirlwind would be dealt 3 or more damage at once, you may prevent that damage. If you do, destroy a Microstorm or this card.",
+        "When Whirlwind would be dealt 3 or more damage at once, you may prevent that damage. If you do, destroy a Weather Effect or this card.",
         "When this card is destroyed, Whirlwind deals up to 3 targets 1 Projectile damage each."
       ],
       "icons": [
@@ -178,7 +179,7 @@
       ],
       "flavorText": "[placeholder]",
       "body": [
-        "At the start of your turn, you may put a Microstorm from your trash into play. Then, if there are at least five Microstorms in play, destroy this card.",
+        "At the start of your turn, you may put a Weather Effect from your trash into play. Then, if there are at least five Weather Effects in play, destroy this card.",
         "You may draw an extra card during your draw phase."
       ],
       "icons": [
@@ -194,7 +195,7 @@
         "one-shot"
       ],
       "flavorText": "[placeholder]",
-      "body": "Search your deck or trash for a Microstorm and put it into play. If you searched your deck, shuffle it afterwards.",
+      "body": "Search your deck or trash for a Weather Effect and put it into play. If you searched your deck, shuffle it afterwards.",
       "icons": [
         "PlayCardNow"
       ]
@@ -233,7 +234,7 @@
         "one-shot"
       ],
       "flavorText": "[placeholder]",
-      "body": "Destroy two Microstorms. If you do, skip either the next villain play phase or the next environment play phase.",
+      "body": "Destroy two of your Weather Effects. If you do, skip either the next villain play phase or the next environment play phase.",
       "icons": [
         "Destroy"
       ]

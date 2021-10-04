@@ -1,0 +1,242 @@
+{
+  "name": "Nightmare Horde",
+  "kind": "Villain",
+  "expansionIdentifier": "Blazing Dreamscape",
+  "initialCardIdentifiers": [
+    "NightmareHordeCharacter"
+  ],
+  "cards": [
+    {
+      "identifier": "NightmareHordeCharacter",
+      "count": 1,
+      "title": "Nightmare Horde",
+      "keywords": [
+        "villain"
+      ],
+      "icons": [
+        "StartOfTurnAction",
+        "DealDamagePsychic"
+      ],
+      "body": "Shambling Fragments",
+      "backgroundColor": "576675",
+      "foilBackgroundColor": "407294",
+      "character": true,
+      "hitpoints": 30,
+      "setup": [
+        "At the start of the game, {NightmareHorde} enters play “Shambling Fragments“ side up.",
+        "Reveal cards from the top of the villain deck until{BR}{H - 1} Fragments are revealed. Put the revealed{BR}Fragments into play, then shuffle the other revealed{BR}cards back into the villain deck."
+      ],
+      "gameplay": [
+        "Whenever a Fragment is destroyed, {NightmareHorde} deals the hero target with the highest HP 2 Psychic damage.",
+        "When {NightmareHorde} would be destroyed, its villain character card flips to the “Ravenous Memories“ side instead.",
+        "At the start of the villain turn, {NightmareHorde} deals{BR}each non-villain target 1 Psychic damage."
+      ],
+      "flippedHitpoints": 60,
+      "flippedBody": "Ravenous Memories",
+      "flippedGameplay": [
+        "When flipped to this side, {NightmareHorde}'s maximum HP is 60. {NightmareHorde} is set to 60 HP. Each hero either destroys one of their non-character cards or deals itself 2 irreducible Psychic damage.",
+        "Whenever a Fragment is destroyed, destroy a non-character hero card.",
+        "At the start of the villain turn, {NightmareHorde} deals each non-villain target 2 Psychic damage.",
+        "At the end of the villain turn, play the top card of the villain deck."
+      ],
+      "flippedIcons": [
+        "StartOfTurnAction",
+        "EndOfTurnAction",
+        "DealDamagePsychic",
+        "PlayCardNow"
+      ],
+      "difficulty": "2?"
+    },
+    {
+      "identifier": "PortraitMimic",
+      "count": 3,
+      "title": "Portrait Mimic",
+      "hitpoints": 5,
+      "keywords": [
+        "fragment"
+      ],
+      "icons": [
+        "EndOfTurnAction",
+        "Discard",
+        "DealDamageMelee"
+      ],
+      "body": "At the end of the villain turn, each player may discard a card. If fewer than {H-1} cards are discarded this way, this card deals the hero target with the highest HP 3 Melee damage."
+    },
+    {
+      "identifier": "IronTitan",
+      "count": 3,
+      "title": "Iron Titan",
+      "hitpoints": 12,
+      "keywords": [
+        "fragment"
+      ],
+      "icons": [
+        "EndOfTurnAction",
+        "DealDamageEnergy"
+      ],
+      "body": [
+        "At the end of the villain turn, this card deals the hero target with the lowest HP and itself 2 Energy damage."
+      ]
+    },
+    {
+      "identifier": "Doppelmemory",
+      "count": 3,
+      "title": "Doppelmemory",
+      "hitpoints": 6,
+      "keywords": [
+        "fragment"
+      ],
+      "icons": [
+        "DealDamagePsychic",
+        "PlayCardNow"
+      ],
+      "body": [
+        "When this card enters play, place it next to a hero without a Doppelmemory next to it.",
+        "The first time that hero deals a target damage each turn, this card deals that hero X Psychic damage, where X is the amount of damage dealt by that hero.",
+        "When that hero draws a card, play the top card of the villain deck."
+      ]
+    },
+    {
+      "identifier": "BrutishShadow",
+      "count": 3,
+      "title": "Brutish Shadow",
+      "hitpoints": 6,
+      "keywords": [
+        "fragment"
+      ],
+      "icons": [
+        "GainHP",
+        "EndOfTurnAction",
+        "DealDamageMelee"
+      ],
+      "body": [
+        "The first time each turn this card is dealt damage, {NightmareHorde} regains 2 HP.",
+        "At the end of the villain turn, this card deals the hero with the most HP 2 irreducible Melee damage."
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Wildfire",
+          "text": "More are growing from the blood it spills?! This is insanity!"
+        }
+      ]
+    },
+    {
+      "identifier": "UmbralGuardian",
+      "count": 1,
+      "title": "Umbral Guardian",
+      "hitpoints": 10,
+      "keywords": [
+        "fragment"
+      ],
+      "icons": [
+        "IncreaseDamageDealt",
+        "ReduceDamageTaken",
+        "CancelledDamageRed"
+      ],
+      "body": [
+        "Increase damage dealt by other villain targets by 1.",
+        "Reduce damage dealt to other villain targets by 1.",
+        "The first time each turn this card would be dealt damage, prevent that damage."
+      ]
+    },
+    {
+      "identifier": "BoundingCentipede",
+      "count": 1,
+      "title": "Bounding Centipede",
+      "hitpoints": 10,
+      "keywords": [
+        "fragment"
+      ],
+      "icons": [
+        "ImmuneToDamage",
+        "PlayCardNow",
+        "EndOfTurnAction",
+        "DealDamageMelee"
+      ],
+      "body": [
+        "After a hero target deals damage to a non-hero target, this card becomes immune to damage until the start of the next turn.",
+        "When this card is destroyed, play the top {H-2} cards of the villain deck.",
+        "At the end of the villain turn, this card deals the hero target with the highest HP 2 Melee damage."
+      ]
+    },
+    {
+      "identifier": "NightmareNuisances",
+      "count": 2,
+      "title": "Nightmare Nuisances",
+      "keywords": [
+        "ongoing"
+      ],
+      "icons": [
+        "DealDamageProjectile"
+      ],
+      "body": [
+        "The first time each turn each Fragment deals a non-villain target damage, {NightmareHorde} deals that target 1 irreducible Projectile damage."
+      ]
+    },
+    {
+      "identifier": "TheHordeMarchesOn",
+      "count": 2,
+      "title": "The Horde Marches On",
+      "keywords": [
+        "ongoing"
+      ],
+      "icons": [
+        "Indestructible",
+        "EndOfTurnAction",
+        "DestroySelf"
+      ],
+      "body": [
+        "Fragments are indestructible.",
+        "At the end of each turn, if there are {H-1} fragments in play at or below 0 HP, destroy this card."
+      ]
+    },
+    {
+      "identifier": "FlashOfFear",
+      "count": 3,
+      "title": "Flash Of Fear",
+      "keywords": [
+        "one-shot"
+      ],
+      "icons": [
+        "Discard",
+        "DealDamagePsychic"
+      ],
+      "body": [
+        "Each player either discards two cards from their hand or that player's hero deals themselves 2 irreducible Psychic damage."
+      ]
+    },
+    {
+      "identifier": "RecombiningShadows",
+      "count": 2,
+      "title": "Recombining Shadows",
+      "keywords": [
+        "one-shot"
+      ],
+      "icons": [
+        "Manipulate",
+        "PlayCardNow",
+        "GainHP"
+      ],
+      "body": [
+        "Shuffle the villain trash into the villain deck.",
+        "If there are fewer than {H} Fragments in play, reveal cards from the top of the villain deck until 1 Fragment is revealed, put it into play, then shuffle the other revealed cards back into the villain deck.",
+        "Each villain target regains 2 HP."
+      ]
+    },
+    {
+      "identifier": "DrawnToFeed",
+      "count": 2,
+      "title": "Drawn To Feed",
+      "keywords": [
+        "one-shot"
+      ],
+      "icons": [
+        "DealDamageMelee",
+        "GainHP"
+      ],
+      "body": [
+        "Each villain target deals the non-villain target with the lowest HP 1 Melee damage. Any target that deals damage this way regains 3 HP."
+      ]
+    }
+  ]
+}

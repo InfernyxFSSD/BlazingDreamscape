@@ -1,6 +1,7 @@
 {
   "name": "Wildfire",
   "kind": "Hero",
+  "expansionIdentifier": "Blazing Dreamscape",
   "initialCardIdentifiers": [
     "WildfireCharacter"
   ],

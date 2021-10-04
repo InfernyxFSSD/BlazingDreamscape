@@ -7,14 +7,12 @@ using Handelabra.Sentinels.Engine.Model;
 
 namespace BlazingDreamscape.Whirlwind
 {
-    //At the end of your turn, Whirlwind deals a target 1 Radiant damage. Then, up to X targets deal themselves 1 radiant damage each, where X is the number of Microstorms in play minus 1.
+    //At the end of your turn, Whirlwind deals a target 1 Radiant damage. Then, up to X targets deal themselves 1 radiant damage each, where X is the number of Weather Effects in play minus 1.
 
-    public class VigilanteGalesCardController : CardController
+    public class VigilanteGalesCardController : MicroWeatherCardController
     {
         public VigilanteGalesCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
         {
-            //How many Microstorms are in play?
-            SpecialStringMaker.ShowNumberOfCardsInPlay(new LinqCardCriteria((Card c) => c.DoKeywordsContain("microstorm"), "microstorm", false, singular: "microstorm", plural: "microstorms"));
         }
 
         public override void AddTriggers()
@@ -35,20 +33,31 @@ namespace BlazingDreamscape.Whirlwind
             {
                 GameController.ExhaustCoroutine(hitTarget);
             }
-            //See if (microstorms in play minus 1) is greater than 0
-            int hitSelfCount = FindCardsWhere(new LinqCardCriteria((Card c) => c.DoKeywordsContain("microstorm", false, false) && c.IsInPlayAndHasGameText)).Count() - 1;
-            if (hitSelfCount > 0)
+            var hitSelfCount = this.FindCardsWhere(new LinqCardCriteria((Card c) => c.IsWeatherEffect && c.IsInPlayAndHasGameText));
+            List<Card> selectedTargets = new List<Card>();
+            int targetsChosen = 0;
+            foreach (Card weather in hitSelfCount)
             {
-                //If so, select targets to hit themselves
-                IEnumerator damageSelf = GameController.SelectTargetsToDealDamageToSelf(DecisionMaker, 1, DamageType.Radiant, hitSelfCount, false, 0, cardSource: GetCardSource());
+                int quickCheck = this.FindCardsWhere(new LinqCardCriteria((Card c) => c.IsWeatherEffect && c.IsInPlayAndHasGameText)).Count<Card>() - 1;
+                //If there aren't enough weather effects in play, don't continue with having targets hit themselves
+                if (targetsChosen >= quickCheck)
+                {
+                    break;
+                }
+                List<SelectCardDecision> storedResults = new List<SelectCardDecision>();
+                IEnumerator hitSelf = this.GameController.SelectTargetsToDealDamageToSelf(this.DecisionMaker, 1, DamageType.Radiant, new int?(1), false, new int?(0), additionalCriteria: (Card c) => !selectedTargets.Contains(c), storedResultsDecisions: storedResults, cardSource: GetCardSource());
                 if (UseUnityCoroutines)
                 {
-                    yield return GameController.StartCoroutine(damageSelf);
+                    yield return GameController.StartCoroutine(hitSelf);
                 }
                 else
                 {
-                    GameController.ExhaustCoroutine(damageSelf);
+                    GameController.ExhaustCoroutine(hitSelf);
                 }
+                Card chosenCard = this.GetSelectedCard(storedResults);
+                selectedTargets.Add(chosenCard);
+                targetsChosen++;
+                storedResults = null;
             }
             yield break;
         }

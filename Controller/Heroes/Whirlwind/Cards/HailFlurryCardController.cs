@@ -5,13 +5,11 @@ using Handelabra.Sentinels.Engine.Model;
 
 namespace BlazingDreamscape.Whirlwind
 {
-    public class HailFlurryCardController : CardController
+    public class HailFlurryCardController : MicroWeatherCardController
     {
-        //At the end of your turn, Whirlwind deals up to X targets 1 Cold damage each, where X is the number of Microstorms in play.
+        //At the end of your turn, Whirlwind deals up to X targets 1 Cold damage each, where X is the number of Weather Effects in play.
         public HailFlurryCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
         {
-            //How many Microstorms are in play?
-            SpecialStringMaker.ShowNumberOfCardsInPlay(new LinqCardCriteria((Card c) => c.DoKeywordsContain("microstorm"), "microstorm", false, singular: "microstorm", plural: "microstorms"));
         }
         public override void AddTriggers()
         {
@@ -21,9 +19,8 @@ namespace BlazingDreamscape.Whirlwind
 
         private IEnumerator EndOfTurnResponse()
         {
-            //Count number of Microstorms in play, then hit that many targets
-            int targetCount = FindCardsWhere(new LinqCardCriteria((Card c) => c.DoKeywordsContain("microstorm") && c.IsInPlayAndHasGameText)).Count();
-            IEnumerator hitTargets = GameController.SelectTargetsAndDealDamage(DecisionMaker, new DamageSource(GameController, CharacterCard), 1, DamageType.Cold, targetCount, false, 0, cardSource: GetCardSource());
+            //Hit as many targets as there are weather effects
+            IEnumerator hitTargets = this.GameController.SelectTargetsAndDealDamage(this.DecisionMaker, new DamageSource(this.GameController, this.CharacterCard), 1, DamageType.Cold, GetNumberOfTargets(), false, new int?(0), cardSource: this.GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(hitTargets);
@@ -33,6 +30,11 @@ namespace BlazingDreamscape.Whirlwind
                 GameController.ExhaustCoroutine(hitTargets);
             }
             yield break;
+        }
+
+        private int GetNumberOfTargets()
+        {
+            return base.FindCardsWhere((Card c) => c.IsInPlayAndHasGameText && c.IsWeatherEffect).Count<Card>();
         }
     }
 }

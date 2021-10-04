@@ -6,14 +6,12 @@ using Handelabra.Sentinels.Engine.Model;
 
 namespace BlazingDreamscape.Whirlwind
 {
-    public class PsionicTorrentCardController : CardController
+    public class PsionicTorrentCardController : MicroWeatherCardController
     {
-        //At the end of your turn, Whirlwind deals a target 1 psychic damage. Then, up to X players may use a power, where X is the number of microstorms in play minus 2.
+        //At the end of your turn, Whirlwind deals a target 1 psychic damage. Then, up to X players may use a power, where X is the number of Weather Effects in play minus 2.
 
         public PsionicTorrentCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
         {
-            //How many Microstorms are in play?
-            SpecialStringMaker.ShowNumberOfCardsInPlay(new LinqCardCriteria((Card c) => c.DoKeywordsContain("microstorm"), "microstorm", false, singular: "microstorm", plural: "microstorms"));
         }
 
         public override void AddTriggers()
@@ -34,28 +32,31 @@ namespace BlazingDreamscape.Whirlwind
             {
                 GameController.ExhaustCoroutine(hitTarget);
             }
-            //See if (microstorms in play minus 2) is greater than 0
-            int usePowerCount = FindCardsWhere(new LinqCardCriteria((Card c) => c.DoKeywordsContain("microstorm") && c.IsInPlayAndHasGameText)).Count() - 2;
-            if (usePowerCount > 0)
+            var givePowerCount = this.FindCardsWhere(new LinqCardCriteria((Card c) => c.IsWeatherEffect && c.IsInPlayAndHasGameText));
+            List<TurnTaker> selectedHeroes = new List<TurnTaker>();
+            int powersGiven = 0;
+            foreach (Card weather in givePowerCount)
             {
-                //If enough microstarms are in play, start handing out powers
-                List<TurnTaker> selectedHeroes = new List<TurnTaker>();
-                for (int i = 0; i < usePowerCount; i++)
+                int quickCheck = this.FindCardsWhere(new LinqCardCriteria((Card c) => c.IsWeatherEffect && c.IsInPlayAndHasGameText)).Count<Card>() - 2;
+                //If there aren't enough weather effects in play, don't continue with giving out powers
+                if (powersGiven >= quickCheck)
                 {
-                    List<SelectTurnTakerDecision> storedResults = new List<SelectTurnTakerDecision>();
-                    IEnumerator usePower = GameController.SelectHeroToUsePower(DecisionMaker, storedResultsDecision: storedResults, additionalCriteria: new LinqTurnTakerCriteria((TurnTaker tt) => !selectedHeroes.Contains(tt)), cardSource: GetCardSource());
-                    if (UseUnityCoroutines)
-                    {
-                        yield return GameController.StartCoroutine(usePower);
-                    }
-                    else
-                    {
-                        GameController.ExhaustCoroutine(usePower);
-                    }
-                    TurnTaker chosenHero = GetSelectedTurnTaker(storedResults);
-                    selectedHeroes.Add(chosenHero);
-                    storedResults = null;
+                    break;
                 }
+                List<SelectTurnTakerDecision> storedResults = new List<SelectTurnTakerDecision>();
+                IEnumerator usePower = GameController.SelectHeroToUsePower(DecisionMaker, storedResultsDecision: storedResults, additionalCriteria: new LinqTurnTakerCriteria((TurnTaker tt) => !selectedHeroes.Contains(tt)), cardSource: GetCardSource());
+                if (UseUnityCoroutines)
+                {
+                    yield return GameController.StartCoroutine(usePower);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(usePower);
+                }
+                TurnTaker chosenHero = GetSelectedTurnTaker(storedResults);
+                selectedHeroes.Add(chosenHero);
+                powersGiven++;
+                storedResults = null;
             }
             yield break;
         }
